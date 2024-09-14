@@ -7,7 +7,7 @@ services:
     restart: always
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.premia1.rule=Host(`pay.wisecheckout.com.br`)'
+      - 'traefik.http.routers.premia1.rule=Host(`premia-pix.site`)'
       - 'traefik.http.routers.premia1.entrypoints=websecure'
       - 'traefik.http.services.premia1.loadbalancer.server.port=3000'
       - 'traefik.http.routers.premia1.service=premia1'
