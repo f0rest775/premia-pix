@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  premia1:
+    build:
+      context: .
+    container_name: premia1
+    restart: always
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.premia1.rule=Host(`pay.wisecheckout.com.br`)'
+      - 'traefik.http.routers.premia1.entrypoints=websecure'
+      - 'traefik.http.services.premia1.loadbalancer.server.port=3000'
+      - 'traefik.http.routers.premia1.service=premia1'
+      - 'traefik.http.routers.premia1.tls.certresolver=leresolver'
+
+networks:
+  default:
+    name: premia1
+    external: true
