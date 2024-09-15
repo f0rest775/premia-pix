@@ -1,6 +1,7 @@
 'use client'
 
 import Pix from '@/assets/icon-pix.png'
+import PixWhite from '@/assets/icon-pix-white.png'
 import BB from '@/assets/bb.png'
 import Caixa from '@/assets/caixa.png'
 import Inter from '@/assets/inter.png'
@@ -21,7 +22,7 @@ export function FormPayment() {
   const [typeInput, setTypeInput] = useState<React.HTMLInputTypeAttribute | "">("")
   const [bank, setBank] = useState<"bb" | "c6" | "nu" | "itau" | "inter" | "caixa" | "outro" | "bradesco" | null>(null)
   const [pixKey, setPixKey] = useState<string>("")
-  const [seconds, setSeconds] = useState<number>(3)
+  const [seconds, setSeconds] = useState<number>(2)
 
   const [btn, setBtn] = useState<string>()
 
@@ -155,7 +156,7 @@ export function FormPayment() {
 
 
       <div className='flex items-center justify-center gap-2 mt-6'>
-        <Image src={Pix} alt="icon pix" className='w-[15px] h-auto object-cover' priority />
+        <Image src={PixWhite} alt="icon pix" className='w-[15px] h-auto object-cover' priority />
         <p className='text-xs font-semibold text-zinc-900'>Selecione sua chave PIX</p>
       </div>
 

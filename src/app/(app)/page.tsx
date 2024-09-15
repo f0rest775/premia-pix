@@ -9,11 +9,19 @@ export default function Home() {
 
       <div className="space-y-4">
         <div className="flex items-center justify-center bg-[#91e3dc] p-4 rounded-lg shadow-2xl">
-          <p className="text-sm font-medium text-center">Você ganhou uma licença gratuita para testar nosso app, cadastre seu E-mail abaixo e ganhe até 819,00 agora.</p>
+          <p className="text-sm font-medium text-center">
+            Você ganhou uma licença gratuita para testar nosso
+            app cadastre seu e-mail abaixo e ganhe até
+            R$ 819,00 agora.
+          </p>
         </div>
-
         <LoginForm />
 
+
+      </div>
+
+      <div className="text-zinc-600 text-sm">
+        2024 &copy; Premia PIX
       </div>
     </div>
   );

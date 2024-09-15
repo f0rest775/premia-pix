@@ -3,11 +3,12 @@ import Image from "next/image"
 import Logo from '@/assets/logo.png'
 import { redirect } from "next/navigation"
 import Verify from '@/assets/verify.png'
-import { EllipsisIcon, ThumbsUp } from "lucide-react"
+import { ChartNoAxesColumnIncreasing, CircleDollarSign, EllipsisIcon } from "lucide-react"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import LogoInstaPremia from '@/assets/logo-insta-premia.png'
+import { Alert } from "@/components/alert"
 
 
 interface InfluencerPageProps {
@@ -28,22 +29,25 @@ export default function InfluencerPage({ params }: InfluencerPageProps) {
 
   return (
     <>
+      <Alert />
       <div className="border-b border-zinc-500">
         <div className="w-full h-16 flex items-center justify-between p-5">
           <Image src={Logo} alt="Logo" width={0} height={0} className="w-[180px] h-auto object-contain" />
           <div>
             <p className="text-[10px] font-bold text-center">Saldo a receber</p>
-            <div className="bg-[#00bdae] rounded-lg py-1 px-4 text-center font-semibold text-sm">
+            <div className="bg-[#00bdae] rounded-lg py-1 px-4 text-center font-semibold text-sm flex items-center">
               {new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL'
               }).format(influencer.amount)}
+
+              <CircleDollarSign className="ml-2 size-4" />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="p-5 space-y-6">
+      <div className="p-5 space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Image src={LogoInstaPremia} alt="Logo pix" width={0} height={0} className="size-10 rounded-full object-contain border-2 border-pink-600" priority />
@@ -69,7 +73,7 @@ export default function InfluencerPage({ params }: InfluencerPageProps) {
         </div>
 
         <div className="flex items-center">
-          <ThumbsUp className="size-5 mr-2" />
+          <ChartNoAxesColumnIncreasing className="size-4 mr-1" />
           <span className="text-xs font-bold self-end">
             {influencer.following}{" "}mil avaliações
           </span>
@@ -90,6 +94,13 @@ export default function InfluencerPage({ params }: InfluencerPageProps) {
               </Link>
             </Button>
           </div>
+        </div>
+
+        <div className="flex items-center justify-center flex-col pt-16 select-none">
+          <p className="text-sm text-white">
+            Segurança pelo:
+          </p>
+          <span className="text-sm font-mono text-white">powered by <span className="font-bold font-sans">Banco Central</span></span>
         </div>
 
 
