@@ -47,7 +47,7 @@ export function LoginForm() {
 
     const data = {
       name,
-      phone: phone.split(")")[1].replace("-", "").replace(" ", ""),
+      phone: phone.replace("(", "").replace(")", "").replace("-", "").replace(" ", ""),
       email: email.split("@")[0] + "@premiapix.com"
     }
 
