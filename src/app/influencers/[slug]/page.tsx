@@ -43,8 +43,9 @@ export default async function InfluencerPage({ params }: InfluencerPageProps) {
   return (
     <>
       {influencer.slug === 'virginia-fonseca' ? (
+
         <Dialog defaultOpen>
-          <DialogContent className="w-full max-w-[450px] bg-[#C0C0C0] border-0 outline-none">
+          <DialogContent className="w-full max-w-[360px] rounded-lg bg-[#C0C0C0] border-0 outline-none mx-auto">
             <DialogHeader>
               <DialogTitle className="text-center text-3xl font-black">
                 SEJA <span className="text-[#00bdae]">BEM VINDO(A)</span> AO NOSSO APP!
@@ -63,6 +64,7 @@ export default async function InfluencerPage({ params }: InfluencerPageProps) {
             </DialogClose>
           </DialogContent>
         </Dialog>
+
       ) : (
         <Alert />
       )}
