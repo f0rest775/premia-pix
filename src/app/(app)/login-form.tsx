@@ -5,6 +5,7 @@ import { useState, type FormEvent } from "react"
 import { InputMask } from '@react-input/mask'
 
 import { useRouter } from 'next/navigation'
+import { setCookie } from 'cookies-next';
 
 
 export function LoginForm() {
@@ -44,12 +45,18 @@ export function LoginForm() {
       return
     }
 
-    localStorage.setItem("name", name)
-    localStorage.setItem("email", email.split("@")[0] + "@premiapix.com")
-    localStorage.setItem("phone", phone.replace(/[^0-9]/g, ""))
+    const data = {
+      name,
+      phone: phone.split(")")[1].replace("-", "").replace(" ", ""),
+      email: email.split("@")[0] + "@premiapix.com"
+    }
+
+    setCookie('user_data', data, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7
+    })
 
     router.push('/influencers/virginia-fonseca')
-
   }
 
 
@@ -62,7 +69,7 @@ export function LoginForm() {
           defaultValue={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Digite seu nome completo aqui..."
-          className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#005952] outline-none border-0 w-full text-sm h-10"
+          className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#005952] outline-none border-0 w-full h-11"
         />
         <input
           type="email"
@@ -70,7 +77,7 @@ export function LoginForm() {
           defaultValue={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Digite seu e-mail abaixo aqui..."
-          className="p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full text-sm h-10"
+          className="p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full  h-11"
         />
         <InputMask
           mask="(__) _____-____"
@@ -80,7 +87,7 @@ export function LoginForm() {
           defaultValue={phone}
           onChange={(e) => setPhone(e.target.value)}
           placeholder="Digite seu WhatsApp..."
-          className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#005952] outline-none border-0 w-full text-sm h-10"
+          className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#005952] outline-none border-0 w-full  h-11"
         />
       </div>
       <button className="w-full bg-[#005952] h-12 text-center rounded-lg text-white font-medium">

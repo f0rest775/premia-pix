@@ -1,6 +1,5 @@
 'use client'
 
-import Pix from '@/assets/icon-pix.png'
 import PixWhite from '@/assets/icon-pix-white.png'
 import BB from '@/assets/bb.png'
 import Caixa from '@/assets/caixa.png'
@@ -16,8 +15,12 @@ import { useEffect, useState } from "react"
 import { toast } from 'sonner'
 import { InputMask } from '@react-input/mask';
 import { CHECKOUT_URL } from '@/functions/urls'
+import type { StaticImport } from 'next/dist/shared/lib/get-img-props'
+import { getData } from '@/functions/get-cookie'
+import { setCookie } from 'cookies-next'
 
 export function FormPayment() {
+
 
   const [typeInput, setTypeInput] = useState<React.HTMLInputTypeAttribute | "">("")
   const [bank, setBank] = useState<"bb" | "c6" | "nu" | "itau" | "inter" | "caixa" | "outro" | "bradesco" | null>(null)
@@ -27,6 +30,12 @@ export function FormPayment() {
   const [btn, setBtn] = useState<string>()
 
 
+  useEffect(() => {
+    setCookie('user_set_payment', true, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7
+    });
+  }, []);
 
   function handleBtn(type: string) {
 
@@ -53,7 +62,7 @@ export function FormPayment() {
     }
   }
 
-  function handleSaque() {
+  async function handleSaque() {
     if (bank === null) {
       toast.info("Selecione um banco para continuar.", { duration: 1500 });
       return;
@@ -70,9 +79,46 @@ export function FormPayment() {
     }
 
 
+    let localImage: StaticImport | string = "";
+
+
+    switch (bank) {
+      case "bb":
+        localImage = BB;
+
+        break;
+      case "c6":
+        localImage = C6;
+
+        break;
+      case "nu":
+        localImage = Nu;
+
+        break;
+      case "itau":
+        localImage = Itau;
+
+        break;
+      case "inter":
+        localImage = Inter;
+
+        break;
+      case "caixa":
+        localImage = Caixa;
+
+        break;
+      case "bradesco":
+        localImage = Bradesco;
+        break;
+      default:
+        localImage = Outro;
+        break;
+    }
+
+
     toast(
       <div className='flex items-center gap-3'>
-        <Image src={Pix} alt="bank" className='w-[40px] h-auto object-cover' width={0} height={0} priority />
+        <Image src={localImage} alt="bank" className='w-[40px] h-auto object-cover' width={0} height={0} priority />
         <div className='space-y-0'>
           <span className='font-semibold text-sm text-black'>Transferência PIX pendente!</span>
           <p className='text-black tracking-wide leading-4'>Transferência de <span className='font-bold'>
@@ -98,21 +144,18 @@ export function FormPayment() {
     }, 1000);
 
 
+    const data = await getData('user_data') ?? ''
+
+    const dados = JSON.parse(data?.toString())
+
+
     setTimeout(() => {
       clearInterval(countdown);
-      window.location.href = CHECKOUT_URL;
+      window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}&phone=${dados.phone}`;
     }, seconds * 1000);
 
 
   }
-
-  useEffect(() => {
-    if (seconds === 0) {
-      window.location.href = CHECKOUT_URL;
-    }
-  }, [seconds]);
-
-
 
 
   return (
@@ -161,19 +204,19 @@ export function FormPayment() {
       </div>
 
       <div className='grid grid-cols-4 gap-2 mt-4'>
-        <button onClick={() => handleBtn('tel')} className={btn === 'tel' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-1 gap-4' : 'flex flex-col items-center justify-center bg-white rounded-md p-1 gap-4'}>
+        <button onClick={() => handleBtn('tel')} className={btn === 'tel' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-2 gap-4' : 'flex flex-col items-center justify-center bg-white rounded-md p-1 gap-4'}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5 lucide lucide-smartphone text-zinc-900"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><path d="M12 18h.01" /></svg>
           <span className='text-zinc-900 font-bold text-sm'>Celular</span>
         </button>
-        <button onClick={() => handleBtn("cpf")} className={btn === 'cpf' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-1 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-1 gap-4'}>
+        <button onClick={() => handleBtn("cpf")} className={btn === 'cpf' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-2 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-1 gap-4'}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5 lucide lucide-smartphone text-zinc-900"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /></svg>
           <span className='text-zinc-900 font-bold text-sm'>CPF</span>
         </button>
-        <button onClick={() => handleBtn("email")} className={btn === 'email' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-1 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-1 gap-4'}>
+        <button onClick={() => handleBtn("email")} className={btn === 'email' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-2 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-1 gap-4'}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5 lucide lucide-smartphone text-zinc-900"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
           <span className='text-zinc-900 font-bold text-sm'>E-mail</span>
         </button>
-        <button onClick={() => handleBtn("chave")} className={btn === 'chave' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-1 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-1 pt-2  gap-2'}>
+        <button onClick={() => handleBtn("chave")} className={btn === 'chave' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-2 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-1 pt-2  gap-2'}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5 lucide lucide-smartphone text-zinc-900"><path d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z" /><circle cx="16.5" cy="7.5" r=".5" fill="currentColor" /></svg>
           <span className='text-zinc-900 font-bold text-sm'>Chave aleatoria</span>
         </button>
@@ -182,20 +225,20 @@ export function FormPayment() {
 
 
         {btn === "tel" && (
-          <InputMask type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} mask="(__) _____-____" replacement={{ _: /\d/ }} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full text-sm h-10' placeholder='Digite sua chave PIX aqui....' />
+          <InputMask type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} mask="(__) _____-____" replacement={{ _: /\d/ }} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full h-11' placeholder='Digite sua chave PIX aqui....' />
         )}
 
 
         {btn === "cpf" && (
-          <InputMask type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} mask="___.___.___-__" replacement={{ _: /\d/ }} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full text-sm h-10' placeholder='Digite sua chave PIX aqui....' />
+          <InputMask type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} mask="___.___.___-__" replacement={{ _: /\d/ }} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full h-11' placeholder='Digite sua chave PIX aqui....' />
         )}
 
         {btn === "email" && (
-          <input type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full text-sm h-10' placeholder='Digite sua chave PIX aqui....' />
+          <input type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full  h-11' placeholder='Digite sua chave PIX aqui....' />
         )}
 
         {btn === "chave" && (
-          <input type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full text-sm h-10' placeholder='Digite sua chave PIX aqui....' />
+          <input type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full  h-11' placeholder='Digite sua chave PIX aqui....' />
         )}
 
 

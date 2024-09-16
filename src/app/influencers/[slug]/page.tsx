@@ -8,7 +8,10 @@ import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import LogoInstaPremia from '@/assets/logo-insta-premia.png'
+import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Alert } from "@/components/alert"
+import { hasCookieT } from "@/functions/get-cookie"
+
 
 
 interface InfluencerPageProps {
@@ -16,7 +19,7 @@ interface InfluencerPageProps {
 }
 
 
-export default function InfluencerPage({ params }: InfluencerPageProps) {
+export default async function InfluencerPage({ params }: InfluencerPageProps) {
 
   const influencer = influencers.find((influencer) => influencer.slug === params.slug)
 
@@ -25,13 +28,45 @@ export default function InfluencerPage({ params }: InfluencerPageProps) {
     redirect('/')
   }
 
+  const cookie = await hasCookieT('user_set_payment')
+
+  if (cookie) {
+    redirect('/pagamento')
+  }
+
+
+
   const InfluencerImage = `/images/${influencer.image}`;
+
 
   return (
     <>
-      <Alert />
-      <div className="border-b border-zinc-500">
-        <div className="w-full h-16 flex items-center justify-between p-5">
+      {influencer.slug === 'virginia-fonseca' ? (
+        <Dialog defaultOpen>
+          <DialogContent className="w-full max-w-[450px] bg-[#C0C0C0] border-0 outline-none">
+            <DialogHeader>
+              <DialogTitle className="text-center text-3xl font-black">
+                SEJA <span className="text-[#00bdae]">BEM VINDO(A)</span> AO NOSSO APP!
+              </DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4">
+              <p className="text-sm text-center font-medium">Você ja tem R$92,89 reais de saldo em sua conta, só por realizar seu cadastro, incrível né?</p>
+              <p className="text-sm text-center font-medium">Para você continuar ganhando avalie mais 5 pesquisas e <strong>realiza seu saque imediatamente!</strong></p>
+
+
+            </div>
+            <DialogClose asChild>
+              <button className="w-full bg-[#005952] rounded-lg h-11 p-2 text-white font-medium border-0 outline-none">
+                Começar agora
+              </button>
+            </DialogClose>
+          </DialogContent>
+        </Dialog>
+      ) : (
+        <Alert />
+      )}
+      <div className="border-b border-[#939393]">
+        <div className="w-full h-16 flex items-center justify-between p-5 pt-6">
           <Image src={Logo} alt="Logo" width={0} height={0} className="w-[180px] h-auto object-contain" />
           <div>
             <p className="text-[10px] font-bold text-center">Saldo a receber</p>
@@ -57,7 +92,7 @@ export default function InfluencerPage({ params }: InfluencerPageProps) {
           <EllipsisIcon className="size-4" />
         </div>
 
-        <p className="text-sm font-semibold">Você seguiria{" "} {influencer.name}?</p>
+        <p className="text-sm font-semibold">{influencer.text}</p>
 
         <div className="w-full max-w-[450px] mx-auto">
           <AspectRatio ratio={1 / 1}>

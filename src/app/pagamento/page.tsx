@@ -4,6 +4,7 @@ import { FormPayment } from "./form-payment";
 import { CircleDollarSign } from "lucide-react";
 
 export default function PagamentoPage() {
+
   return (
     <>
       <div className="border-b border-zinc-500">
@@ -24,7 +25,7 @@ export default function PagamentoPage() {
       </div>
 
       <div className="flex flex-col mt-[40px] p-5">
-        <div className='bg-white rounded-lg flex items-center justify-center gap-1 p-2.5 shadow-xl'>
+        <div className='bg-white rounded-lg flex items-center justify-center gap-1 p-4 shadow-xl'>
           <span className='font-bold text-black'>Realize agora seu saque de {" "} {new Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL',
