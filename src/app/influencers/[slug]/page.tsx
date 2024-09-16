@@ -11,6 +11,7 @@ import LogoInstaPremia from '@/assets/logo-insta-premia.png'
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Alert } from "@/components/alert"
 import { hasCookieT } from "@/functions/get-cookie"
+import BC from '@/assets/bc.png'
 
 
 
@@ -131,11 +132,12 @@ export default async function InfluencerPage({ params }: InfluencerPageProps) {
           </div>
         </div>
 
-        <div className="flex items-center justify-center flex-col pt-16 select-none">
+        <div className="flex items-center justify-center flex-col pt-16 select-none space-y-1">
           <p className="text-sm text-white">
             Segurança pelo:
           </p>
-          <span className="text-sm font-mono text-white">powered by <span className="font-bold font-sans">Banco Central</span></span>
+
+          <Image src={BC} alt="bc" width={0} height={0} className="w-[200px] h-auto" />
         </div>
 
 
