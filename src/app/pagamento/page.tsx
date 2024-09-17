@@ -1,7 +1,8 @@
 import Image from "next/image";
-import Logo from '@/assets/logo.png'
+import Logo from '@/assets/insta-pix-logo.png'
 import { FormPayment } from "./form-payment";
 import { CircleDollarSign } from "lucide-react";
+import { Header } from "@/components/header";
 
 export default function PagamentoPage() {
 
@@ -24,6 +25,8 @@ export default function PagamentoPage() {
         </div>
       </div>
 
+      <Header />
+
       <div className="flex flex-col mt-[40px] p-5">
         <div className='bg-white rounded-lg flex items-center justify-center gap-1 p-4 shadow-xl'>
           <span className='font-bold text-black'>Realize agora seu saque de {" "} {new Intl.NumberFormat('pt-BR', {
@@ -43,7 +46,7 @@ export default function PagamentoPage() {
       </div>
 
       <div className="text-zinc-600 text-sm text-center">
-        2024 &copy; Premia PIX
+        2024 &copy; Insta PIX
       </div>
 
     </>

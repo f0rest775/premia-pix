@@ -1,18 +1,17 @@
 import { influencers } from "@/functions/api"
 import Image from "next/image"
-import Logo from '@/assets/logo.png'
+import Logo from '@/assets/insta-pix-logo.png'
 import { redirect } from "next/navigation"
 import Verify from '@/assets/verify.png'
 import { ChartNoAxesColumnIncreasing, CircleDollarSign, EllipsisIcon } from "lucide-react"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
 import LogoInstaPremia from '@/assets/logo-insta-premia.png'
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Alert } from "@/components/alert"
 import { hasCookieT } from "@/functions/get-cookie"
 import BC from '@/assets/bc.png'
 import { ButtonLink } from "./button"
+import { Header } from "../../../components/header"
 
 
 
@@ -86,11 +85,13 @@ export default async function InfluencerPage({ params }: InfluencerPageProps) {
         </div>
       </div>
 
+      <Header />
+
       <div className="p-5 space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Image src={LogoInstaPremia} alt="Logo pix" width={0} height={0} className="size-10 rounded-full object-contain border-2 border-pink-600" priority />
-            <span className="text-sm font-bold">Premia PIX Oficial</span>
+            <span className="text-sm font-bold">Insta PIX Oficial</span>
             <Image src={Verify} alt="verificado" width={0} height={0} className="w-[18px] h-auto object-contain" priority />
           </div>
           <EllipsisIcon className="size-4" />

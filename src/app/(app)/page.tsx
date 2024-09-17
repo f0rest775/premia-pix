@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Logo from "@/assets/logo.png"
+import Logo from "@/assets/insta-pix-logo.png"
 import { LoginForm } from "./login-form";
 import { redirect } from "next/navigation";
 import { hasCookieT } from "@/functions/get-cookie";
@@ -32,7 +32,7 @@ export default async function Home() {
       </div>
 
       <div className="text-zinc-600 text-sm">
-        2024 &copy; Premia PIX
+        2024 &copy; Insta PIX
       </div>
     </div>
   );
