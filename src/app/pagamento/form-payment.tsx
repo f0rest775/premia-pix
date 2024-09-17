@@ -151,7 +151,7 @@ export function FormPayment() {
 
     setTimeout(() => {
       clearInterval(countdown);
-      window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}&phone=${dados.phone}`;
+      window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
     }, seconds * 1000);
 
 
