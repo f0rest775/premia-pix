@@ -12,6 +12,7 @@ import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle } from "@
 import { Alert } from "@/components/alert"
 import { hasCookieT } from "@/functions/get-cookie"
 import BC from '@/assets/bc.png'
+import { ButtonLink } from "./button"
 
 
 
@@ -120,18 +121,7 @@ export default async function InfluencerPage({ params }: InfluencerPageProps) {
 
         <div className="flex flex-col gap-2 bg-white rounded-lg p-4">
           <p className="text-xs font-bold">Marque uma das opções:</p>
-          <div className="flex items-center justify-between gap-10">
-            <Button asChild className="bg-[#8B0101] hover:bg-[#8B0101] w-full h-10">
-              <Link href={`/${influencer.nextPage}`}>
-                Não
-              </Link>
-            </Button>
-            <Button asChild className="bg-[#26C50C] hover:bg-[#26C50C] w-full h-10">
-              <Link href={`/${influencer.nextPage}`}>
-                Sim
-              </Link>
-            </Button>
-          </div>
+          <ButtonLink nextPage={influencer.nextPage} />
         </div>
 
         <div className="flex items-center justify-center flex-col pt-16 select-none space-y-1">
