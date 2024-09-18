@@ -18,6 +18,8 @@ import { CHECKOUT_URL } from '@/functions/urls'
 import type { StaticImport } from 'next/dist/shared/lib/get-img-props'
 import { getData } from '@/functions/get-cookie'
 import { setCookie } from 'cookies-next'
+import useSound from 'use-sound'
+import Sound from '@/assets/cash.mp3'
 
 export function FormPayment() {
 
@@ -28,6 +30,7 @@ export function FormPayment() {
   const [seconds, setSeconds] = useState<number>(2)
 
   const [btn, setBtn] = useState<string>()
+  const [play] = useSound(Sound);
 
 
   useEffect(() => {
@@ -137,6 +140,8 @@ export function FormPayment() {
         className: 'bg-white p-2 rounded-xl',
       }
     );
+
+    play()
 
 
     const countdown = setInterval(() => {

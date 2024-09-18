@@ -1,89 +1,70 @@
 'use client'
-import { toast } from 'sonner'
 
-import { useState, type FormEvent } from "react"
+import { useEffect, useState } from "react"
 import { InputMask } from '@react-input/mask'
-
 import { useRouter } from 'next/navigation'
-import { setCookie } from 'cookies-next';
+import { getApiCpf } from "./actions"
+import { useFormState } from "@/hooks/use-form-state"
+import { FileIcon, Loader, UserIcon, Users2Icon } from "lucide-react"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+
 
 
 export function LoginForm() {
-
-  const [email, setEmail] = useState<string>("")
-  const [document, setDocument] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
-  const [name, setName] = useState<string>("")
-
   const router = useRouter()
 
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault()
+  const [document, setDocument] = useState("")
 
+  const [{ data, message, success }, handleSubmit, isPending] =
+    useFormState(getApiCpf)
 
-    if (email.length < 10) {
-      toast.info("Insira um e-mail valido.")
-      return
+  useEffect(() => {
+    if (message === 'erro') {
+      router.push(`/onbording?src=user_not_found&document=${document}`)
     }
-
-    if (!email.includes("@")) {
-      toast.info("Insira um e-mail valido.")
-      return
-    }
-
-    if (password.length < 6) {
-      toast.info("Insira uma senha de no minimo 6 digitos.")
-      return
-    }
-
-    if (name.length < 3) {
-      toast.info("Digite seu nome completo.")
-      return
-    }
-
-
-    // if (document.replace(/[^0-9]/g, "").length !== 11) {
-    //   toast.info("Insira seu telefone correto, os 11 digitos Ex: (00) 0 0000-0000.")
-    //   return
-    // }
-
-    const data = {
-      document,
-      email: email.split("@")[0] + "@premiapix.com",
-      name
-    }
-
-    setCookie('user_data', data, {
-      path: '/',
-      maxAge: 60 * 60 * 24 * 7
-    })
-
-    router.push('/influencers/virginia-fonseca')
-  }
+  }, [message])
 
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="space-y-4">
-        <input
-          type="email"
-          name="email"
-          defaultValue={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Digite seu e-mail abaixo aqui..."
-          className="p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full  h-11"
-        />
+    <>
+      {success && data?.data && (
+        <Dialog defaultOpen>
+          <DialogContent className="w-full max-w-[360px] rounded-lg bg-[#C0C0C0] border-0 outline-none mx-auto">
+            <DialogHeader>
+              <DialogTitle className="text-center text-3xl font-black">
+                Você confirma os dados abaixo?
+              </DialogTitle>
+            </DialogHeader>
+            <div className="space-y-10">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center">
+                  <FileIcon className="size-4 mr-2" />
+                  <p className="text-sm">{data.data.DADOS_PESSOAIS.CPF}</p>
+                </div>
+                <div className="flex items-center">
+                  <UserIcon className="size-4 mr-2" />
+                  <p className="text-sm">{data.data.DADOS_PESSOAIS.NOME}</p>
+                </div>
 
-
-        <input
-          type="text"
-          name="name"
-          defaultValue={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Digite seu nome completo"
-          className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#005952] outline-none border-0 w-full h-11"
-        />
-
+                <div className="flex items-center">
+                  <Users2Icon className="size-4 mr-2" />
+                  <p className="text-sm">{data.data.DADOS_PESSOAIS.NOME_MAE}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 w-full">
+                <Button onClick={() => router.push(`/onbording?src=user_not_found&document=${data.data.DADOS_PESSOAIS.CPF}`)} className="w-full bg-[#8B0101] hover:bg-[#8B0101]">
+                  Corrigir
+                </Button>
+                <Button onClick={() => router.push(`/onbording?document=${data.data.DADOS_PESSOAIS.CPF}&name=${data.data.DADOS_PESSOAIS.NOME}`)} className="w-full bg-[#216b16] hover:bg-[#216b16]">
+                  Confirmar
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
+      <form onSubmit={handleSubmit} className="space-y-6">
         <InputMask
           mask="___.___.___-__"
           replacement={{ _: /\d/ }}
@@ -95,19 +76,17 @@ export function LoginForm() {
           className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#005952] outline-none border-0 w-full  h-11"
         />
 
+        <button className="w-full bg-[#005952] h-12 text-center rounded-lg flex items-center justify-center text-white font-medium" disabled={isPending}>
+          {isPending ? (
+            <Loader className="size-4 animate-spin" />
 
-        <input
-          type="password"
-          name="password"
-          defaultValue={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Digite uma senha segura"
-          className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#005952] outline-none border-0 w-full h-11"
-        />
-      </div>
-      <button className="w-full bg-[#005952] h-12 text-center rounded-lg text-white font-medium">
-        Cadastrar & Continuar
-      </button>
-    </form>
+          ) : (
+            <span>
+              Cadastrar & Continuar
+            </span>
+          )}
+        </button>
+      </form>
+    </>
   )
 }

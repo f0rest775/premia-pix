@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Logo from "@/assets/insta-pix-logo.png"
-import { LoginForm } from "./login-form";
 import { redirect } from "next/navigation";
 import { hasCookieT } from "@/functions/get-cookie";
+import { LoginForm } from "./login-form";
 
-export default async function Home() {
+export default async function OrboringPage() {
 
   const cookie = await hasCookieT('user_set_payment')
 
@@ -21,7 +21,9 @@ export default async function Home() {
 
         <div className="flex items-center justify-center bg-[#bdeeea] p-4 rounded-lg shadow-2xl">
           <p className="text-sm font-medium text-center">
-            Parabéns, vamos te dar um dinheiro com o app mais falado do momento!
+            Você ganhou uma licença gratuita para testar nosso
+            app cadastre seu e-mail abaixo e ganhe até
+            R$ 819,99 agora.
           </p>
         </div>
 
