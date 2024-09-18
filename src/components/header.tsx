@@ -11,7 +11,7 @@ export async function Header() {
     <div className="w-full flex items-center justify-between px-5 py-1.5 border-b border-[#939393]">
       <div className="flex items-center">
         <PersonIcon className="size-4 mr-2" />
-        <span className="text-sm">{user ? user.name : "Guest"}</span>
+        <span className="text-sm truncate">{user ? user.name.split(" ")[0] : "Usuário"}</span>
       </div>
       <div className="flex items-center gap-0.5">
         <span className="text-sm font-bold">CPF:</span>

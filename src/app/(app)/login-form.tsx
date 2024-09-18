@@ -38,17 +38,17 @@ export function LoginForm() {
             </DialogHeader>
             <div className="space-y-10">
               <div className="flex flex-col gap-2">
-                <div className="flex items-center">
-                  <FileIcon className="size-4 mr-2" />
+                <div className="flex items-center gap-2">
+                  <p className="text-sm font-bold">CPF :</p>
                   <p className="text-sm">{data.data.DADOS_PESSOAIS.CPF}</p>
                 </div>
-                <div className="flex items-center">
-                  <UserIcon className="size-4 mr-2" />
+                <div className="flex items-center gap-2">
+                  <p className="text-sm font-bold">Nome :</p>
                   <p className="text-sm">{data.data.DADOS_PESSOAIS.NOME}</p>
                 </div>
 
                 <div className="flex items-center">
-                  <Users2Icon className="size-4 mr-2" />
+                  <p className="text-sm font-bold">Nome da mãe :</p>
                   <p className="text-sm">{data.data.DADOS_PESSOAIS.NOME_MAE}</p>
                 </div>
               </div>
