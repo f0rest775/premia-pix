@@ -27,7 +27,7 @@ export default function PagamentoPage() {
 
       <Header />
 
-      <div className="flex flex-col mt-[40px] p-5">
+      <div className="flex flex-col mt-[20px] p-5">
         <div className='bg-white rounded-lg flex items-center justify-center gap-1 p-4 shadow-xl'>
           <span className='font-bold text-black'>Realize agora seu saque de {" "} {new Intl.NumberFormat('pt-BR', {
             style: 'currency',

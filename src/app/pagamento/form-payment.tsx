@@ -209,19 +209,19 @@ export function FormPayment() {
       </div>
 
       <div className='grid grid-cols-4 gap-2 mt-4'>
-        <button onClick={() => handleBtn('tel')} className={btn === 'tel' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-2 gap-4' : 'flex flex-col items-center justify-center bg-white rounded-md p-1 gap-4'}>
+        <button onClick={() => handleBtn('tel')} className={btn === 'tel' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-2 gap-4' : 'flex flex-col items-center justify-center bg-white rounded-md p-2 gap-4'}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5 lucide lucide-smartphone text-zinc-900"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><path d="M12 18h.01" /></svg>
           <span className='text-zinc-900 font-bold text-sm'>Celular</span>
         </button>
-        <button onClick={() => handleBtn("cpf")} className={btn === 'cpf' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-2 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-1 gap-4'}>
+        <button onClick={() => handleBtn("cpf")} className={btn === 'cpf' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-2 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-2 gap-4'}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5 lucide lucide-smartphone text-zinc-900"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /></svg>
           <span className='text-zinc-900 font-bold text-sm'>CPF</span>
         </button>
-        <button onClick={() => handleBtn("email")} className={btn === 'email' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-2 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-1 gap-4'}>
+        <button onClick={() => handleBtn("email")} className={btn === 'email' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-2 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-2 gap-4'}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5 lucide lucide-smartphone text-zinc-900"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
           <span className='text-zinc-900 font-bold text-sm'>E-mail</span>
         </button>
-        <button onClick={() => handleBtn("chave")} className={btn === 'chave' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-2 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-1 pt-2  gap-2'}>
+        <button onClick={() => handleBtn("chave")} className={btn === 'chave' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-2 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-2 pt-2  gap-2'}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5 lucide lucide-smartphone text-zinc-900"><path d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z" /><circle cx="16.5" cy="7.5" r=".5" fill="currentColor" /></svg>
           <span className='text-zinc-900 font-bold text-sm'>Chave aleatoria</span>
         </button>
