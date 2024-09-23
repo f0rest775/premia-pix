@@ -60,6 +60,6 @@ export function NumberFromQueue() {
   }, []);
 
   return (
-    <h2 className="text-6xl font-bold">{number}</h2>
+    <h2 className="text-6xl font-bold">4</h2>
   );
 }
