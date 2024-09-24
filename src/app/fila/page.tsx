@@ -56,8 +56,8 @@ export default async function FilaPage() {
           <p className="text-sm text-center pt-10">Você poderá sair dessa página sem perder seu lugar na fila, assim que sua vez chegar iremos te notificar via e-mail.</p>
         </div>
 
-        <a href="https://whatsapp.com/channel/0029VagRWYu9mrGY1myPOv0w" target="_blank" className="w-full mt-10 h-12 bg-[#005952] hover:bg-[#005952] text-white rounded-lg flex items-center justify-center">
-          Entrar no grupo do WhatsApp
+        <a href="https://t.me/instapixofc" target="_blank" className="w-full mt-10 h-12 bg-[#005952] hover:bg-[#005952] text-white rounded-lg flex items-center justify-center">
+          Entrar no grupo do Telegram
         </a>
       </div>
 
