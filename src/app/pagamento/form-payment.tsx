@@ -20,6 +20,7 @@ import { getData } from '@/functions/get-cookie'
 import { setCookie } from 'cookies-next'
 import useSound from 'use-sound'
 import Sound from '@/assets/cash.mp3'
+import { Loader } from 'lucide-react'
 
 export function FormPayment() {
 
@@ -28,6 +29,7 @@ export function FormPayment() {
   const [bank, setBank] = useState<"bb" | "c6" | "nu" | "itau" | "inter" | "caixa" | "outro" | "bradesco" | null>(null)
   const [pixKey, setPixKey] = useState<string>("")
   const [seconds, setSeconds] = useState<number>(2)
+  const [loading, setLoading] = useState(false)
 
   const [btn, setBtn] = useState<string>()
   const [play] = useSound(Sound);
@@ -66,18 +68,24 @@ export function FormPayment() {
   }
 
   async function handleSaque() {
+
+    setLoading(true)
+
     if (bank === null) {
       toast.info("Selecione um banco para continuar.", { duration: 1500 });
+      setLoading(false)
       return;
     }
 
     if (typeInput === "") {
       toast.info("Selecione o tipo de chave pix.", { duration: 1500 });
+      setLoading(false)
       return;
     }
 
     if (pixKey.length < 3) {
       toast.info("Informe sua chave PIX", { duration: 1500 });
+      setLoading(false)
       return;
     }
 
@@ -247,7 +255,9 @@ export function FormPayment() {
 
 
         <button onClick={handleSaque} className='w-full bg-[#005952] h-12 flex items-center justify-center text-white font-semibold  rounded-lg'>
-          <span>Realizar saque agora</span>
+          {loading ? (<Loader className="size-6 animate-spin text-white" />) : (
+            <span>Realizar saque agora</span>
+          )}
         </button>
       </div>
     </div>
