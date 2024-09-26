@@ -54,3 +54,42 @@ export const influencers = [
     text: "Você iria há um show do Whindersson Nunes?"
   }
 ]
+
+
+export const questions = [
+  {
+    id: "1",
+    image: "tigre.png",
+    question: "Você Já jogou em algum cassino Online?",
+    amount: 554.45,
+    nextPage: "app/questions/2"
+  },
+  {
+    id: "2",
+    image: "maquininha.png",
+    question: "Você já tentou realizar um pagamento em alguma máquina de cartão e deu erro?",
+    amount: 1159.42,
+    nextPage: "app/questions/3"
+  },
+  {
+    id: "3",
+    image: "maquinhinha.png",
+    question: "Você já realizou algum pagamento PIX e deu algum erro?",
+    amount: 1766.81,
+    nextPage: "app/questions/4"
+  },
+  {
+    id: "4",
+    image: "supermercado.png",
+    question: "Você vai ao supermercado mais de 4 vezes ao mês?",
+    amount: 2323.01,
+    nextPage: "app/questions/5"
+  },
+  {
+    id: "5",
+    image: "bancos.png",
+    question: "Você já usou algum desses bancos?",
+    amount: 2819.98,
+    nextPage: "app/verify"
+  },
+]

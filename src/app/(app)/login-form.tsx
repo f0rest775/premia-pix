@@ -51,9 +51,13 @@ export function LoginForm() {
                     <p className="text-sm">{data.data.DADOS_PESSOAIS.NOME}</p>
                   </div>
 
-                  <div className="flex items-center">
-                    <p className="text-sm font-bold">Nome da mãe :</p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm font-bold">Mãe :</p>
                     <p className="text-sm">{data.data.DADOS_PESSOAIS.NOME_MAE}</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm font-bold">Data de nascimento :</p>
+                    <p className="text-sm">{data.data.DADOS_PESSOAIS.DATA_NASCIMENTO}</p>
                   </div>
                 </div>
                 <div className="text-sm text-center">

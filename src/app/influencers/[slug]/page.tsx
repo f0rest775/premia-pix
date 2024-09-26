@@ -52,7 +52,7 @@ export default async function InfluencerPage({ params }: InfluencerPageProps) {
               </DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
-              <p className="text-sm text-center font-medium">Você ja tem R$92,89 reais de saldo em sua conta, só por realizar seu cadastro, incrível né?</p>
+              <p className="text-sm text-center font-medium">Você ja tem R$ 136,66 reais de saldo em sua conta, só por realizar seu cadastro, incrível né?</p>
               <p className="text-sm text-center font-medium">Para você continuar ganhando avalie mais 5 pesquisas e <strong>realiza seu saque imediatamente!</strong></p>
 
 
