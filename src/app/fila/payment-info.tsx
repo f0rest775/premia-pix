@@ -3,8 +3,14 @@
 import Typewriter from "typewriter-effect";
 import { useState, useEffect } from "react";
 
-export function PaymentInfo() {
+interface PaymentInfoProps {
+  pixKey: string
+}
+
+export function PaymentInfo({ pixKey }: PaymentInfoProps) {
   const [step, setStep] = useState(1);
+
+
 
   useEffect(() => {
 
@@ -45,7 +51,7 @@ export function PaymentInfo() {
         <div className="text-sm">
           <Typewriter
             options={{
-              strings: "Aguarde...",
+              strings: `Aguarde, o pagamento será realizado na chave PIX: <strong>${pixKey}</strong>`,
               autoStart: true,
               delay: 75,
             }}

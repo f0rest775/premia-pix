@@ -90,6 +90,12 @@ export function FormPayment() {
     }
 
 
+    setCookie('user_pixkey', pixKey.toString(), {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 30,
+    });
+
+
     let localImage: StaticImport | string = "";
 
 
@@ -159,15 +165,20 @@ export function FormPayment() {
 
     const data = await getData('user_data') ?? ''
 
-    const dados = JSON.parse(data?.toString())
+    if (!data) {
+      setTimeout(() => {
+        clearInterval(countdown);
+        window.location.href = CHECKOUT_URL;
+      }, seconds * 1000);
+    } else {
 
+      const dados = JSON.parse(data?.toString())
 
-    setTimeout(() => {
-      clearInterval(countdown);
-      window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
-    }, seconds * 1000);
-
-
+      setTimeout(() => {
+        clearInterval(countdown);
+        window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
+      }, seconds * 1000);
+    }
   }
 
 

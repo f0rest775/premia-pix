@@ -1,5 +1,5 @@
 import { Header } from "@/components/header";
-import { CircleDollarSign } from "lucide-react";
+import { CircleDollarSign, Loader } from "lucide-react";
 import Image from "next/image";
 import Logo from '@/assets/insta-pix-logo.png'
 import { getData } from "@/functions/get-cookie";
@@ -15,6 +15,9 @@ export default async function FilaPage() {
   const data = await getData('user_data')
 
   const user = data ? JSON.parse(data) : null
+
+
+  const pixKey = await getData('user_pixkey') ?? ''
 
 
 
@@ -46,13 +49,16 @@ export default async function FilaPage() {
 
         <div className="rounded-lg bg-[#91E3DC] p-4 w-full flex flex-col items-center gap-6">
 
-          <ProgressBar />
+          <div className="flex items-center gap-2">
+            <Loader className="size-6 animate-spin" />
+            <span className="animate-pulse font-semibold">Carregando...</span>
+          </div>
 
           <h2 className="text-lg font-bold">{user ? user.name.split(" ")[0] : "Usuário"}, seu número na fila:</h2>
 
           <NumberFromQueue />
 
-          <PaymentInfo />
+          <PaymentInfo pixKey={pixKey} />
           <p className="text-sm text-center pt-10">Você poderá sair dessa página sem perder seu lugar na fila, assim que sua vez chegar iremos te notificar via e-mail.</p>
         </div>
 
