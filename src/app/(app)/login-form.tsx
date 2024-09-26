@@ -65,9 +65,6 @@ export function LoginForm() {
                 </div>
               </div>
               <div className="flex items-center gap-4 w-full">
-                <Button onClick={() => router.push(`/onbording?src=user_not_found&document=${data.data.DADOS_PESSOAIS.CPF}`)} className="w-full bg-[#8B0101] hover:bg-[#8B0101]">
-                  Corrigir dados
-                </Button>
                 <Button onClick={() => router.push(`/onbording?document=${data.data.DADOS_PESSOAIS.CPF}&name=${data.data.DADOS_PESSOAIS.NOME}`)} className="w-full bg-[#216b16] hover:bg-[#216b16]">
                   Receber meu PIX
                 </Button>

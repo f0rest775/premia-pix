@@ -201,8 +201,6 @@ export function FormPayment() {
       </div>
 
 
-
-
       <div className='flex items-center justify-center gap-2 mt-6'>
         <Image src={PixWhite} alt="icon pix" className='w-[15px] h-auto object-cover' priority />
         <p className='text-xs font-semibold text-zinc-900'>Selecione sua chave PIX</p>
