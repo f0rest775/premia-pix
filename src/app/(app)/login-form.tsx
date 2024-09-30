@@ -2,25 +2,35 @@
 
 import { useEffect, useState } from "react"
 import { InputMask } from '@react-input/mask'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { getApiCpf } from "./actions"
 import { useFormState } from "@/hooks/use-form-state"
-import { FileIcon, Loader, UserIcon, Users2Icon } from "lucide-react"
+import { Loader } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { influencers } from '../../functions/api';
+import { setCookie } from "cookies-next"
 
 
 
 export function LoginForm() {
   const router = useRouter()
 
+  const params = useSearchParams()
+
   const [document, setDocument] = useState("")
+
+  const [utmSrc] = useState<string | null>(params.get('utm_src'))
 
   const [{ data, message, success }, handleSubmit, isPending] =
     useFormState(getApiCpf)
 
   useEffect(() => {
+
+    if (utmSrc) {
+      setCookie('utm_src', utmSrc)
+    }
+
+
     if (message === 'erro') {
       router.push(`/onbording?src=user_not_found&document=${document}`)
     }
