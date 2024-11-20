@@ -165,7 +165,6 @@ export function FormPayment() {
 
     const data = await getData('user_data') ?? ''
 
-    const utmSrc = await getData('utm_src') ?? ''
 
     if (!data) {
       setTimeout(() => {
@@ -178,7 +177,7 @@ export function FormPayment() {
 
       setTimeout(() => {
         clearInterval(countdown);
-        window.location.href = `${CHECKOUT_URL}?email=${dados.email}&name=${dados.name}&utm_src=${utmSrc}`;
+        window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
       }, seconds * 1000);
     }
   }
