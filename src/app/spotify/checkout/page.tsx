@@ -10,7 +10,7 @@ export default function CheckoutPage() {
   const pixKey = cookies().get('user_pix_key')
   const email = cookies().get('user_email')
 
-  const url = `${CHECKOUT_SPOTIFY}email=${email}&name=${name}`
+  const url = `${CHECKOUT_SPOTIFY}email=${email?.value}&name=${name?.value}`
 
   return (
 
