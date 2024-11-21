@@ -80,7 +80,7 @@ export function FormRegister() {
         )}
       </div>
 
-      <button disabled={isPending} type='submit' className="w-full bg-[#01D661] rounded-3xl h-12 font-bold flex items-center justify-center">
+      <button disabled={isPending} type='submit' className="w-full text-black bg-[#01D661] rounded-3xl h-12 font-bold flex items-center justify-center">
 
         {isPending && <Loader2 className='size-5 animate-spin mr-2' />}
 

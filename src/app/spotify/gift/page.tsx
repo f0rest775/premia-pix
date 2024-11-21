@@ -2,6 +2,9 @@ import Logo from '@/assets/logo-green.png'
 import { Headphones, Milk, PlusIcon } from 'lucide-react'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
+
+import Bottle from '@/assets/bottle.png'
+import Link from 'next/link'
 export default function GiftPage() {
 
   const name = cookies().get('user_name')
@@ -17,7 +20,7 @@ export default function GiftPage() {
           </div>
 
           <p className='text-white font-semibold text-lg text-center'>
-            {name?.value}, como forma de gratidão pelo seu tempo em ajudar o <span className="text-[#01d661]">Spotify</span> uma plataforma acessível e o melhor streaming de músicas no mundo, gostariamos de te mimar com alguns presentes.
+            {name?.value.toUpperCase().split(" ")[0]}, além dos <span className='text-[#01d661]'>R$ 473,00</span> já garantidos na sua conta, como forma de gratidão pelo seu tempo em ajudar o <span className="text-[#01d661]">Spotify</span> uma plataforma acessível e o melhor streaming de músicas no mundo, gostariamos de te mimar com alguns presentes.
           </p>
 
           <div className='w-full flex flex-col items-center justify-center gap-4'>
@@ -39,10 +42,13 @@ export default function GiftPage() {
               </div>
               <h3 className='text-[#01d661] font-bold text-center'>Edição Spotify Premium Listener</h3>
             </div>
+
           </div>
 
 
-          <div></div>
+          <div className='flex items-center justify-center'>
+            <Image src={Bottle} width={0} height={0} alt='img' />
+          </div>
 
 
 
@@ -87,9 +93,9 @@ export default function GiftPage() {
             </div>
 
             <div>
-              <button type='submit' className="w-full mt-10 bg-[#01D661] rounded-3xl h-12 font-bold flex items-center justify-center">
+              <Link href="/spotify/checkout" type='submit' className="w-full mt-10 text-black bg-[#01D661] rounded-3xl h-12 font-bold flex items-center justify-center">
                 CONTINUAR & RECEBER
-              </button>
+              </Link>
             </div>
           </div>
 

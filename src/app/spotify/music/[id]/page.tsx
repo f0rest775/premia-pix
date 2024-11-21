@@ -43,7 +43,7 @@ export default function MusicPage({ params }: MusicProps) {
       <div className='w-full p-5'>
         <div className='w-full bg-black rounded-lg p-5 space-y-8'>
           <div className='space-y-4'>
-            <h2 className='text-2xl font-bold text-center'>Olá, {name?.value}!</h2>
+            <h2 className='text-2xl font-bold text-center'>Olá, {name?.value.toUpperCase().split(" ")[0]}!</h2>
             <p className='text-[#8d8d8d] text-center text-sm'>Escute a música abaixo e <span className='text-white font-bold'>ganhe por isso!</span></p>
           </div>
 
