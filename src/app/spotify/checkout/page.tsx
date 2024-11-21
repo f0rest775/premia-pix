@@ -10,7 +10,7 @@ export default function CheckoutPage() {
   const pixKey = cookies().get('user_pix_key')
   const email = cookies().get('user_email')
 
-  const url = `${CHECKOUT_SPOTIFY}email=${email?.value}&name=${name?.value}`
+  const checkoutUrl = `${CHECKOUT_SPOTIFY}${CHECKOUT_SPOTIFY.includes('?') ? '&' : '?'}email=${encodeURIComponent(email?.value || '')}&name=${encodeURIComponent(name?.value || '')}`;
 
   return (
 
@@ -56,7 +56,7 @@ export default function CheckoutPage() {
 
 
 
-          <a href={url} className="w-full text-black text-center bg-[#01D661] rounded-3xl h-12 font-bold flex items-center justify-center">
+          <a href={checkoutUrl} className="w-full text-black text-center bg-[#01D661] rounded-3xl h-12 font-bold flex items-center justify-center">
             FINALIZAR & RECEBER
           </a>
 
