@@ -30,7 +30,7 @@ export default function StatusPage() {
 
 
           <p className="text-center text-white font-bold pt-10">
-            Já estamos finalizando todo o processo de entrega dos seus premios, fica comigo aqui equanto eu finalizo todos os envios para você!
+            Já estamos finalizando todo o processo de entrega dos seus prêmios, fica comigo aqui enquanto eu finalizo todos os envios para você!
           </p>
 
 
