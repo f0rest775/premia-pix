@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "next-safe-action/hooks";
 import { createPayment } from "./actions";
 import { InputMask } from '@react-input/mask';
+import { useRouter } from "next/navigation";
 
 
 
@@ -59,10 +60,12 @@ export function FormPayment({ name, document }: { name: string; document: string
     }
   }
 
+  const router = useRouter()
+
   const { execute, isPending } = useAction(createPayment, {
     onSuccess(data) {
       if (data.data?.success) {
-
+        router.push('/spotify/status')
       }
     },
   })

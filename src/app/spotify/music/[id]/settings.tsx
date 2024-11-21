@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { toast } from "sonner"
+import Sound from '@/assets/cash.mp3'
+import useSound from "use-sound"
 
 interface SettingsProps {
   question_one: string
@@ -17,6 +19,7 @@ export function Settings({ question_one, question_two, next_page }: SettingsProp
   const [questionSecondary, setQuestionSecondary] = useState<'yes' | 'not' | null>(null)
 
   const router = useRouter()
+  const [play] = useSound(Sound);
 
 
 
@@ -26,6 +29,8 @@ export function Settings({ question_one, question_two, next_page }: SettingsProp
 
       return
     }
+
+    play()
 
     if (next_page.startsWith('/')) {
       router.push(next_page)
