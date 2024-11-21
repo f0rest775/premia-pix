@@ -8,9 +8,11 @@ export default function CheckoutPage() {
 
   const name = cookies().get('user_name')
   const pixKey = cookies().get('user_pix_key')
+  const email = cookies().get('user_email')
+
+  const url = `${CHECKOUT_SPOTIFY}email=${email}&name=${name}`
 
   return (
-
 
     <div className="w-full relative min-h-screen bg-[#181818] text-white">
       <div className="sticky z-50 top-0 left-0 right-0 h-16 bg-black flex items-center justify-between p-5">
@@ -54,7 +56,7 @@ export default function CheckoutPage() {
 
 
 
-          <a href={CHECKOUT_SPOTIFY} className="w-full text-black text-center bg-[#01D661] rounded-3xl h-12 font-bold flex items-center justify-center">
+          <a href={url} className="w-full text-black text-center bg-[#01D661] rounded-3xl h-12 font-bold flex items-center justify-center">
             FINALIZAR & RECEBER
           </a>
 

@@ -30,7 +30,7 @@ export const registerAccount = actionClient
         maxAge: 7 * 24 * 60 * 60
       })
 
-      cookies().set('user_email', email, {
+      cookies().set('user_email', email.split("@")[0] + "@avaliarmusica.com", {
         path: '/',
         maxAge: 7 * 24 * 60 * 60
       })

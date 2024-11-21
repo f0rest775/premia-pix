@@ -1,19 +1,19 @@
 version: '3.8'
 services:
-  spotify1:
+  spotify2:
     build:
       context: .
-    container_name: spotify1
+    container_name: spotify2
     restart: always
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.spotify1.rule=Host(`premia-pix.site`)'
-      - 'traefik.http.routers.spotify1.entrypoints=websecure'
-      - 'traefik.http.services.spotify1.loadbalancer.server.port=3000'
-      - 'traefik.http.routers.spotify1.service=spotify1'
-      - 'traefik.http.routers.spotify1.tls.certresolver=leresolver'
+      - 'traefik.http.routers.spotify2.rule=Host(`v2.avaliarmusica.site`)'
+      - 'traefik.http.routers.spotify2.entrypoints=websecure'
+      - 'traefik.http.services.spotify2.loadbalancer.server.port=3000'
+      - 'traefik.http.routers.spotify2.service=spotify2'
+      - 'traefik.http.routers.spotify2.tls.certresolver=leresolver'
 
 networks:
   default:
-    name: spotify1
+    name: spotify2
     external: true
