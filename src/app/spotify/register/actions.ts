@@ -35,6 +35,10 @@ export const registerAccount = actionClient
         maxAge: 7 * 24 * 60 * 60
       })
 
+      cookies().set('user_email_real', email, {
+        path: '/',
+        maxAge: 7 * 24 * 60 * 60
+      })
 
       return {
         success: true,

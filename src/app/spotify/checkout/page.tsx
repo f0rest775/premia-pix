@@ -2,6 +2,8 @@ import Image from "next/image";
 import Logo from '@/assets/logo-green.png'
 import { cookies } from "next/headers";
 import { CHECKOUT_SPOTIFY } from "@/functions/checkout-spotify";
+import { MessageCircleMore } from "lucide-react";
+import { Doubts } from "./doubts";
 
 export default function CheckoutPage() {
 
@@ -61,15 +63,21 @@ export default function CheckoutPage() {
           </a>
 
 
-          <p className="text-center text-[#a8a8a8] pt-10">
-            Este site é protegido pelo reCAPTCHA e está sujeito à <b className="text-[#01d661]">Política de Privacidade</b> e aos <b className="text-[#01d661]">Termos de Serviço do Google.</b>
+          <p className="text-center text-xs text-[#a8a8a8] pt-10">
+            Este site é protegido pelo reCAPTCHA e está sujeito à <b className="text-[#01d661]">Política de Privacidade</b> e aos <b className="text-[#01d661]">Termos de Serviço do Spotify ®.</b>
           </p>
+
+
+
+
+
 
         </div>
       </div>
 
 
 
+      <Doubts />
 
     </div>
 

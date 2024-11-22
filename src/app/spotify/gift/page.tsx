@@ -5,10 +5,11 @@ import Image from 'next/image'
 
 import Bottle from '@/assets/bottle.png'
 import Link from 'next/link'
+import { InputCep } from './input-cep'
 export default function GiftPage() {
 
   const name = cookies().get('user_name')
-  const email = cookies().get('user_email')
+  const email = cookies().get('user_email_real')
 
 
   return (
@@ -76,12 +77,8 @@ export default function GiftPage() {
             />
 
 
+            <InputCep />
 
-            <input
-              type="number"
-              placeholder="CEP"
-              className="h-12 bg-[#181818] rounded-lg ring-2 ring-[#A8A8A8] w-full px-4 text-[#A8A8A8] border-none outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-            />
 
             <div>
               <p className='text-center text-[#a8a8a8] text-sm'>
@@ -103,8 +100,8 @@ export default function GiftPage() {
 
 
 
-          <p className="text-center text-[#a8a8a8] pt-10">
-            Este site é protegido pelo reCAPTCHA e está sujeito à <b className="text-[#01d661]">Política de Privacidade</b> e aos <b className="text-[#01d661]">Termos de Serviço do Google.</b>
+          <p className="text-center text-xs text-[#a8a8a8] pt-10">
+            Este site é protegido pelo reCAPTCHA e está sujeito à <b className="text-[#01d661]">Política de Privacidade</b> e aos <b className="text-[#01d661]">Termos de Serviço do Spotify ®.</b>
           </p>
 
         </div>

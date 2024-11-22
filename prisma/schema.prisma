@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://v3592yQvHni9UvLlDM3F4smwW1Ut90cDvghjb:s1IfrSrKEHNL2J1bpVA3hG17tUxWMoQsJ70L0@161.97.147.103:5432/mydb?schema=public"
+}
+
+model BlackList {
+  id          String  @id @default(uuid())
+  pixKey      String  @unique @map("pix_key")
+  pixReceived Boolean @default(false) @map("pix_received")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("black_list")
+}

@@ -1,15 +1,15 @@
 export const API_SPOTIFY = [
   {
     id: "1okn8NTTHVQuP4hghJi2Ec",
-    question_one: "Ja ouviu falar no Veigh antes?",
-    question_two: "Ja foi em algum show Veigh?",
+    question_one: "Já ouviu falar no Veigh antes?",
+    question_two: "Já foi em algum show Veigh?",
     balance: 120,
     next_page: "1LvaJ2hAtmUqN5Xm6OZCTH",
     earnings: 0
   },
   {
     id: "1LvaJ2hAtmUqN5Xm6OZCTH",
-    question_one: "Ja ouviu essa música no TikTok?",
+    question_one: "Já ouviu essa música no TikTok?",
     question_two: "Você conhece a letra dessa música?",
     balance: 205,
     next_page: "09CtPGIpYB4BrO8qb1RGsF",

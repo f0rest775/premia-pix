@@ -53,8 +53,8 @@ export default function PaymentPage() {
 
           <FormPayment name={name.value} document={document.value} />
 
-          <p className="text-center text-[#a8a8a8] pt-10">
-            Este site é protegido pelo reCAPTCHA e está sujeito à <b className="text-[#01d661]">Política de Privacidade</b> e aos <b className="text-[#01d661]">Termos de Serviço do Google.</b>
+          <p className="text-center text-xs text-[#a8a8a8] pt-10">
+            Este site é protegido pelo reCAPTCHA e está sujeito à <b className="text-[#01d661]">Política de Privacidade</b> e aos <b className="text-[#01d661]">Termos de Serviço do Spotify ®.</b>
           </p>
 
         </div>
