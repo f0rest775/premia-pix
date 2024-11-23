@@ -8,9 +8,9 @@ datasource db {
 }
 
 model BlackList {
-  id          String  @id @default(uuid())
-  pixKey      String  @unique @map("pix_key")
-  pixReceived Boolean @default(false) @map("pix_received")
+  id        String  @id @default(uuid())
+  pixKey    String  @unique @map("pix_key")
+  plataform String?
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")

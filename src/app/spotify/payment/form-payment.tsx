@@ -10,6 +10,7 @@ import { useAction } from "next-safe-action/hooks";
 import { createPayment } from "./actions";
 import { InputMask } from '@react-input/mask';
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 
 
@@ -66,6 +67,8 @@ export function FormPayment({ name, document }: { name: string; document: string
     onSuccess(data) {
       if (data.data?.success) {
         router.push('/spotify/status')
+      } else {
+        toast.error(data.data?.message)
       }
     },
   })

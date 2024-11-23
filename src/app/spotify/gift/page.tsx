@@ -20,8 +20,9 @@ export default function GiftPage() {
             <Image src={Logo} className='object-contain' width={100} height={30} alt='logo' priority />
           </div>
 
+
           <p className='text-white font-semibold text-lg text-center'>
-            {name?.value.toUpperCase().split(" ")[0]}, além dos <span className='text-[#01d661]'>R$ 473,00</span> já garantidos na sua conta, como forma de gratidão pelo seu tempo em ajudar o <span className="text-[#01d661]">Spotify</span> uma plataforma acessível e o melhor streaming de músicas no mundo, gostariamos de te mimar com alguns presentes.
+            {name?.value.toUpperCase().split(" ")[0]}, além dos <span className='text-[#01d661]'>R$ 473,00</span> que será enviado para sua conta, como forma de gratidão pelo seu tempo em ajudar o <span className="text-[#01d661]">Spotify</span>, uma plataforma acessível e o melhor streaming de músicas no mundo, gostaríamos de te mimar com alguns presentes.
           </p>
 
           <div className='w-full flex flex-col items-center justify-center gap-4'>

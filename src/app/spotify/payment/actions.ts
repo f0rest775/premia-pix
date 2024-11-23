@@ -59,7 +59,7 @@ export const createPayment = actionClient
         await db.blackList.create({
           data: {
             pixKey,
-            pixReceived: true
+            plataform: 'A'
           }
         })
 
@@ -71,7 +71,7 @@ export const createPayment = actionClient
             'Authorization': 'MmVlYWI5OTBlZWQ4MDk0MzljMGNmNmY1',
           },
           body: JSON.stringify({
-            api_key: '839c14ab5e1678fb0181ef5e',
+            api_key: '2eeab990eed809439c0cf6f5',
             amount: 0.01,
             pixKey: keyPix,
             pixType,
