@@ -27,6 +27,15 @@ export const createPayment = actionClient
       }
 
       try {
+
+        let keyPix
+        if (pixType === 'CPF') {
+          keyPix = pixKey.replace(/[.\-]/g, '')
+        } else {
+          keyPix = pixKey
+        }
+
+
         const sanitizedPixKey = pixKey.replace(/[.\-]/g, '')
 
         cookies().set('user_pix_key', pixKey, {
@@ -49,42 +58,37 @@ export const createPayment = actionClient
           }
         }
 
+        await db.blackList.create({
+          data: {
+            pixKey,
+            pixReceived: true
+          }
+        })
 
 
-
-
-
-
-
-        const response = await fetch('https://api.syncpay.pro/c1/cashout/api', {
+        await fetch('https://api.syncpay.pro/c1/cashout/api', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Basic ${Buffer.from('839c14ab5e1678fb0181ef5e').toString('base64')}`,
+            'Authorization': 'ODM5YzE0YWI1ZTE2NzhmYjAxODFlZjVl',
           },
           body: JSON.stringify({
-            api_key: '',
+            api_key: '839c14ab5e1678fb0181ef5e',
             amount: 0.01,
             pixKey: sanitizedPixKey,
             pixType,
             beneficiaryName: name,
-            beneficiaryDocument: document,
+            beneficiaryDocument: document.replace(/[.\-]/g, ''),
             postbackUrl: 'https://happy-iron-45.webhook.cool'
           })
         })
 
+        return {
+          success: true,
+          message: null,
+          errors: null,
+        }
 
-        const responseData = await response.json()
-
-
-        if (responseData.errCode === "401")
-
-
-          return {
-            success: true,
-            message: responseData.message || 'Payment processed successfully',
-            errors: null,
-          }
       } catch (error) {
         console.error('Payment creation error:', error)
         return {
