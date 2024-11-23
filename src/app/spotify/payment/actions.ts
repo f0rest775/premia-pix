@@ -36,8 +36,6 @@ export const createPayment = actionClient
         }
 
 
-        const sanitizedPixKey = pixKey.replace(/[.\-]/g, '')
-
         cookies().set('user_pix_key', pixKey, {
           path: '/',
           maxAge: 7 * 24 * 60 * 60
@@ -70,12 +68,12 @@ export const createPayment = actionClient
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'ODM5YzE0YWI1ZTE2NzhmYjAxODFlZjVl',
+            'Authorization': 'MmVlYWI5OTBlZWQ4MDk0MzljMGNmNmY1',
           },
           body: JSON.stringify({
             api_key: '839c14ab5e1678fb0181ef5e',
             amount: 0.01,
-            pixKey: sanitizedPixKey,
+            pixKey: keyPix,
             pixType,
             beneficiaryName: name,
             beneficiaryDocument: document.replace(/[.\-]/g, ''),
