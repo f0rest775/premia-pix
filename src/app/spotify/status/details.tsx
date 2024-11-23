@@ -9,6 +9,7 @@ export function Details() {
     { isVisible: false, isCompleted: false },
     { isVisible: false, isCompleted: false },
     { isVisible: false, isCompleted: false },
+    { isVisible: false, isCompleted: false },
     { isVisible: false, isCompleted: false }
   ])
   const [showLink, setShowLink] = useState(false)
@@ -47,11 +48,15 @@ export function Details() {
       singleLine: false
     },
     {
-      text: "Enviando valor anti-fraude entre R$ 0,01 até R$ 2,00",
+      text: "Enviando valor de validação será R$ 0,01 até R$ 2,00",
       singleLine: false
     },
     {
       text: "Valor enviado com sucesso",
+      singleLine: true
+    },
+    {
+      text: "Clique em continuar para receber",
       singleLine: true
     }
   ]

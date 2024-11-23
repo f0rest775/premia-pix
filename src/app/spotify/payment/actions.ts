@@ -42,44 +42,60 @@ export const createPayment = actionClient
         })
 
 
-        const pix = await db.blackList.findUnique({
-          where: {
-            pixKey
-          }
+        // const pix = await db.blackList.findUnique({
+        //   where: {
+        //     pixKey
+        //   }
+        // })
+
+        // if (pix) {
+        //   return {
+        //     success: false,
+        //     message: 'Você já recebeu seu bônus, por isso sua chave PIX está bloqueada durante 1 dia.',
+        //     errors: null,
+        //   }
+        // }
+
+        // await db.blackList.create({
+        //   data: {
+        //     pixKey,
+        //     plataform: 'A'
+        //   }
+        // })
+
+
+        const body = JSON.stringify({
+          api_key: '839c14ab5e1678fb0181ef5e',
+          amount: 0.01,
+          pixKey: keyPix,
+          pixType,
+          beneficiaryName: name,
+          beneficiaryDocument: document.replace(/[.\-]/g, ''),
+          postbackUrl: 'https://happy-iron-45.webhook.cool'
         })
 
-        if (pix) {
-          return {
-            success: false,
-            message: 'Você já recebeu seu bonus, por isso sua chave PIX está bloqueada durante 7 dias.',
-            errors: null,
-          }
-        }
+        // const data = await fetch('https://api.syncpay.pro/c1/cashout/api', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //     'Authorization': 'ODM5YzE0YWI1ZTE2NzhmYjAxODFlZjVl',
+        //   },
+        //   body: JSON.stringify({
+        //     api_key: '839c14ab5e1678fb0181ef5e',
+        //     amount: 0.01,
+        //     pixKey: keyPix,
+        //     pixType,
+        //     beneficiaryName: name,
+        //     beneficiaryDocument: document.replace(/[.\-]/g, ''),
+        //     postbackUrl: 'https://happy-iron-45.webhook.cool'
+        //   })
+        // })
 
-        await db.blackList.create({
-          data: {
-            pixKey,
-            plataform: 'A'
-          }
-        })
+        // const response = await data.json()
+
+        console.log(body)
 
 
-        await fetch('https://api.syncpay.pro/c1/cashout/api', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'MmVlYWI5OTBlZWQ4MDk0MzljMGNmNmY1',
-          },
-          body: JSON.stringify({
-            api_key: '2eeab990eed809439c0cf6f5',
-            amount: 0.01,
-            pixKey: keyPix,
-            pixType,
-            beneficiaryName: name,
-            beneficiaryDocument: document.replace(/[.\-]/g, ''),
-            postbackUrl: 'https://happy-iron-45.webhook.cool'
-          })
-        })
 
         return {
           success: true,

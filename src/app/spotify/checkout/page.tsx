@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Logo from '@/assets/logo-green.png'
 import { cookies } from "next/headers";
-import { CHECKOUT_SPOTIFY } from "@/functions/checkout-spotify";
-import { MessageCircleMore } from "lucide-react";
 import { Doubts } from "./doubts";
+import { ButtonCheckout } from "./button-checkout";
 
 export default function CheckoutPage() {
 
@@ -12,15 +11,13 @@ export default function CheckoutPage() {
   const pixKey = cookies().get('user_pix_key')
   const email = cookies().get('user_email')
 
-  const checkoutUrl = `${CHECKOUT_SPOTIFY}${CHECKOUT_SPOTIFY.includes('?') ? '&' : '?'}email=${encodeURIComponent(email?.value || '')}&name=${encodeURIComponent(name?.value || '')}`;
-
   return (
 
     <div className="w-full relative min-h-screen bg-[#181818] text-white">
       <div className="sticky z-50 top-0 left-0 right-0 h-16 bg-black flex items-center justify-between p-5">
         <Image src={Logo} className='object-contain' width={100} height={30} alt='logo' priority />
 
-        <div className='bg-[#01D661] rounded-2xl flex items-center gap-1 p-2'>
+        <div className='bg-[#01D661] rounded-2xl flex items-center gap-1 p-2 text-black'>
           <span className='text-sm font-semibold'>Saldo: </span>
           <span className='text-sm font-semibold'>{new Intl.NumberFormat('pt-BR', {
             style: 'currency',
@@ -58,9 +55,7 @@ export default function CheckoutPage() {
 
 
 
-          <a href={checkoutUrl} className="w-full text-black text-center bg-[#01D661] rounded-3xl h-12 font-bold flex items-center justify-center">
-            FINALIZAR & RECEBER
-          </a>
+          <ButtonCheckout email={email?.value} name={name?.value} />
 
 
           <p className="text-center text-xs text-[#a8a8a8] pt-10">

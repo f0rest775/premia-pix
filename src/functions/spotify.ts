@@ -42,7 +42,7 @@ export const API_SPOTIFY = [
   {
     id: "4ssHL7bSnOAE7HjiuLx6Co",
     question_one: "Você já ouviu esse lançamento 333?",
-    question_two: "Você escuta esse artista com frequéncia?",
+    question_two: "Você escuta esse artista com frequência?",
     balance: 473,
     next_page: "/spotify/payment",
     earnings: 85

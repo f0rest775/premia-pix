@@ -62,8 +62,8 @@ export function Settings({ question_one, question_two, next_page }: SettingsProp
         </div>
       </div>
 
-      <button onClick={toNextPage} className='bg-[#01D661] rounded-3xl font-bold h-12 mt-10' >
-        Ir para a próxima musica
+      <button onClick={toNextPage} className='bg-[#01D661] rounded-3xl text-black font-bold h-12 mt-10' >
+        Avaliar próxima música
       </button>
     </div>
   )
