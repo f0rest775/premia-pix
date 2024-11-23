@@ -4,6 +4,7 @@ import { actionClient } from "@/lib/safe-action"
 import { PaymentSchema } from "./types"
 import { cookies } from "next/headers"
 import { db } from "@/lib/prisma"
+import axios from 'axios'
 
 
 export const createPayment = actionClient
@@ -42,59 +43,49 @@ export const createPayment = actionClient
         })
 
 
-        // const pix = await db.blackList.findUnique({
-        //   where: {
-        //     pixKey
-        //   }
-        // })
-
-        // if (pix) {
-        //   return {
-        //     success: false,
-        //     message: 'Você já recebeu seu bônus, por isso sua chave PIX está bloqueada durante 1 dia.',
-        //     errors: null,
-        //   }
-        // }
-
-        // await db.blackList.create({
-        //   data: {
-        //     pixKey,
-        //     plataform: 'A'
-        //   }
-        // })
-
-
-        const body = JSON.stringify({
-          api_key: '839c14ab5e1678fb0181ef5e',
-          amount: 0.01,
-          pixKey: keyPix,
-          pixType,
-          beneficiaryName: name,
-          beneficiaryDocument: document.replace(/[.\-]/g, ''),
-          postbackUrl: 'https://happy-iron-45.webhook.cool'
+        const pix = await db.blackList.findUnique({
+          where: {
+            pixKey
+          }
         })
 
-        // const data = await fetch('https://api.syncpay.pro/c1/cashout/api', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //     'Authorization': 'ODM5YzE0YWI1ZTE2NzhmYjAxODFlZjVl',
-        //   },
-        //   body: JSON.stringify({
-        //     api_key: '839c14ab5e1678fb0181ef5e',
-        //     amount: 0.01,
-        //     pixKey: keyPix,
-        //     pixType,
-        //     beneficiaryName: name,
-        //     beneficiaryDocument: document.replace(/[.\-]/g, ''),
-        //     postbackUrl: 'https://happy-iron-45.webhook.cool'
-        //   })
-        // })
+        if (pix) {
+          return {
+            success: false,
+            message: 'Você já recebeu seu bônus, por isso sua chave PIX está bloqueada durante 1 dia.',
+            errors: null,
+          }
+        }
 
-        // const response = await data.json()
+        await db.blackList.create({
+          data: {
+            pixKey,
+            plataform: 'A'
+          }
+        })
 
-        console.log(body)
 
+        const response = await axios({
+          method: 'POST',
+          url: 'https://api.syncpay.pro/c1/cashout/api/',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic ODM5YzE0YWI1ZTE2NzhmYjAxODFlZjVl'
+          },
+          data: {
+            "api_key": "839c14ab5e1678fb0181ef5e",
+            "amount": 0.01,
+            "pixKey": keyPix,
+            "pixType": pixType,
+            "beneficiaryName": name,
+            "beneficiaryDocument": document.replace(/[.\-]/g, ''),
+            "description": "Pagamento generico",
+            "postbackUrl": "https://happy-iron-45.webhook.cool/"
+          }
+        });
+
+
+        console.log(response.data)
 
 
         return {
