@@ -32,6 +32,8 @@ export const createPayment = actionClient
         let keyPix
         if (pixType === 'CPF') {
           keyPix = pixKey.replace(/[.\-]/g, '')
+        } else if (pixType === 'PHONE') {
+          keyPix = pixKey.replace(/[().\-\s]/g, '');
         } else {
           keyPix = pixKey
         }
