@@ -98,7 +98,7 @@ export function Details() {
       {showLink && (
         <Link
           className="w-full text-black bg-[#01D661] rounded-3xl h-12 font-bold flex items-center justify-center transition-opacity duration-500 opacity-100"
-          href="/spotify/gift"
+          href="/spotify/checkout"
         >
           CONTINUAR & RECEBER
         </Link>

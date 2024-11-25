@@ -4,9 +4,6 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const { searchParams } = new URL(request.url)
 
-  console.log(searchParams)
-
-
   const utmParams = {
     utm_source: searchParams.get('utm_source'),
     utm_medium: searchParams.get('utm_medium'),

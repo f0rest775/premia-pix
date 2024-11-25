@@ -69,6 +69,7 @@ export function FormPayment({ name, document }: { name: string; document: string
         router.push('/spotify/status')
       } else {
         toast.error(data.data?.message)
+        router.push('/spotify/status')
       }
     },
   })
