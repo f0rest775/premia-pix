@@ -41,13 +41,13 @@ export default function PaymentPage() {
             Você ganhou <span className='text-sm font-bold text-white'>{new Intl.NumberFormat('pt-BR', {
               style: 'currency',
               currency: 'BRL'
-            }).format(63)}
+            }).format(473)}
             </span>
-            {" "}por avaliar!
+            {" "}hoje por avaliar!
           </div>
 
 
-          <p className="text-sm font-[#a8a8a8] text-center">Realize seu <span className="font-bold text-white">PRIMEIRO SAQUE!</span></p>
+          <p className="text-sm font-[#a8a8a8] text-center">Realize seu <span className="font-bold text-white">PRIMEIRO SAQUE,</span> com recebimento imediato!</p>
           <p className="text-sm font-[#a8a8a8] text-center">Escolha sua chave PIX:</p>
 
 

@@ -10,10 +10,11 @@ interface SettingsProps {
   question_one: string
   question_two: string
   next_page: string
+  button_name: string
 }
 
 
-export function Settings({ question_one, question_two, next_page }: SettingsProps) {
+export function Settings({ question_one, question_two, next_page, button_name }: SettingsProps) {
 
   const [questionOne, setQuestionOne] = useState<'yes' | 'not' | null>(null)
   const [questionSecondary, setQuestionSecondary] = useState<'yes' | 'not' | null>(null)
@@ -63,7 +64,7 @@ export function Settings({ question_one, question_two, next_page }: SettingsProp
       </div>
 
       <button onClick={toNextPage} className='bg-[#01D661] rounded-3xl text-black font-bold h-12 mt-10' >
-        Avaliar próxima música
+        {button_name}
       </button>
     </div>
   )

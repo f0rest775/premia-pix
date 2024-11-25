@@ -54,7 +54,7 @@ export const createPayment = actionClient
         if (pix) {
           return {
             success: false,
-            message: 'Você já recebeu seu bônus, por isso sua chave PIX está bloqueada durante 1 dia.',
+            message: 'Chave PIX validada, pague a taxa e receba o saldo restante de R$ 473,00.',
             errors: null,
           }
         }

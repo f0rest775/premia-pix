@@ -5,7 +5,8 @@ export const API_SPOTIFY = [
     question_two: "Já foi em algum show Veigh?",
     balance: 120,
     next_page: "1LvaJ2hAtmUqN5Xm6OZCTH",
-    earnings: 0
+    earnings: 0,
+    button_name: 'Avaliar próxima música'
   },
   {
     id: "1LvaJ2hAtmUqN5Xm6OZCTH",
@@ -13,7 +14,8 @@ export const API_SPOTIFY = [
     question_two: "Você conhece a letra dessa música?",
     balance: 205,
     next_page: "09CtPGIpYB4BrO8qb1RGsF",
-    earnings: 85
+    earnings: 85,
+    button_name: 'Avaliar próxima música'
   },
   {
     id: "09CtPGIpYB4BrO8qb1RGsF",
@@ -21,7 +23,8 @@ export const API_SPOTIFY = [
     question_two: "Você já foi no show dele no Brasil?",
     balance: 280,
     next_page: "4b3zlZQaDrpabJcqIo92uD",
-    earnings: 85
+    earnings: 85,
+    button_name: 'Avaliar próxima música'
   },
   {
     id: "4b3zlZQaDrpabJcqIo92uD",
@@ -29,7 +32,8 @@ export const API_SPOTIFY = [
     question_two: "Você escuta forró com frequência?",
     balance: 347,
     next_page: "6jFCFrcstrdTP2XPkBfV1F",
-    earnings: 85
+    earnings: 85,
+    button_name: 'Avaliar próxima música'
   },
   {
     id: "6jFCFrcstrdTP2XPkBfV1F",
@@ -37,7 +41,8 @@ export const API_SPOTIFY = [
     question_two: "Você já foi em um show dela?",
     balance: 410,
     next_page: "4ssHL7bSnOAE7HjiuLx6Co",
-    earnings: 85
+    earnings: 85,
+    button_name: 'Avaliar próxima música'
   },
   {
     id: "4ssHL7bSnOAE7HjiuLx6Co",
@@ -45,6 +50,7 @@ export const API_SPOTIFY = [
     question_two: "Você escuta esse artista com frequência?",
     balance: 473,
     next_page: "/spotify/payment",
-    earnings: 85
+    earnings: 85,
+    button_name: 'Receber agora'
   },
 ]
