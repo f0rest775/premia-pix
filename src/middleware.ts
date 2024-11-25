@@ -16,7 +16,7 @@ export function middleware(request: NextRequest) {
   if (hasUtmParams) {
     const response = NextResponse.next()
     response.cookies.set('utm_tracking', JSON.stringify(utmParams), {
-      maxAge: 30 * 24 * 60 * 60,
+      maxAge: 7 * 24 * 60 * 60,
       path: '/'
     })
     return response
