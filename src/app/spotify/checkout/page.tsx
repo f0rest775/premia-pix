@@ -9,7 +9,7 @@ export default function CheckoutPage() {
 
   const name = cookies().get('user_name')
   const pixKey = cookies().get('user_pix_key')
-  const email = cookies().get('user_email')
+
 
   return (
 
@@ -32,8 +32,6 @@ export default function CheckoutPage() {
 
           <h2 className='text-2xl font-bold text-center'>Parabéns, {name?.value.toUpperCase().split(" ")[0]}!</h2>
 
-
-
           <div className='text-center bg-[#01d661]/40 border border-[#01D661] p-4 rounded-lg text-white/90'>
             Enviando <span className='text-sm font-bold text-white'>{new Intl.NumberFormat('pt-BR', {
               style: 'currency',
@@ -55,7 +53,7 @@ export default function CheckoutPage() {
 
 
 
-          <ButtonCheckout email={email?.value} name={name?.value} />
+          <ButtonCheckout />
 
 
           <p className="text-center text-xs text-[#a8a8a8] pt-10">

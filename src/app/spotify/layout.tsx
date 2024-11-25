@@ -1,3 +1,4 @@
+import { FacebookPixel } from "@/components/facebook-pixel";
 import type { Metadata } from "next";
 import { Poppins } from 'next/font/google'
 
@@ -16,6 +17,7 @@ export default function SpotifyLayout({
 }>) {
   return (
     <div className={`${poppins.className}`}>
+      <FacebookPixel pixel="1657725324958554" />
       {children}
     </div>
   );
