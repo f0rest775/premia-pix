@@ -17,12 +17,14 @@ export default function PageFila() {
       <div className="sticky z-50 top-0 left-0 right-0 h-16 bg-black flex items-center justify-between p-5">
         <Image src={Logo} className='object-contain' width={100} height={30} alt='logo' priority />
 
-        <div className='bg-[#01D661] rounded-2xl flex items-center gap-1 p-2 text-black'>
-          <span className='text-sm font-semibold'>Saldo: </span>
-          <span className='text-sm font-semibold'>{new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-          }).format(473)}</span>
+        <div className="relative border border-[#01D661] rounded-lg flex items-center gap-1 py-1 px-4 text-black">
+          <span className="absolute bg-black -top-2 left-2 px-1 text-[10px] font-semibold text-[#01D661]">SALDO</span>
+          <span className="text-black text-lg font-semibold">
+            <span className='text-xs text-white font-semibold'>{new Intl.NumberFormat('pt-BR', {
+              style: 'currency',
+              currency: 'BRL'
+            }).format(473)}</span>
+          </span>
         </div>
 
       </div>

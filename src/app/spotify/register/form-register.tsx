@@ -40,8 +40,8 @@ export function FormRegister() {
       <div className='space-y-2'>
         <input
           type="text"
-          placeholder="Nome"
-          className="h-12 bg-[#181818] rounded-lg ring-2 ring-[#A8A8A8] w-full px-4 text-[#A8A8A8] border-none outline-none"
+          placeholder="Nome e sobrenome"
+          className="h-10 text-sm bg-[#181818] rounded-lg ring-1 ring-[#A8A8A8] w-full px-4 text-[#A8A8A8] border-none outline-none"
           {...register("name")}
         />
         {form.formState.errors.name && (
@@ -54,7 +54,7 @@ export function FormRegister() {
         <input
           type="email"
           placeholder="Seu melhor e-mail aqui"
-          className="h-12 bg-[#181818] rounded-lg ring-2 ring-[#A8A8A8] w-full px-4 text-[#A8A8A8] border-none outline-none"
+          className="h-10 text-sm bg-[#181818] rounded-lg ring-1 ring-[#A8A8A8] w-full px-4 text-[#A8A8A8] border-none outline-none"
           {...register("email")}
         />
         {form.formState.errors.email && (
@@ -70,7 +70,7 @@ export function FormRegister() {
           replacement={{ _: /\d/ }}
           type="tel"
           placeholder="Digite seu CPF"
-          className="h-12 bg-[#181818] rounded-lg ring-2 ring-[#A8A8A8] w-full px-4 text-[#A8A8A8] border-none outline-none"
+          className="h-10 text-sm bg-[#181818] rounded-lg ring-1 ring-[#A8A8A8] w-full px-4 text-[#A8A8A8] border-none outline-none"
           {...register("document")}
         />
         {form.formState.errors.document && (
@@ -80,7 +80,7 @@ export function FormRegister() {
         )}
       </div>
 
-      <button disabled={isPending} type='submit' className="w-full text-black bg-[#01D661] rounded-3xl h-12 font-bold flex items-center justify-center">
+      <button disabled={isPending} type='submit' className="w-full text-black bg-[#01D661] rounded-3xl h-12 font-semibold flex items-center justify-center">
 
         {isPending && <Loader2 className='size-5 animate-spin mr-2' />}
 
