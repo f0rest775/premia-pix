@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function StatusPage() {
 
   return (
-    <div className="w-full flex items-center justify-center flex-col min-h-screen bg-[#01D661] text-white space-y-6">
+    <div className="w-full flex items-center justify-center flex-col min-h-screen bg-[#01D661] text-white space-y-6 p-5">
 
       <div className="space-y-8 flex flex-col justify-center items-center">
         <CheckCircle className="size-36 text-black" />
