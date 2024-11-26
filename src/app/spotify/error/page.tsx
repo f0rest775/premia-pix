@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Logo from '@/assets/logo-green.png'
+import { UPSELL_SPOTIFY } from "@/functions/checkout-spotify";
 
 export default function PaymentErrorPage() {
   return (
@@ -23,7 +24,7 @@ export default function PaymentErrorPage() {
           <div className="w-full flex items-center justify-center">
             <a
               className="w-full max-w-[280px] duration-1000 text-[#01d661] animate-btn bg-[#181818] rounded-3xl h-12 font-bold flex items-center justify-center transition-opacity opacity-100"
-              href="/spotify/checkout"
+              href={UPSELL_SPOTIFY}
             >
               TENTAR NOVAMENTE
             </a>
