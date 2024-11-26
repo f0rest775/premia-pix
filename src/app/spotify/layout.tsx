@@ -8,6 +8,7 @@ const poppins = Poppins({ weight: ['100', '200', '300', '400', '500', '600', '70
 export const metadata: Metadata = {
   title: "Spotify",
   description: "Spotify",
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=1'
 };
 
 export default function SpotifyLayout({

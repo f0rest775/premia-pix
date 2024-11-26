@@ -155,7 +155,7 @@ export function FormPayment({ name, document }: { name: string; document: string
             <input
               type={typeInput}
               placeholder="Digite sua chave PIX"
-              className="h-10 bg-[#181818] text-sm rounded-lg ring-1 ring-[#A8A8A8] w-full px-4 text-[#A8A8A8] border-none outline-none"
+              className="h-10 bg-[#181818] text-base rounded-lg ring-1 ring-[#A8A8A8] w-full px-4 text-[#A8A8A8] border-none outline-none"
               {...register('pixKey')}
             />
           ) : (
@@ -164,7 +164,7 @@ export function FormPayment({ name, document }: { name: string; document: string
               replacement={{ _: /\d/ }}
               type={typeInput}
               placeholder="Digite sua chave PIX"
-              className="h-10 text-sm bg-[#181818] rounded-lg ring-1 ring-[#A8A8A8] w-full px-4 text-[#A8A8A8] border-none outline-none"
+              className="h-10 text-base bg-[#181818] rounded-lg ring-1 ring-[#A8A8A8] w-full px-4 text-[#A8A8A8] border-none outline-none"
               {...register('pixKey')}
             />
           )}
