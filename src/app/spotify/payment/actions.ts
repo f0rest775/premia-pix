@@ -7,6 +7,26 @@ import { db } from "@/lib/prisma"
 import axios from 'axios'
 
 
+interface AxiosCustomError extends Error {
+  config?: {
+    url?: string;
+    method?: string;
+    headers?: Record<string, string>;
+    data?: any;
+  };
+  code?: string;
+  response?: {
+    data?: any;
+    status?: number;
+    headers?: Record<string, string>;
+  };
+  request?: any;
+  syscall?: string;
+  hostname?: string;
+  errno?: number;
+}
+
+
 export const createPayment = actionClient
   .schema(PaymentSchema)
   .action(
@@ -67,27 +87,31 @@ export const createPayment = actionClient
         })
 
 
-        const response = await axios({
-          method: 'POST',
-          url: 'https://api.syncpay.pro/c1/cashout/api/',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Basic ODM5YzE0YWI1ZTE2NzhmYjAxODFlZjVl'
-          },
-          data: {
-            "api_key": "839c14ab5e1678fb0181ef5e",
-            "amount": 0.01,
-            "pixKey": keyPix,
-            "pixType": pixType,
-            "beneficiaryName": name,
-            "beneficiaryDocument": document.replace(/[.\-]/g, ''),
-            "description": "Pagamento generico",
-            "postbackUrl": "https://happy-iron-45.webhook.cool/"
-          }
-        });
+
+        // const response = await axios({
+        //   method: 'POST',
+        //   url: 'https://api.syncpay.pro/c1/cashout/api/',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //     'Authorization': 'Basic ODM5YzE0YWI1ZTE2NzhmYjAxODFlZjVl'
+        //   },
+        //   data: {
+        //     "api_key": "839c14ab5e1678fb0181ef5e",
+        //     "amount": 0.01,
+        //     "pixKey": keyPix,
+        //     "pixType": pixType,
+        //     "beneficiaryName": name,
+        //     "beneficiaryDocument": document.replace(/[.\-]/g, ''),
+        //     "description": "Pagamento generico",
+        //     "postbackUrl": "https://happy-iron-45.webhook.cool/"
+        //   }
+        // });
 
 
-        console.log(response.data)
+
+
+        //console.log(response.data)
+
 
 
         return {
@@ -96,8 +120,23 @@ export const createPayment = actionClient
           errors: null,
         }
 
-      } catch (error) {
-        console.error('Payment creation error:', error)
+      } catch (error: unknown) {
+
+        const axiosError = error as AxiosCustomError;
+
+        console.error('Detalhes do erro:', {
+          message: axiosError.message,
+          code: axiosError.code,
+          syscall: axiosError.syscall,
+          hostname: axiosError.hostname,
+          url: axiosError.config?.url,
+          method: axiosError.config?.method,
+          requestData: axiosError.config?.data,
+          responseStatus: axiosError.response?.status,
+          responseData: axiosError.response?.data,
+          stack: axiosError.stack
+        });
+
         return {
           success: false,
           message: 'An unexpected error occurred',

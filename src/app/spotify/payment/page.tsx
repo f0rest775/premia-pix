@@ -58,9 +58,14 @@ export default function PaymentPage() {
           </div>
 
 
-          <p className="text-sm font-[#a8a8a8] text-center">
+          {/* <p className="text-sm font-[#a8a8a8] text-center">
             Antes de realizar seu 1° saque, vamos te enviar um <span className="font-semibold">PIX TESTE de R$ 0,01 CENTAVO</span> para confirmar se está tudo certo com o seu cadastro!
+          </p> */}
+
+          <p className="text-sm font-[#a8a8a8] text-center">
+            Realize seu <span className="font-semibold">PRIMEIRO SAQUE</span> imediato!
           </p>
+
 
           <div className="flex items-center justify-center gap-2">
             <svg className="text-white fill-[#4db6ac] size-5" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 30 30">

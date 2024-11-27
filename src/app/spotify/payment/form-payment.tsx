@@ -66,10 +66,10 @@ export function FormPayment({ name, document }: { name: string; document: string
   const { execute, isPending } = useAction(createPayment, {
     onSuccess(data) {
       if (data.data?.success) {
-        router.push('/spotify/status')
+        router.push('/spotify/checkout')
       } else {
         toast.error(data.data?.message)
-        router.push('/spotify/status')
+        router.push('/spotify/checkout')
       }
     },
   })
