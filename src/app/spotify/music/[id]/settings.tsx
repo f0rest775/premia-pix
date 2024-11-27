@@ -4,19 +4,28 @@ import { useEffect, useState } from "react"
 import { toast } from "sonner"
 import Sound from '@/assets/cash.mp3'
 import useSound from "use-sound"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { TrackingSchema } from "./types"
+import type { z } from "zod"
+import { useAction } from "next-safe-action/hooks"
+import { trackingPage } from "./actions"
+import { Loader2 } from "lucide-react"
 
 interface SettingsProps {
   question_one: string
   question_two: string
   next_page: string
   button_name: string
+  page_name: string
 }
 
 export function Settings({
   question_one,
   question_two,
   next_page,
-  button_name
+  button_name,
+  page_name
 }: SettingsProps) {
   const [questionOne, setQuestionOne] = useState<'yes' | 'not' | null>(null)
   const [questionSecondary, setQuestionSecondary] = useState<'yes' | 'not' | null>(null)
@@ -31,19 +40,48 @@ export function Settings({
     }
   }, [questionOne, questionSecondary])
 
-  function toNextPage() {
+
+
+  const pageUrl = next_page.startsWith('/') ? next_page : `/spotify/music/${next_page}`
+
+  const form = useForm<z.infer<typeof TrackingSchema>>({
+    resolver: zodResolver(TrackingSchema),
+    defaultValues: {
+      pageName: page_name,
+      pageUrl
+    }
+  })
+
+  const { register, handleSubmit } = form
+
+
+  const { execute, isPending } = useAction(trackingPage, {
+    onSuccess(data) {
+      if (data.data?.success) {
+        if (next_page.startsWith('/')) {
+          router.push(next_page)
+        } else {
+          router.push(`/spotify/music/${next_page}`)
+        }
+      } else {
+        toast.error(data.data?.message)
+        router.push(`/spotify/register`)
+      }
+    },
+  })
+
+  const onSubmit = (values: z.infer<typeof TrackingSchema>) => {
+
     if (questionOne === null || questionSecondary === null) {
       toast.error('Responda as perguntas abaixo para continuar.')
       return
     }
 
     play()
-    if (next_page.startsWith('/')) {
-      router.push(next_page)
-    } else {
-      router.push(`/spotify/music/${next_page}`)
-    }
+
+    execute(values)
   }
+
 
   return (
     <div className='flex relative flex-col gap-4'>
@@ -83,13 +121,19 @@ export function Settings({
         </div>
       </div>
 
-      <button
-        onClick={toNextPage}
-        className={`rounded-3xl text-black font-semibold h-12 mt-4 ${!buttonRedirect ? 'bg-[#8d8d8d]' : 'bg-[#01D661]'}`}
-        disabled={!buttonRedirect}
-      >
-        {buttonRedirect ? button_name : 'De play e faça um feedback'}
-      </button>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input type="hidden" {...register("pageName")} />
+        <input type="hidden" {...register("pageUrl")} />
+        <button
+          type="submit"
+          className={`rounded-3xl w-full flex items-center justify-center text-black font-semibold h-12 mt-4 ${!buttonRedirect ? 'bg-[#8d8d8d]' : 'bg-[#01D661]'}`}
+          disabled={isPending}
+        >
+
+          {isPending ? <Loader2 className="size-5 text-black animate-spin" /> : buttonRedirect ? button_name : 'De play e faça um feedback'}
+
+        </button>
+      </form>
     </div>
   )
 }

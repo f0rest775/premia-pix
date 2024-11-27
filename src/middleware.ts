@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export function middleware(request: NextRequest) {
+
+
+function handleUtmTracking(request: NextRequest) {
   const { searchParams } = new URL(request.url)
 
   const utmParams = {
@@ -21,6 +23,16 @@ export function middleware(request: NextRequest) {
     })
     return response
   }
+
+  return null
+}
+
+
+export async function middleware(request: NextRequest) {
+
+
+  const utmResponse = handleUtmTracking(request)
+  if (utmResponse) return utmResponse
 
   return NextResponse.next()
 }

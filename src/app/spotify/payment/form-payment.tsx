@@ -67,9 +67,10 @@ export function FormPayment({ name, document }: { name: string; document: string
     onSuccess(data) {
       if (data.data?.success) {
         router.push('/spotify/checkout')
+        toast.success(data.data.message)
       } else {
         toast.error(data.data?.message)
-        router.push('/spotify/checkout')
+        //router.push('/spotify/checkout')
       }
     },
   })

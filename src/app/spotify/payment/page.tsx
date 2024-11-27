@@ -3,16 +3,26 @@ import Logo from '@/assets/logo-green.png'
 import { cookies } from "next/headers";
 import { FormPayment } from "./form-payment";
 import { redirect } from "next/navigation";
+import { db } from "@/lib/prisma";
 
 
-export default function PaymentPage() {
+export default async function PaymentPage() {
 
-  const name = cookies().get('user_name')
-  const document = cookies().get('user_document')
+  const token = cookies().get('token')?.value
+
+  if (!token) {
+    redirect('/spotify/register')
+  }
+
+  const user = await db.user.findUnique({
+    where: {
+      id: token
+    }
+  })
 
 
 
-  if (!name || !document) {
+  if (!user) {
     redirect('/spotify/register')
   }
 
@@ -37,7 +47,7 @@ export default function PaymentPage() {
       <div className='w-full p-5'>
         <div className='w-full bg-black rounded-lg p-5 space-y-8'>
 
-          <h2 className='text-2xl font-bold text-center'>Olá, {name?.value.toUpperCase().split(" ")[0]}!</h2>
+          <h2 className='text-2xl font-bold text-center'>Olá, {user.name.toUpperCase().split(" ")[0]}!</h2>
 
 
           <div className='text-center space-y-4 bg-[#01d661]/40 border border-[#01D661] p-4 rounded-lg text-white/90'>
@@ -75,7 +85,7 @@ export default function PaymentPage() {
           </div>
 
 
-          <FormPayment name={name.value} document={document.value} />
+          <FormPayment name={user.name} document={user.document} />
 
           <p className="text-center text-xs text-[#a8a8a8] pt-10">
             Este site é protegido pelo reCAPTCHA e está sujeito à <b className="text-[#01d661]">Política de Privacidade</b> e aos <b className="text-[#01d661]">Termos de Serviço do Spotify ®.</b>

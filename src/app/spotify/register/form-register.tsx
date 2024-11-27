@@ -25,7 +25,11 @@ export function FormRegister() {
   const { execute, isPending } = useAction(registerAccount, {
     onSuccess(data) {
       if (data.data?.success) {
-        router.push('/spotify/music/1okn8NTTHVQuP4hghJi2Ec')
+        if (data.data.message === 'downsell') {
+          router.push('/spotify/checkout?modal=downsell')
+        } else {
+          router.push('/spotify/music/1okn8NTTHVQuP4hghJi2Ec')
+        }
       }
     },
   })

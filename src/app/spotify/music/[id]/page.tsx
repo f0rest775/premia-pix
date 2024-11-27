@@ -4,6 +4,7 @@ import { Settings } from './settings'
 import { API_SPOTIFY } from '@/functions/spotify'
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
+import { db } from '@/lib/prisma'
 
 interface MusicProps {
   params: {
@@ -11,16 +12,27 @@ interface MusicProps {
   }
 }
 
-export default function MusicPage({ params }: MusicProps) {
+export default async function MusicPage({ params }: MusicProps) {
 
   const music = API_SPOTIFY.find((m) => m.id === params.id)
-  const name = cookies().get('user_name')
+  const token = cookies().get('token')?.value
 
   if (!music) {
     redirect('/spotify/music/1okn8NTTHVQuP4hghJi2Ec')
   }
 
-  if (!name) {
+  if (!token) {
+    redirect('/spotify/register')
+  }
+
+
+  const user = await db.user.findUnique({
+    where: {
+      id: token
+    }
+  })
+
+  if (!user) {
     redirect('/spotify/register')
   }
 
@@ -46,7 +58,7 @@ export default function MusicPage({ params }: MusicProps) {
       <div className='w-full p-5'>
         <div className='w-full bg-black rounded-lg p-5 space-y-4'>
           <div className='space-y-4'>
-            <h2 className='text-2xl font-bold text-center'>Olá, {name?.value.toUpperCase().split(" ")[0]}!</h2>
+            <h2 className='text-2xl font-bold text-center'>Olá, {user.name.toUpperCase().split(" ")[0]}!</h2>
             <p className='text-[#8d8d8d] text-center text-sm'>Escute a música abaixo e <span className='text-white font-bold'>ganhe por isso!</span></p>
           </div>
 
@@ -68,7 +80,7 @@ export default function MusicPage({ params }: MusicProps) {
             <iframe style={{ borderRadius: '12px', height: '120px' }} src={`https://open.spotify.com/embed/track/${music.id}?utm_source=generator&theme=0`} width="100%" height="120" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
           </div>
 
-          <Settings button_name={music.button_name} question_one={music.question_one} question_two={music.question_two} next_page={music.next_page} />
+          <Settings page_name={music.page_name} button_name={music.button_name} question_one={music.question_one} question_two={music.question_two} next_page={music.next_page} />
 
 
           <p className="text-center text-xs text-[#a8a8a8] pt-10">

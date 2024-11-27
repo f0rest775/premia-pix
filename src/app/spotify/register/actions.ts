@@ -3,6 +3,7 @@
 import { actionClient } from "@/lib/safe-action"
 import { RegisterAccountSchema } from "./types"
 import { cookies } from "next/headers"
+import { db } from "@/lib/prisma"
 
 export const registerAccount = actionClient
   .schema(RegisterAccountSchema)
@@ -15,29 +16,44 @@ export const registerAccount = actionClient
       },
     }) => {
 
-      cookies().set('user_name', name, {
-        path: '/',
-        maxAge: 7 * 24 * 60 * 60
+
+      const userFromEmail = await db.user.findUnique({
+        where: {
+          email
+        }
       })
 
-      cookies().set('user_created', String(new Date()), {
-        path: '/',
-        maxAge: 7 * 24 * 60 * 60
-      })
+      if (userFromEmail) {
 
-      cookies().set('user_document', document, {
-        path: '/',
-        maxAge: 7 * 24 * 60 * 60
-      })
+        cookies().set('token', userFromEmail.id, {
+          path: '/',
+          maxAge: 30 * 24 * 60 * 60
+        })
 
-      cookies().set('user_email', email.split("@")[0] + "@avaliarmusica.com", {
-        path: '/',
-        maxAge: 7 * 24 * 60 * 60
-      })
+        return {
+          success: true,
+          message: 'downsell',
+          errors: null,
+        }
+      }
 
-      cookies().set('user_email_real', email, {
+      const user = await db.user.create({
+        data: {
+          email,
+          name,
+          document,
+          tracking: {
+            create: {
+              pageUrl: '/spotify/register',
+              pageName: 'Pagina de cadastro',
+            },
+          },
+        },
+      });
+
+      cookies().set('token', user.id, {
         path: '/',
-        maxAge: 7 * 24 * 60 * 60
+        maxAge: 30 * 24 * 60 * 60
       })
 
       return {
@@ -45,6 +61,5 @@ export const registerAccount = actionClient
         message: null,
         errors: null,
       }
-
     }
   )

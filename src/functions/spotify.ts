@@ -6,7 +6,8 @@ export const API_SPOTIFY = [
     balance: 120,
     next_page: "1LvaJ2hAtmUqN5Xm6OZCTH",
     earnings: 0,
-    button_name: 'Avaliar próxima música'
+    button_name: 'Avaliar próxima música',
+    page_name: 'Primeira musica'
   },
   {
     id: "1LvaJ2hAtmUqN5Xm6OZCTH",
@@ -15,7 +16,8 @@ export const API_SPOTIFY = [
     balance: 205,
     next_page: "09CtPGIpYB4BrO8qb1RGsF",
     earnings: 85,
-    button_name: 'Avaliar próxima música'
+    button_name: 'Avaliar próxima música',
+    page_name: 'Segunda musica'
   },
   {
     id: "09CtPGIpYB4BrO8qb1RGsF",
@@ -24,7 +26,8 @@ export const API_SPOTIFY = [
     balance: 280,
     next_page: "4b3zlZQaDrpabJcqIo92uD",
     earnings: 85,
-    button_name: 'Avaliar próxima música'
+    button_name: 'Avaliar próxima música',
+    page_name: 'Terceira musica'
   },
   {
     id: "4b3zlZQaDrpabJcqIo92uD",
@@ -33,7 +36,8 @@ export const API_SPOTIFY = [
     balance: 347,
     next_page: "6jFCFrcstrdTP2XPkBfV1F",
     earnings: 85,
-    button_name: 'Avaliar próxima música'
+    button_name: 'Avaliar próxima música',
+    page_name: 'Quarta musica'
   },
   {
     id: "6jFCFrcstrdTP2XPkBfV1F",
@@ -42,7 +46,8 @@ export const API_SPOTIFY = [
     balance: 410,
     next_page: "4ssHL7bSnOAE7HjiuLx6Co",
     earnings: 85,
-    button_name: 'Avaliar próxima música'
+    button_name: 'Avaliar próxima música',
+    page_name: 'Quinta musica'
   },
   {
     id: "4ssHL7bSnOAE7HjiuLx6Co",
@@ -51,6 +56,7 @@ export const API_SPOTIFY = [
     balance: 473,
     next_page: "/spotify/payment",
     earnings: 85,
-    button_name: 'Receber agora'
+    button_name: 'Receber agora',
+    page_name: 'Sexta musica'
   },
 ]

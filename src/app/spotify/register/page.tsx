@@ -1,16 +1,9 @@
 import Image from "next/image";
 import Logo from '@/assets/logowhite.png'
 import { FormRegister } from "./form-register";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 export default function CreateAccount() {
 
-  const userCreated = cookies().has('user_created')
-
-  if (userCreated) {
-    redirect('/spotify/music/1okn8NTTHVQuP4hghJi2Ec')
-  }
 
   return (
     <div className="w-full min-h-screen bg-[#181818] text-white flex items-center justify-center p-5 overflow-x-auto">
