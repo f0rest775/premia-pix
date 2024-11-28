@@ -160,32 +160,30 @@ export function FormPayment() {
 
     play()
 
-    setLoading(false)
-    router.push('/status')
 
 
-    // const countdown = setInterval(() => {
-    //   setSeconds(prevSeconds => prevSeconds - 1);
-    // }, 1000);
+    const countdown = setInterval(() => {
+      setSeconds(prevSeconds => prevSeconds - 1);
+    }, 1000);
 
 
-    // const data = await getData('user_data') ?? ''
+    const data = await getData('user_data') ?? ''
 
 
-    // if (!data) {
-    //   setTimeout(() => {
-    //     clearInterval(countdown);
-    //     window.location.href = CHECKOUT_URL;
-    //   }, seconds * 1000);
-    // } else {
+    if (!data) {
+      setTimeout(() => {
+        clearInterval(countdown);
+        window.location.href = CHECKOUT_URL;
+      }, seconds * 1000);
+    } else {
 
-    //   const dados = JSON.parse(data?.toString())
+      const dados = JSON.parse(data?.toString())
 
-    //   setTimeout(() => {
-    //     clearInterval(countdown);
-    //     window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
-    //   }, seconds * 1000);
-    // }
+      setTimeout(() => {
+        clearInterval(countdown);
+        window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
+      }, seconds * 1000);
+    }
   }
 
 
