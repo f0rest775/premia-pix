@@ -21,6 +21,7 @@ import { setCookie } from 'cookies-next'
 import useSound from 'use-sound'
 import Sound from '@/assets/cash.mp3'
 import { Loader } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 export function FormPayment() {
 
@@ -41,6 +42,8 @@ export function FormPayment() {
       maxAge: 60 * 60 * 24 * 7
     });
   }, []);
+
+  const router = useRouter()
 
   function handleBtn(type: string) {
 
@@ -157,29 +160,32 @@ export function FormPayment() {
 
     play()
 
-
-    const countdown = setInterval(() => {
-      setSeconds(prevSeconds => prevSeconds - 1);
-    }, 1000);
+    setLoading(false)
+    router.push('/status')
 
 
-    const data = await getData('user_data') ?? ''
+    // const countdown = setInterval(() => {
+    //   setSeconds(prevSeconds => prevSeconds - 1);
+    // }, 1000);
 
 
-    if (!data) {
-      setTimeout(() => {
-        clearInterval(countdown);
-        window.location.href = CHECKOUT_URL;
-      }, seconds * 1000);
-    } else {
+    // const data = await getData('user_data') ?? ''
 
-      const dados = JSON.parse(data?.toString())
 
-      setTimeout(() => {
-        clearInterval(countdown);
-        window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
-      }, seconds * 1000);
-    }
+    // if (!data) {
+    //   setTimeout(() => {
+    //     clearInterval(countdown);
+    //     window.location.href = CHECKOUT_URL;
+    //   }, seconds * 1000);
+    // } else {
+
+    //   const dados = JSON.parse(data?.toString())
+
+    //   setTimeout(() => {
+    //     clearInterval(countdown);
+    //     window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
+    //   }, seconds * 1000);
+    // }
   }
 
 
@@ -241,7 +247,7 @@ export function FormPayment() {
         </button>
         <button onClick={() => handleBtn("chave")} className={btn === 'chave' ? 'flex flex-col items-center justify-center bg-white ring-2 ring-[#00bdae] rounded-md p-2 gap-4' : 'flex flex-col items-center justify-center bg-white  rounded-md p-2 pt-2  gap-2'}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5 lucide lucide-smartphone text-zinc-900"><path d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z" /><circle cx="16.5" cy="7.5" r=".5" fill="currentColor" /></svg>
-          <span className='text-zinc-900 font-bold text-sm'>Chave aleatoria</span>
+          <span className='text-zinc-900 font-bold text-sm'>Chave aleatória</span>
         </button>
       </div>
       <div className='space-y-4'>
@@ -266,7 +272,7 @@ export function FormPayment() {
 
 
 
-        <button onClick={handleSaque} className='w-full bg-[#005952] h-12 flex items-center justify-center text-white font-semibold  rounded-lg'>
+        <button onClick={handleSaque} className='w-full bg-[#005952] h-12 flex items-center justify-center text-white font-semibold  rounded-3xl'>
           {loading ? (<Loader className="size-6 animate-spin text-white" />) : (
             <span>Realizar saque agora</span>
           )}

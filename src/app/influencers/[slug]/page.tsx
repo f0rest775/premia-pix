@@ -52,7 +52,7 @@ export default async function InfluencerPage({ params }: InfluencerPageProps) {
               </DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
-              <p className="text-sm text-center font-medium">Você ja tem R$ 136,66 reais de saldo em sua conta, só por realizar seu cadastro, incrível né?</p>
+              <p className="text-sm text-center font-medium">Você ja tem R$ 136,66 reais de saldo em sua conta, por realizar seu cadastro, incrível né?</p>
               <p className="text-sm text-center font-medium">Para você continuar ganhando avalie mais 5 pesquisas e <strong>realiza seu saque imediatamente!</strong></p>
 
 
@@ -71,16 +71,15 @@ export default async function InfluencerPage({ params }: InfluencerPageProps) {
       <div className="border-b border-[#939393]">
         <div className="w-full h-16 flex items-center justify-between p-5 pt-6">
           <Image src={Logo} alt="Logo" width={0} height={0} className="w-[180px] h-auto object-contain" />
-          <div>
-            <p className="text-[10px] font-bold text-center">Saldo a receber</p>
-            <div className="bg-[#00bdae] rounded-lg py-1 px-4 text-center font-semibold text-sm flex items-center">
-              {new Intl.NumberFormat('pt-BR', {
+
+          <div className="relative border border-[#00bdae] rounded-lg flex items-center gap-1 py-1 px-4 text-black">
+            <span className="absolute bg-white -top-2 left-2 px-1 text-[10px] font-semibold text-[#00bdae]">SALDO</span>
+            <span className="text-black text-lg font-semibold">
+              <span className='text-xs text-black font-semibold'>{new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL'
-              }).format(influencer.amount)}
-
-              <CircleDollarSign className="ml-2 size-4" />
-            </div>
+              }).format(influencer.amount)}</span>
+            </span>
           </div>
         </div>
       </div>

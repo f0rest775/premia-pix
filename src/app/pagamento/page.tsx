@@ -3,6 +3,7 @@ import Logo from '@/assets/insta-pix-logo.png'
 import { FormPayment } from "./form-payment";
 import { CircleDollarSign } from "lucide-react";
 import { Header } from "@/components/header";
+import BC from '@/assets/bc.png'
 
 export default function PagamentoPage() {
 
@@ -11,16 +12,14 @@ export default function PagamentoPage() {
       <div className="border-b border-zinc-500">
         <div className="w-full h-16 flex items-center justify-between p-5">
           <Image src={Logo} alt="Logo" width={0} height={0} className="w-[180px] h-auto object-contain" />
-          <div>
-            <p className="text-[10px] font-bold text-center">Saldo a receber</p>
-            <div className="bg-[#00bdae] rounded-lg py-1 px-4 text-center font-semibold text-sm flex items-center">
-              {new Intl.NumberFormat('pt-BR', {
+          <div className="relative border border-[#00bdae] rounded-lg flex items-center gap-1 py-1 px-4 text-black">
+            <span className="absolute bg-white -top-2 left-2 px-1 text-[10px] font-semibold text-[#00bdae]">SALDO</span>
+            <span className="text-black text-lg font-semibold">
+              <span className='text-xs text-black font-semibold'>{new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL'
-              }).format(819.99)}
-
-              <CircleDollarSign className="ml-2 size-4" />
-            </div>
+              }).format(819.99)}</span>
+            </span>
           </div>
         </div>
       </div>
@@ -45,8 +44,12 @@ export default function PagamentoPage() {
 
       </div>
 
-      <div className="text-zinc-600 text-sm text-center">
-        2024 &copy; Insta PIX
+      <div className="flex items-center justify-center flex-col pt-16 select-none space-y-1">
+        <p className="text-sm text-white">
+          Segurança pelo:
+        </p>
+
+        <Image src={BC} alt="bc" width={0} height={0} className="w-[200px] h-auto" />
       </div>
 
     </>

@@ -75,7 +75,7 @@ export function LoginForm() {
                 </div>
               </div>
               <div className="flex items-center gap-4 w-full">
-                <Button onClick={() => router.push(`/onbording?document=${data.data.DADOS_PESSOAIS.CPF}&name=${data.data.DADOS_PESSOAIS.NOME}`)} className="w-full bg-[#216b16] hover:bg-[#216b16]">
+                <Button onClick={() => router.push(`/onbording?document=${data.data.DADOS_PESSOAIS.CPF}&name=${data.data.DADOS_PESSOAIS.NOME}`)} className="w-full bg-[#216b16] hover:bg-[#216b16] rounded-3xl">
                   Receber meu PIX
                 </Button>
               </div>
@@ -95,7 +95,7 @@ export function LoginForm() {
           className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#005952] outline-none border-0 w-full  h-11"
         />
 
-        <button className="w-full bg-[#005952] h-12 text-center rounded-lg flex items-center justify-center text-white font-medium" disabled={isPending}>
+        <button className="w-full bg-[#005952] h-12 text-center rounded-3xl flex items-center justify-center text-white font-medium" disabled={isPending}>
           {isPending ? (
             <Loader className="size-4 animate-spin" />
 

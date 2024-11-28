@@ -5,7 +5,7 @@ export const influencers = [
     name: "Bolsonaro",
     amount: 683.3,
     following: 1020.3,
-    nextPage: "influencers/whindersson-nunes",
+    nextPage: "influencers/pablo-marcal",
     text: "Você votaria no Bolsonaro?"
   },
   {
@@ -45,13 +45,13 @@ export const influencers = [
     text: "Você assistiria um jogo do Cristiano Ronaldo?"
   },
   {
-    slug: "whindersson-nunes",
-    image: "whindersson-nunes.png",
-    name: "Whindersson Nunes",
+    slug: "pablo-marcal",
+    image: "pablo-marcal.avif",
+    name: "Pablo Marçal",
     amount: 819.99,
     following: 152.8,
     nextPage: "pagamento",
-    text: "Você iria há um show do Whindersson Nunes?"
+    text: "Você conhece o Pablo Marçal?"
   }
 ]
 

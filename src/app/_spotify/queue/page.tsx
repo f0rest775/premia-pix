@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Logo from '@/assets/logo-green.png'
 import { Loader } from "lucide-react";
-import { NumberFromQueue } from "@/app/_fila/number-from-queue";
-import { PaymentInfo } from "@/app/_fila/payment-info";
+import { NumberFromQueue } from "@/app/fila/number-from-queue";
+import { PaymentInfo } from "@/app/fila/payment-info";
 import { cookies } from "next/headers";
 
 export default function PageFila() {

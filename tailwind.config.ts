@@ -76,11 +76,11 @@ const config: Config = {
 				'btn': {
 					'0%, 100%': {
 						transform: 'scale(1)',
-						boxShadow: '0 0 5px rgba(72, 239, 128, 0.5)',
+						//boxShadow: '0 0 5px rgba(72, 239, 128, 0.5)',
 					},
 					'50%': {
 						transform: 'scale(1.1)',
-						boxShadow: '0 0 15px rgba(72, 239, 128, 0.7)',
+						//boxShadow: '0 0 15px rgba(72, 239, 128, 0.7)',
 					},
 				},
 			},

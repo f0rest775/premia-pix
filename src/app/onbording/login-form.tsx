@@ -96,7 +96,7 @@ export function LoginForm() {
             className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#005952] outline-none border-0 w-full h-11"
           />
         </div>
-        <button className="w-full bg-[#005952] h-12 text-center rounded-lg text-white font-medium">
+        <button className="w-full bg-[#005952] h-12 text-center rounded-3xl text-white font-medium">
           Confirmar & Continuar
         </button>
       </form >
@@ -121,7 +121,7 @@ export function LoginForm() {
             className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#005952] outline-none border-0 w-full h-11"
           />
         </div>
-        <button className="w-full bg-[#005952] h-12 text-center rounded-lg text-white font-medium">
+        <button className="w-full bg-[#005952] h-12 text-center rounded-3xl text-white font-medium">
           Confirmar & Continuar
         </button>
       </form>
