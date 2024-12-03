@@ -2,14 +2,24 @@ import type { Metadata } from "next";
 import { Inter } from 'next/font/google'
 import "./globals.css";
 import { Toaster } from "sonner";
-import Script from "next/script";
 
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "oferta",
+  title: "InstaPIX - Avalie e ganhe",
   description: "oferta",
+  metadataBase: new URL('http://localhost:3000'),
+  openGraph: {
+    title: "InstaPIX - Avalie e ganhe",
+    description: 'Ganhe por cada avaliação.',
+    images: [{
+      url: '/images/website_cover.webp',
+      width: 1200,
+      height: 630,
+      alt: "Insta PIX",
+    }]
+  }
 };
 
 export default function RootLayout({

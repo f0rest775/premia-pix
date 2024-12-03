@@ -8,6 +8,7 @@ import Logo from '@/assets/pix-banco-central.svg'
 import { redirect } from "next/navigation";
 import { CHECKOUT_URL } from "@/functions/urls";
 import { CreditCard } from "lucide-react";
+import { ButtonCheckout } from "./button-checkout";
 
 export default async function CheckoutPage() {
 
@@ -21,7 +22,16 @@ export default async function CheckoutPage() {
   })
 
   if (!result.ok) {
-    redirect(CHECKOUT_URL)
+
+    return (
+      <>
+        {JSON.stringify(result)}
+      </>
+    )
+
+
+
+    //redirect(CHECKOUT_URL)
   }
 
 
@@ -59,10 +69,7 @@ export default async function CheckoutPage() {
 
           <p className="text-black text-sm">Ou pagar com cartão</p>
 
-          <a href={`${CHECKOUT_URL}hidepix=1`} className="w-full max-w-sm bg-[#36CBBF] text-black rounded-3xl h-12 font-semibold flex items-center justify-center">
-            <CreditCard className="size-5 mr-2" />
-            Pagar com cartão
-          </a>
+          <ButtonCheckout />
 
         </div>
 
