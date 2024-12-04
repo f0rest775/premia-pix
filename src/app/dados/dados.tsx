@@ -78,7 +78,7 @@ export function Dados() {
       </div>
       {visible && (
         <div className="flex items-center gap-4 w-full">
-          <Button onClick={() => router.push(`/app/onbording?document=${document}&name=${name}`)} className="w-full h-12 rounded-3xl bg-[#1c7069]  hover:bg-[#1c7069]">
+          <Button onClick={() => router.push(`/onbording?document=${document}&name=${name}`)} className="w-full h-12 rounded-3xl bg-[#1c7069]  hover:bg-[#1c7069]">
             Receber meu PIX
           </Button>
         </div>
