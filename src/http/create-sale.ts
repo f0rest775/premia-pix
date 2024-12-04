@@ -24,7 +24,7 @@ interface PaymentPixResponse {
   id: number
 }
 
-export async function createPaymentPixElitePay({
+export async function createPaymentPix({
   clientEmail,
   clientName,
   clientDocument,
@@ -34,7 +34,7 @@ export async function createPaymentPixElitePay({
 > {
   try {
     const response = await fetch(
-      'https://api.elitepayoficial.com/v1/transactions',
+      'https://api.dashboard.orbitapay.com.br/v1/transactions',
       {
         method: 'POST',
         headers: {

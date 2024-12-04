@@ -4,39 +4,32 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://v3592yQvHni9UvLlDM3F4smwW1Ut90cDvghjb:s1IfrSrKEHNL2J1bpVA3hG17tUxWMoQsJ70L0@161.97.147.103:5432/mydb?schema=public"
+  url      = "postgresql://v3592yQvHni9UvLlDM3F4smwW1Ut90cDvghjb:s1IfrSrKEHNL2J1bpVA3hG17tUxWMoQsJ70L0@62.84.184.0:5432/mydb?schema=public"
 }
 
-model User {
-  id        String     @id @default(uuid())
-  email     String     @unique
-  name      String
-  document  String
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @default(now()) @updatedAt @map("updated_at")
-  tracking  Tracking[]
+model Sale {
+  id     String     @id @default(uuid())
+  path   String     @unique
+  status SaleStatus @default(PROCESSING)
+  amount Int
 
-  @@map("users")
+  externalId String? @unique @map("external_id")
+  brCode     String? @map("br_code")
+
+  approvedAt DateTime? @map("approved_at")
+  refundedAt DateTime? @map("refunded_at")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  @@map("sales")
 }
 
-model Tracking {
-  id        String   @id @default(uuid())
-  userId    String   @map("user_id")
-  user      User     @relation(fields: [userId], references: [id])
-  pageUrl   String   @map("page_url")
-  pageName  String   @map("page_name")
-  timestamp DateTime @default(now())
-
-  @@map("trackings")
-}
-
-model BlackList {
-  id        String  @id @default(uuid())
-  pixKey    String  @unique @map("pix_key")
-  plataform String?
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-
-  @@map("black_list")
+enum SaleStatus {
+  ERROR
+  PENDING
+  APPROVED
+  CHARGEBACK
+  PROCESSING
+  REFUSED
+  REFUNDED
 }
