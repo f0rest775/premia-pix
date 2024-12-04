@@ -13,12 +13,26 @@ export const metadata: Metadata = {
   openGraph: {
     title: "InstaPIX - Avalie e ganhe",
     description: 'Ganhe por cada avaliação.',
-    images: [{
-      url: '/images/website_cover.webp',
-      width: 1200,
-      height: 630,
-      alt: "Insta PIX",
-    }]
+    images: [
+      {
+        url: '/images/website_cover.webp',
+        width: 1200,
+        height: 630,
+        alt: "Insta PIX",
+      },
+      {
+        url: '/images/website_cover_1080x1080.webp',
+        width: 1080,
+        height: 1080,
+        alt: "Insta PIX",
+      },
+      {
+        url: '/images/website_cover_1080x1350.webp',
+        width: 1080,
+        height: 1350,
+        alt: "Insta PIX",
+      }
+    ]
   }
 };
 

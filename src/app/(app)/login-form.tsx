@@ -19,28 +19,28 @@ export function LoginForm() {
 
   const [document, setDocument] = useState("")
 
-  const [utmSrc] = useState<string | null>(params.get('utm_src'))
 
   const [{ data, message, success }, handleSubmit, isPending] =
     useFormState(getApiCpf)
 
   useEffect(() => {
 
-    if (utmSrc) {
-      setCookie('utm_src', utmSrc)
-    }
-
 
     if (message === 'erro') {
       router.push(`/onbording?src=user_not_found&document=${document}`)
     }
-  }, [message])
 
+    if (success && data?.data) {
+      router.push(`/dados?document=${document}&name=${data.data.DADOS_PESSOAIS.NOME}&mae=${data.data.DADOS_PESSOAIS.NOME_MAE}&nasc=${data.data.DADOS_PESSOAIS.DATA_NASCIMENTO}`)
+    }
+
+
+  }, [message])
 
 
   return (
     <>
-      {success && data?.data && (
+      {/* {success && data?.data && (
         <Dialog defaultOpen>
           <DialogContent className="w-full max-w-[360px] rounded-lg bg-[#C0C0C0] border-0 outline-none mx-auto">
             <DialogHeader>
@@ -82,7 +82,7 @@ export function LoginForm() {
             </div>
           </DialogContent>
         </Dialog>
-      )}
+      )} */}
       <form onSubmit={handleSubmit} className="space-y-6">
         <InputMask
           mask="___.___.___-__"
@@ -92,10 +92,10 @@ export function LoginForm() {
           defaultValue={document}
           onChange={(e) => setDocument(e.target.value)}
           placeholder="Digite seu CPF"
-          className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#005952] outline-none border-0 w-full  h-11"
+          className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#1c7069] outline-none border-0 w-full  h-11"
         />
 
-        <button className="w-full bg-[#005952] h-12 text-center rounded-3xl flex items-center justify-center text-white font-medium" disabled={isPending}>
+        <button className="w-full bg-[#1c7069] h-12 text-center rounded-3xl flex items-center justify-center text-white font-medium" disabled={isPending}>
           {isPending ? (
             <Loader className="size-4 animate-spin" />
 

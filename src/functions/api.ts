@@ -1,12 +1,12 @@
 export const influencers = [
   {
-    slug: "bolsonaro",
-    image: "bolsonaro.png",
-    name: "Bolsonaro",
+    slug: "lula",
+    image: "lules.webp",
+    name: "Lula",
     amount: 683.3,
     following: 1020.3,
-    nextPage: "influencers/pablo-marcal",
-    text: "Você votaria no Bolsonaro?"
+    nextPage: "influencers/anitta",
+    text: "Você votaria no Lula?"
   },
   {
     slug: "virginia-fonseca",
@@ -41,17 +41,17 @@ export const influencers = [
     name: "Cristiano Ronaldo",
     amount: 546.64,
     following: 3752.1,
-    nextPage: "influencers/bolsonaro",
+    nextPage: "influencers/lula",
     text: "Você assistiria um jogo do Cristiano Ronaldo?"
   },
   {
-    slug: "pablo-marcal",
-    image: "pablo-marcal.avif",
-    name: "Pablo Marçal",
+    slug: "anitta",
+    image: "anitta.webp",
+    name: "Anitta",
     amount: 819.99,
     following: 152.8,
     nextPage: "pagamento",
-    text: "Você conhece o Pablo Marçal?"
+    text: "Você já ouviu alguma música da Anitta?"
   }
 ]
 

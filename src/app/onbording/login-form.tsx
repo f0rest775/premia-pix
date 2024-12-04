@@ -75,7 +75,7 @@ export function LoginForm() {
             defaultValue={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Digite seu nome aqui..."
-            className="p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full  h-11"
+            className="p-2 rounded-lg ring-1 ring-[#1c7069] focus:ring-2 outline-none border-0 w-full  h-11"
           />
 
           <input
@@ -84,7 +84,7 @@ export function LoginForm() {
             defaultValue={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Digite seu e-mail abaixo aqui..."
-            className="p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full  h-11"
+            className="p-2 rounded-lg ring-1 ring-[#1c7069] focus:ring-2 outline-none border-0 w-full  h-11"
           />
 
           <input
@@ -93,10 +93,10 @@ export function LoginForm() {
             defaultValue={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Digite uma senha segura"
-            className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#005952] outline-none border-0 w-full h-11"
+            className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#1c7069] outline-none border-0 w-full h-11"
           />
         </div>
-        <button className="w-full bg-[#005952] h-12 text-center rounded-3xl text-white font-medium">
+        <button className="w-full bg-[#1c7069] h-12 text-center rounded-3xl text-white font-medium">
           Confirmar & Continuar
         </button>
       </form >
@@ -109,7 +109,7 @@ export function LoginForm() {
             defaultValue={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Digite seu e-mail abaixo aqui..."
-            className="p-2 rounded-lg ring-1 ring-[#005952] focus:ring-2 outline-none border-0 w-full  h-11"
+            className="p-2 rounded-lg ring-1 ring-[#1c7069] focus:ring-2 outline-none border-0 w-full  h-11"
           />
 
           <input
@@ -118,10 +118,10 @@ export function LoginForm() {
             defaultValue={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Digite uma senha segura"
-            className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#005952] outline-none border-0 w-full h-11"
+            className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#1c7069] outline-none border-0 w-full h-11"
           />
         </div>
-        <button className="w-full bg-[#005952] h-12 text-center rounded-3xl text-white font-medium">
+        <button className="w-full bg-[#1c7069] h-12 text-center rounded-3xl text-white font-medium">
           Confirmar & Continuar
         </button>
       </form>
