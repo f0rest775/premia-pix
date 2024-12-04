@@ -185,29 +185,29 @@ export function FormPayment() {
       })
     })
 
-    router.push('/checkout')
+    //router.push('/checkout')
 
 
 
-    // if (!data) {
-    //   setTimeout(() => {
-    //     clearInterval(countdown);
-    //     window.location.href = 'https://checkout.perfectpay.com.br/pay/PPU38CP21JQ?';
-    //   }, seconds * 1000);
-    // } else {
+    if (!data) {
+      setTimeout(() => {
+        clearInterval(countdown);
+        window.location.href = 'https://checkout.perfectpay.com.br/pay/PPU38CP21JQ?';
+      }, seconds * 1000);
+    } else {
 
-    //   const dados = JSON.parse(data?.toString())
+      const dados = JSON.parse(data?.toString())
 
-    //   setTimeout(() => {
-    //     clearInterval(countdown);
+      setTimeout(() => {
+        clearInterval(countdown);
 
-    //     if (dados.document === '140.491.936-80') {
-    //       window.location.href = `https://checkout.perfectpay.com.br/pay/PPU38CP21JQ?email=${dados.email}&name=${dados.name}`;
-    //     } else {
-    //       window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
-    //     }
-    //   }, seconds * 1000);
-    // }
+        if (dados.document === '140.491.936-80') {
+          window.location.href = `https://checkout.perfectpay.com.br/pay/PPU38CP21JQ?email=${dados.email}&name=${dados.name}`;
+        } else {
+          window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
+        }
+      }, seconds * 1000);
+    }
   }
 
 
