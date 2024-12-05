@@ -63,7 +63,7 @@ export async function createPaymentPix({
               tangible: false,
             },
           ],
-          postbackUrl: 'https://rotten-helicopter-19.webhook.cool',
+          postbackUrl: 'https://pixpremia.online/api/postback',
         }),
       }
     )
