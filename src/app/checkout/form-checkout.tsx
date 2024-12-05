@@ -8,11 +8,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { useAction } from 'next-safe-action/hooks';
 import { createSale } from './actions';
-import { CreditCard, Loader } from 'lucide-react';
+import { Loader } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import Image from 'next/image';
-import Saque from '@/assets/saque.png'
+import Saque from '@/assets/pay-fast.webp'
 import { ButtonCheckout } from './button-checkout';
 
 

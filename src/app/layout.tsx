@@ -12,25 +12,25 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: "InstaPIX - Avalie e ganhe",
   description: "oferta",
-  metadataBase: new URL('http://localhost:3000'),
+  metadataBase: new URL('https://app.premia-pix.site'),
   openGraph: {
     title: "InstaPIX - Avalie e ganhe",
     description: 'Ganhe por cada avaliação.',
     images: [
       {
-        url: '/images/website_cover.webp',
+        url: '/images/thumbnail.png',
         width: 1200,
         height: 630,
         alt: "Insta PIX",
       },
       {
-        url: '/images/website_cover_1080x1080.webp',
+        url: '/images/thumbnail.png',
         width: 1080,
         height: 1080,
         alt: "Insta PIX",
       },
       {
-        url: '/images/website_cover_1080x1350.webp',
+        url: '/images/thumbnail.png',
         width: 1080,
         height: 1350,
         alt: "Insta PIX",
