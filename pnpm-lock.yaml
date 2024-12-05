@@ -41,6 +41,9 @@ dependencies:
   '@react-input/mask':
     specifier: ^1.2.8
     version: 1.2.8(@types/react@18.3.5)(react-dom@18.3.1)(react@18.3.1)
+  '@tanstack/react-query':
+    specifier: ^5.62.2
+    version: 5.62.2(react@18.3.1)
   axios:
     specifier: ^1.7.7
     version: 1.7.7
@@ -1827,6 +1830,19 @@ packages:
     dependencies:
       '@swc/counter': 0.1.3
       tslib: 2.7.0
+    dev: false
+
+  /@tanstack/query-core@5.62.2:
+    resolution: {integrity: sha512-LcwVcC5qpsDpHcqlXUUL5o9SaOBwhNkGeV+B06s0GBoyBr8FqXPuXT29XzYXR36lchhnerp6XO+CWc84/vh7Zg==}
+    dev: false
+
+  /@tanstack/react-query@5.62.2(react@18.3.1):
+    resolution: {integrity: sha512-fkTpKKfwTJtVPKVR+ag7YqFgG/7TRVVPzduPAUF9zRCiiA8Wu305u+KJl8rCrh98Qce77vzIakvtUyzWLtaPGA==}
+    peerDependencies:
+      react: ^18 || ^19
+    dependencies:
+      '@tanstack/query-core': 5.62.2
+      react: 18.3.1
     dev: false
 
   /@types/cookie@0.6.0:

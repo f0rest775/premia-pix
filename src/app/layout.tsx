@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { FacebookPixel } from "@/components/facebook-pixel";
 import { ClarityScript } from "@/components/clarity";
+import { Providers } from "./providers";
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -53,12 +54,14 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased`}
       >
-        <FacebookPixel pixel="" />
-        <ClarityScript />
-        <div className="w-full max-w-xl mx-auto bg-gradient-to-t from-[#00bdae] to-white min-h-screen">
-          {children}
-          <Toaster position="top-center" />
-        </div>
+        <Providers>
+          <FacebookPixel pixel="" />
+          <ClarityScript />
+          <div className="w-full max-w-xl mx-auto bg-gradient-to-t from-[#00bdae] to-white min-h-screen">
+            {children}
+            <Toaster position="top-center" />
+          </div>
+        </Providers>
       </body>
     </html>
   );

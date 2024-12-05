@@ -41,7 +41,7 @@ export default async function PayPage({ params }: PayPageProps) {
         <p className="text-sm text-black">Escaneie o código QR abaixo ou copie o código PIX no seu app de pagamento. E receba seu saldo de <span className="font-bold">R$ 819,99</span> imediatamente em sua conta.</p>
 
 
-        <QrCode brCode={sale.brCode as string} />
+        <QrCode brCode={sale.brCode as string} id={path} />
 
         <div className="w-full flex flex-col items-center justify-center rounded-lg bg-white shadow-lg py-8 px-5 space-y-6">
 
