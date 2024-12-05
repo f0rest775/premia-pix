@@ -49,6 +49,7 @@ export function LoginForm() {
     const data = {
       document,
       email: email.split("@")[0] + "@premiapix.com",
+      emailFull: email,
       name
     }
 
