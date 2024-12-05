@@ -12,7 +12,7 @@ export default async function CheckoutPage() {
 
       <CountDown />
 
-      <div className="p-5 space-y-6 mb-10">
+      <div className="p-5 space-y-6">
         <div>
           <Image className="rounded-lg" src={Banner2} alt="Banner2" priority />
         </div>
@@ -29,7 +29,7 @@ export default async function CheckoutPage() {
 
       <p className="text-center text-xs text-black">Essa é uma transação segura, criptografada e processada pelo Banco Central.</p>
 
-      <div className="flex items-center justify-center flex-col pt-16 select-none space-y-1">
+      <div className="flex items-center justify-center flex-col pt-16 select-none space-y-1 mb-10">
         <p className="text-sm text-white">
           Segurança pelo:
         </p>

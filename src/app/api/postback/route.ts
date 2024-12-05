@@ -49,7 +49,9 @@ export async function POST(
       externalId
     },
     data: {
-      status: mapWebhookStatusOrbitaPay(status)
+      status: mapWebhookStatusOrbitaPay(status),
+      approvedAt: status === 'paid' || status === 'authorized' ? new Date() : null,
+      refundedAt: status === 'canceled' || status === 'chargedback' || status === 'refunded' || status === 'refused' ? new Date() : null
     }
   })
 

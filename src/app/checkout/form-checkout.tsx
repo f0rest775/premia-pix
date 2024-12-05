@@ -13,6 +13,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import Image from 'next/image';
 import Saque from '@/assets/saque.png'
+import { ButtonCheckout } from './button-checkout';
 
 
 export function FormCheckout() {
@@ -118,12 +119,7 @@ export function FormCheckout() {
               PIX
             </span>
           </button>
-          <button type='button' className='border-2 rounded-lg flex flex-col justify-start gap-1 p-2 text-[#545454]'>
-            <CreditCard className='size-4 text-[#545454]' />
-            <span className='text-xs'>
-              Cartão
-            </span>
-          </button>
+          <ButtonCheckout />
         </div>
 
 

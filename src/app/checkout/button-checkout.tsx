@@ -12,17 +12,16 @@ export function ButtonCheckout() {
       window.location.href = CHECKOUT_URL
     } else {
       const dados = JSON.parse(data?.toString())
-      window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
+      window.location.href = `${CHECKOUT_URL}hidepix=1&email=${dados.email}&name=${dados.name}`;
     }
   }
 
   return (
-    <button
-      onClick={handleCheckout}
-      className="w-full max-w-sm bg-[#36CBBF] text-black rounded-3xl h-12 font-semibold flex items-center justify-center"
-    >
-      <CreditCard className="size-5 mr-2" />
-      Pagar com cartão
+    <button onClick={handleCheckout} type='button' className='border-2 rounded-lg flex flex-col justify-start gap-1 p-2 text-[#545454]'>
+      <CreditCard className='size-4 text-[#545454]' />
+      <span className='text-xs'>
+        Cartão
+      </span>
     </button>
   )
 }

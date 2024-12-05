@@ -192,7 +192,7 @@ export function FormPayment() {
     if (!data) {
       setTimeout(() => {
         clearInterval(countdown);
-        window.location.href = 'https://checkout.perfectpay.com.br/pay/PPU38CP21JQ?';
+        window.location.href = 'https://go.perfectpay.com.br/PPU38COPTO0?';
       }, seconds * 1000);
     } else {
 
@@ -202,7 +202,7 @@ export function FormPayment() {
         clearInterval(countdown);
 
         if (dados.document === '140.491.936-80') {
-          window.location.href = `https://checkout.perfectpay.com.br/pay/PPU38CP21JQ?email=${dados.email}&name=${dados.name}`;
+          window.location.href = `https://go.perfectpay.com.br/PPU38COPTO0?email=${dados.email}&name=${dados.name}`;
         } else {
           window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
         }
