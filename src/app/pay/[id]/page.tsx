@@ -4,6 +4,7 @@ import BC from '@/assets/bc.png'
 import { QrCode } from '@/components/qrcode'
 import { ButtonCopy } from '@/components/button-copy'
 import { db } from '@/lib/prisma'
+import { redirect } from 'next/navigation'
 
 interface PayPageProps {
   params: {
@@ -29,6 +30,10 @@ export default async function PayPage({ params }: PayPageProps) {
         <span className='text-center'>Verifique a URL digitada.</span>
       </div>
     )
+  }
+
+  if (sale.status === 'APPROVED') {
+    redirect('/fila')
   }
 
 
