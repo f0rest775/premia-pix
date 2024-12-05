@@ -4,45 +4,7 @@ import { FormSchema } from "./types";
 import { db } from "@/lib/prisma";
 import { customAlphabet } from 'nanoid'
 import { createPaymentPix } from "@/http/create-sale";
-
-type WebhookStatus =
-  | 'REFUSED'
-  | 'CHARGEBACK'
-  | 'REFUNDED'
-  | 'PENDING'
-  | 'APPROVED'
-
-type ExpectedStatus =
-  | 'processing'
-  | 'authorized'
-  | 'paid'
-  | 'refunded'
-  | 'waiting_payment'
-  | 'refused'
-  | 'chargedback'
-  | 'canceled'
-  | 'in_protest'
-  | 'partially_paid'
-
-const statusMapping: Record<ExpectedStatus, WebhookStatus> = {
-  refused: 'REFUSED',
-  chargedback: 'CHARGEBACK',
-  refunded: 'REFUNDED',
-  canceled: 'REFUNDED',
-  processing: 'PENDING',
-  paid: 'APPROVED',
-  authorized: 'APPROVED',
-  waiting_payment: 'PENDING',
-  in_protest: 'CHARGEBACK',
-  partially_paid: 'PENDING',
-}
-
-function mapWebhookStatusOrbitaPay(
-  status: ExpectedStatus
-): WebhookStatus {
-  return statusMapping[status]
-}
-
+import { mapWebhookStatusOrbitaPay } from "@/lib/webhook";
 
 
 export const createSale = actionClient
