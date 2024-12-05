@@ -51,9 +51,9 @@ export function CountDown() {
 
   return (
     <div
-      className="w-full bg-red-500 h-16 sticky top-0 flex items-center justify-center gap-6"
+      className="w-full bg-red-500 h-16 z-10 sticky top-0 flex items-center justify-center gap-6"
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 pl-3">
         <Timer className="size-8 text-white" />
         <h2
           className="text-3xl font-bold text-white"
@@ -63,9 +63,9 @@ export function CountDown() {
       </div>
 
       <span
-        className="text-lg text-center font-bold text-white"
+        className="text-base text-center font-bold text-white"
       >
-        Pague a taxa e tenha seu valor de volta.
+        Pague a taxa e receba imediatamente.
       </span>
     </div>
   )

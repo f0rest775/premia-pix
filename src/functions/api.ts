@@ -6,7 +6,7 @@ export const influencers = [
     amount: 683.3,
     following: 1020.3,
     nextPage: "influencers/anitta",
-    text: "Você votaria no Lula?"
+    text: "Você votaria no Lula em 2026?"
   },
   {
     slug: "virginia-fonseca",

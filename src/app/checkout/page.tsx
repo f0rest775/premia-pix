@@ -12,18 +12,15 @@ export default async function CheckoutPage() {
 
       <CountDown />
 
-      <div className="p-5 space-y-6">
+      <div className="p-5 space-y-6 mb-10">
         <div>
           <Image className="rounded-lg" src={Banner2} alt="Banner2" priority />
         </div>
 
 
+
         <FormCheckout />
 
-
-        <div>
-          <Image className="rounded-lg" src={Banner} alt="Banner" priority />
-        </div>
       </div>
     </div>
   )

@@ -45,20 +45,18 @@ export default async function InfluencerPage({ params }: InfluencerPageProps) {
       {influencer.slug === 'virginia-fonseca' ? (
 
         <Dialog defaultOpen>
-          <DialogContent className="w-full max-w-[360px] rounded-lg bg-[#C0C0C0] border-0 outline-none mx-auto">
+          <DialogContent className="w-full max-w-[360px] rounded-lg bg-white border-0 outline-none mx-auto">
             <DialogHeader>
               <DialogTitle className="text-center text-3xl font-black">
-                SEJA <span className="text-[#00bdae]">BEM VINDO(A)</span> AO NOSSO APP!
+                SEJA <span className="text-[#1c7069]">BEM VINDO(A)</span> AO NOSSO APP!
               </DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
-              <p className="text-sm text-center font-medium">Você ja tem R$ 136,66 reais de saldo em sua conta, por realizar seu cadastro, incrível né?</p>
+              <p className="text-sm text-center font-medium">Você ja tem R$ 136,66 reais de saldo em sua conta por realizar seu cadastro, incrível né?</p>
               <p className="text-sm text-center font-medium">Para você continuar ganhando avalie mais 5 pesquisas e <strong>realiza seu saque imediatamente!</strong></p>
-
-
             </div>
             <DialogClose asChild>
-              <button className="w-full bg-[#005952] rounded-lg h-11 p-2 text-white font-medium border-0 outline-none">
+              <button className="w-full bg-[#1c7069] rounded-lg h-11 p-2 text-white font-medium border-0 outline-none">
                 Começar agora
               </button>
             </DialogClose>
