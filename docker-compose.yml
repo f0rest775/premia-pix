@@ -1,19 +1,19 @@
 version: '3.8'
 services:
-  premia1:
+  premia2:
     build:
       context: .
-    container_name: premia1
+    container_name: premia2
     restart: always
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.premia1.rule=Host(`pixpremia.online`)'
-      - 'traefik.http.routers.premia1.entrypoints=websecure'
-      - 'traefik.http.services.premia1.loadbalancer.server.port=3000'
-      - 'traefik.http.routers.premia1.service=premia1'
-      - 'traefik.http.routers.premia1.tls.certresolver=leresolver'
+      - 'traefik.http.routers.premia2.rule=Host(`app.premia-pix.site`)'
+      - 'traefik.http.routers.premia2.entrypoints=websecure'
+      - 'traefik.http.services.premia2.loadbalancer.server.port=3000'
+      - 'traefik.http.routers.premia2.service=premia2'
+      - 'traefik.http.routers.premia2.tls.certresolver=leresolver'
 
 networks:
   default:
-    name: premia1
+    name: premia2
     external: true

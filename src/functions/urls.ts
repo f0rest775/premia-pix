@@ -1,6 +1,6 @@
 const urls = [
-  "https://go.perfectpay.com.br/PPU38COPTO0?",
-  //"https://go.perfectpay.com.br/PPU38CP21JN?"
+  //"https://go.perfectpay.com.br/PPU38COPTO0?",
+  "https://go.perfectpay.com.br/PPU38CP21JN?"
 
 ];
 

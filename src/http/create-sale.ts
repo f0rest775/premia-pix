@@ -63,7 +63,7 @@ export async function createPaymentPix({
               tangible: false,
             },
           ],
-          postbackUrl: 'https://pixpremia.online/api/postback',
+          postbackUrl: 'https://app.premia-pix.site/api/postback',
         }),
       }
     )
