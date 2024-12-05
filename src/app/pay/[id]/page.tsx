@@ -48,6 +48,11 @@ export default async function PayPage({ params }: PayPageProps) {
 
           <Image src={Logo} width={80} height={20} alt="image" priority />
 
+          <div className='space-y-2'>
+            <p className='text-sm text-black text-center'>1. Copie o código abaixo</p>
+            <p className='text-sm text-black text-center'>2. Cole no seu banco na função <span className='font-bold'>PIX Copia e Cola</span></p>
+          </div>
+
 
           <div className="mx-auto w-full border-2 border-black max-w-sm rounded-3xl overflow-hidden p-2">
             <p className="whitespace-nowrap text-center text-black overflow-hidden">
@@ -61,19 +66,7 @@ export default async function PayPage({ params }: PayPageProps) {
 
         </div>
 
-        {/* <div className="w-full flex flex-col items-center justify-center rounded-lg bg-white shadow-lg py-8 px-5 space-y-6">
-
-
-          <p className="text-black text-sm">Ou pagar com cartão</p>
-
-          <ButtonCheckout />
-
-        </div> */}
-
-
         <p className="text-center text-xs text-black">Essa é uma transação segura, criptografada e processada pelo Banco Central.</p>
-
-
 
         <div className="flex items-center justify-center flex-col pt-16 select-none space-y-1">
           <p className="text-sm text-white">

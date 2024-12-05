@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { FormCheckout } from "./form-checkout";
-import Banner from '@/assets/pplqqk13limagepathbbb.png'
 import Banner2 from '@/assets/pplqqjutgimageheaderpathhead_perfect_pay_2.png'
 import { CountDown } from "@/components/count-down";
+import BC from '@/assets/bc.png'
 
 export default async function CheckoutPage() {
 
@@ -21,7 +21,23 @@ export default async function CheckoutPage() {
 
         <FormCheckout />
 
+
+
+
       </div>
+
+
+      <p className="text-center text-xs text-black">Essa é uma transação segura, criptografada e processada pelo Banco Central.</p>
+
+      <div className="flex items-center justify-center flex-col pt-16 select-none space-y-1">
+        <p className="text-sm text-white">
+          Segurança pelo:
+        </p>
+
+        <Image src={BC} alt="bc" width={0} height={0} className="w-[200px] h-auto" />
+      </div>
+
     </div>
+
   )
 }

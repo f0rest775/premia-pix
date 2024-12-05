@@ -26,6 +26,7 @@ export function FormCheckout() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -202,6 +203,40 @@ export function FormCheckout() {
           </span>
         )}
       </button>
+
+      <div className='bg-white rounded-lg p-6 space-y-4 relative'>
+
+        <div className='absolute -top-3 left-7 rounded-2xl font-semibold text-white px-2 py-0.5 bg-[#1c7069]'>
+          <h2 className='text-sm'>RESUMO</h2>
+        </div>
+
+        <div className="space-y-2">
+          <div className="border-b pb-1">
+            <p className="text-xs">Valor:</p>
+            <p className="text-xs">R$ 214,99</p>
+          </div>
+          <div className="border-b pb-1">
+            <p className="text-xs">Desconto:</p>
+            <p className="text-xs">-R$ 195,00 (91% OFF)</p>
+          </div>
+          <div className={`${watch("orderBump") === true ? 'border-b pb-1' : ''}`}>
+            <p className="text-xs">Valor Total:</p>
+            <p className="text-xs">R$ 19,99</p>
+          </div>
+
+          {watch("orderBump") === true && (
+            <div>
+              <p className="text-xs">Saque imediato:</p>
+              <p className="text-xs">R$ 9,99</p>
+            </div>
+          )}
+
+
+        </div>
+
+      </div>
+
+
     </form>
   )
 }
