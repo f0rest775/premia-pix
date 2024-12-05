@@ -3,6 +3,7 @@ interface PaymentPixRequest {
   clientName: string
   clientDocument: string
   token: string
+  amount: number
 }
 
 interface PaymentPixResponse {
@@ -29,6 +30,7 @@ export async function createPaymentPix({
   clientName,
   clientDocument,
   token,
+  amount
 }: PaymentPixRequest): Promise<
   PaymentPixResponse | { ok: false; error: string }
 > {
@@ -43,7 +45,7 @@ export async function createPaymentPix({
             'Basic ' + Buffer.from(`${token}:x`).toString('base64'),
         },
         body: JSON.stringify({
-          amount: 1999,
+          amount,
           paymentMethod: 'pix',
           customer: {
             name: clientName,
@@ -56,7 +58,7 @@ export async function createPaymentPix({
           items: [
             {
               title: 'Ebook vendas PRO',
-              unitPrice: 1999,
+              unitPrice: amount,
               quantity: 1,
               tangible: false,
             },

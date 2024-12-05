@@ -162,11 +162,11 @@ export function FormCheckout() {
 
             <Image src={Saque} className='rounded-lg' width={70} height={70} alt='saque' />
 
-            <div className='flex flex-col gap-1'>
+            <div className='flex flex-col gap-1 w-full'>
               <div className='flex items-center justify-between'>
                 <span className='font-medium text-sm'>Saque imediato</span>
 
-                <input type="checkbox" />
+                <input type="checkbox" {...register("orderBump")} />
               </div>
               <p className='text-xs font-light'>
                 Adicionar saque imediato. Liberação em 1 minuto.

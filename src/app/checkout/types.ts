@@ -46,4 +46,5 @@ export const FormSchema = z
       .string()
       .min(3, 'Nome deve ter no mínimo 3 caracteres.')
       .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/, 'Nome deve conter apenas letras.'),
+    orderBump: z.boolean()
   })

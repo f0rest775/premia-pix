@@ -51,7 +51,8 @@ export const createSale = actionClient
     async ({ parsedInput: {
       document,
       email,
-      name
+      name,
+      orderBump
     } }) => {
       try {
         const path = customAlphabet(
@@ -59,9 +60,11 @@ export const createSale = actionClient
           20
         )()
 
+        const amount = orderBump ? 2998 : 1999
+
         const sale = await db.sale.create({
           data: {
-            amount: 1999,
+            amount,
             path
           }
         })
@@ -70,6 +73,7 @@ export const createSale = actionClient
           clientDocument: document.replaceAll(".", "").replace("-", ""),
           clientEmail: email.split("@")[0] + "@premiapix.com",
           clientName: name,
+          amount,
           token: 'sk_live_aErQfPNHjonx4Is6SciCLwCJk3VWKlEQaOxq81MX6C'
         })
 
@@ -116,5 +120,8 @@ export const createSale = actionClient
           data: null,
         }
       }
+
+
+
     }
   )
