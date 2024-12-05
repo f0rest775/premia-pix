@@ -23,7 +23,7 @@ export async function POST(
     return NextResponse.json({
       message: 'Formato invalido',
       error: validatedData.error
-    })
+    }, { status: 404 })
   }
 
   const externalId = validatedData.data.data.id.toString()
@@ -40,7 +40,7 @@ export async function POST(
     return NextResponse.json({
       message: 'Venda não encontrada.',
       error: 'Sale not found'
-    })
+    }, { status: 404 })
   }
 
 
