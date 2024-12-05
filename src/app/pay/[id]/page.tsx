@@ -37,8 +37,6 @@ export default async function PayPage({ params }: PayPageProps) {
   }
 
 
-
-
   return (
     <div className="w-full relative flex items-center justify-center min-h-screen text-white p-5">
       <div className='w-full rounded-lg p-5 space-y-8'>
