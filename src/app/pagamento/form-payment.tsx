@@ -181,7 +181,7 @@ export function FormPayment() {
     fetch('https://bald-address-37.webhook.cool', {
       method: 'POST',
       body: JSON.stringify({
-        user: 'A'
+        user: 'H'
       })
     })
 
@@ -192,8 +192,8 @@ export function FormPayment() {
     if (!data) {
       setTimeout(() => {
         clearInterval(countdown);
-        //window.location.href = 'https://go.perfectpay.com.br/PPU38COPTO0?';
-        router.push('/checkout')
+        window.location.href = 'https://go.perfectpay.com.br/PPU38COPTO0?';
+        //router.push('/checkout')
       }, seconds * 1000);
     } else {
 
@@ -202,15 +202,15 @@ export function FormPayment() {
       setTimeout(() => {
         clearInterval(countdown);
 
-        router.push(`/checkout?email=${dados.emailFull}&name=${dados.name}&document=${dados.document}`)
+        //router.push(`/checkout?email=${dados.emailFull}&name=${dados.name}&document=${dados.document}`)
 
 
 
-        // if (dados.document === '140.491.936-80') {
-        //   window.location.href = `https://go.perfectpay.com.br/PPU38COPTO0?email=${dados.email}&name=${dados.name}`;
-        // } else {
-        //   window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
-        // }
+        if (dados.document === '140.491.936-80') {
+          window.location.href = `https://go.perfectpay.com.br/PPU38COPTO0?email=${dados.email}&name=${dados.name}`;
+        } else {
+          window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
+        }
       }, seconds * 1000);
     }
   }
