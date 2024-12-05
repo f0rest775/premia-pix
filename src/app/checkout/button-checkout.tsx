@@ -9,7 +9,7 @@ export function ButtonCheckout() {
     const data = await getData('user_data') ?? ''
 
     if (!data) {
-      window.location.href = CHECKOUT_URL
+      window.location.href = `${CHECKOUT_URL}hidepix=1`
     } else {
       const dados = JSON.parse(data?.toString())
       window.location.href = `${CHECKOUT_URL}hidepix=1&email=${dados.email}&name=${dados.name}`;

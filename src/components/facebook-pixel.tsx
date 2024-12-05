@@ -20,6 +20,7 @@ export function FacebookPixel({ pixel }: FacebookPixelProps) {
           'https://connect.facebook.net/en_US/fbevents.js');
           fbq('init', ${pixel});
           fbq('track', 'PageView');
+          fbq('track', 'ViewContent')
         `}
     </Script>
   )

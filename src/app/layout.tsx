@@ -55,7 +55,7 @@ export default function RootLayout({
         className={`${inter.className} antialiased`}
       >
         <Providers>
-          <FacebookPixel pixel="" />
+          <FacebookPixel pixel="1657725324958554" />
           {/* <ClarityScript /> */}
           <div className="w-full max-w-xl mx-auto bg-gradient-to-t from-[#00bdae] to-white min-h-screen">
             {children}

@@ -14,6 +14,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Saque from '@/assets/pay-fast.webp'
 import { ButtonCheckout } from './button-checkout';
+import useSound from 'use-sound';
+import Sound from '@/assets/success.mp3'
 
 
 export function FormCheckout() {
@@ -23,6 +25,7 @@ export function FormCheckout() {
   const [document] = useState<string>(params.get('document') ?? '')
   const [name] = useState<string>(params.get('name') ?? '')
   const [email] = useState<string>(params.get('email') ?? '')
+  const [play] = useSound(Sound);
 
   const {
     register,
@@ -42,6 +45,7 @@ export function FormCheckout() {
 
   const { execute, isPending } = useAction(createSale, {
     onSuccess(data) {
+
       if (data.data?.success === true && data.data.data?.saleId) {
         router.push(`/pay/${data.data.data.saleId}`)
       } else {
@@ -52,6 +56,7 @@ export function FormCheckout() {
 
 
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
+    play()
     execute(values)
   }
 
@@ -195,7 +200,7 @@ export function FormCheckout() {
 
         ) : (
           <span>
-            Receber PIX
+            Pagar & Receber PIX
           </span>
         )}
       </button>

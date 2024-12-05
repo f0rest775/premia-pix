@@ -3,6 +3,7 @@ import { FormCheckout } from "./form-checkout";
 import Banner2 from '@/assets/pplqqjutgimageheaderpathhead_perfect_pay_2.png'
 import { CountDown } from "@/components/count-down";
 import BC from '@/assets/bc.png'
+import { Suspense } from "react";
 
 export default async function CheckoutPage() {
 
@@ -18,8 +19,9 @@ export default async function CheckoutPage() {
         </div>
 
 
-
-        <FormCheckout />
+        <Suspense>
+          <FormCheckout />
+        </Suspense>
 
 
 
