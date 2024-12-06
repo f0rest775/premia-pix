@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import { FacebookPixel } from "@/components/facebook-pixel";
 import { ClarityScript } from "@/components/clarity";
 import { Providers } from "./providers";
+import { env } from "@/lib/env";
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -12,7 +13,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: "InstaPIX - Avalie e ganhe",
   description: "oferta",
-  metadataBase: new URL('https://app.premia-pix.site'),
+  metadataBase: new URL(env.APP_URL),
   openGraph: {
     title: "InstaPIX - Avalie e ganhe",
     description: 'Ganhe por cada avaliação.',
@@ -56,7 +57,7 @@ export default function RootLayout({
       >
         <Providers>
           <FacebookPixel pixel="1657725324958554" />
-          <ClarityScript />
+          {/* <ClarityScript /> */}
           <div className="w-full max-w-xl mx-auto bg-gradient-to-t from-[#00bdae] to-white min-h-screen">
             {children}
             <Toaster position="top-center" />

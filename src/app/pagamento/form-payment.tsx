@@ -22,6 +22,7 @@ import useSound from 'use-sound'
 import Sound from '@/assets/cash.mp3'
 import { Loader, TriangleAlert } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { env } from '@/lib/env'
 
 export function FormPayment() {
 
@@ -185,15 +186,17 @@ export function FormPayment() {
       })
     })
 
-    //router.push('/checkout')
-
-
 
     if (!data) {
       setTimeout(() => {
         clearInterval(countdown);
-        //window.location.href = 'https://go.perfectpay.com.br/PPU38COPTO0?';
-        router.push('/checkout')
+
+        if (env.NEXT_PUBLIC_CHECKOUT === 'perfectpay') {
+          window.location.href = 'https://go.perfectpay.com.br/PPU38COPTO0?';
+        } else {
+          router.push('/checkout')
+        }
+
       }, seconds * 1000);
     } else {
 
@@ -202,15 +205,19 @@ export function FormPayment() {
       setTimeout(() => {
         clearInterval(countdown);
 
-        router.push(`/checkout?email=${dados.emailFull}&name=${dados.name}&document=${dados.document}`)
+
+        if (env.NEXT_PUBLIC_CHECKOUT === 'perfectpay') {
+          if (dados.document === '140.491.936-80') {
+            window.location.href = `https://go.perfectpay.com.br/PPU38COPTO0?email=${dados.email}&name=${dados.name}`;
+          } else {
+            window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
+          }
+        } else {
+          router.push(`/checkout?email=${dados.emailFull}&name=${dados.name}&document=${dados.document}`)
+        }
 
 
 
-        // if (dados.document === '140.491.936-80') {
-        //   window.location.href = `https://go.perfectpay.com.br/PPU38COPTO0?email=${dados.email}&name=${dados.name}`;
-        // } else {
-        //   window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
-        // }
       }, seconds * 1000);
     }
   }

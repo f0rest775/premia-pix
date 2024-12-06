@@ -1,3 +1,5 @@
+import { env } from "@/lib/env"
+
 interface PaymentPixRequest {
   clientEmail: string
   clientName: string
@@ -63,7 +65,7 @@ export async function createPaymentPix({
               tangible: false,
             },
           ],
-          postbackUrl: 'https://app.premia-pix.site/api/postback',
+          postbackUrl: `${env.APP_URL}/api/postback`,
         }),
       }
     )
