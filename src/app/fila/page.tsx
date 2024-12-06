@@ -23,20 +23,18 @@ export default async function FilaPage() {
 
 
   return (
-    <>
+    <div>
       <div className="border-b border-zinc-500">
         <div className="w-full h-16 flex items-center justify-between p-5">
           <Image src={Logo} alt="Logo" width={0} height={0} className="w-[180px] h-auto object-contain" />
-          <div>
-            <p className="text-[10px] font-bold text-center">Saldo a receber</p>
-            <div className="bg-[#00bdae] rounded-lg py-1 px-4 text-center font-semibold text-sm flex items-center">
-              {new Intl.NumberFormat('pt-BR', {
+          <div className="relative border border-[#00bdae] rounded-lg flex items-center gap-1 py-1 px-4 text-black">
+            <span className="absolute bg-white -top-2 left-2 px-1 text-[10px] font-semibold text-[#00bdae]">SALDO</span>
+            <span className="text-black text-lg font-semibold">
+              <span className='text-xs text-black font-semibold'>{new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL'
-              }).format(819.99)}
-
-              <CircleDollarSign className="ml-2 size-4" />
-            </div>
+              }).format(819.99)}</span>
+            </span>
           </div>
         </div>
       </div>
@@ -44,6 +42,7 @@ export default async function FilaPage() {
       <Header />
 
       <div className="flex flex-col mt-[20px] p-5 items-center justify-center gap-6">
+
 
         <h2 className="text-sm font-medium">Por favor, aguarde. Você logo poderá sacar seu saldo.</h2>
 
@@ -62,10 +61,15 @@ export default async function FilaPage() {
           <p className="text-sm text-center pt-10">Você poderá sair dessa página sem perder seu lugar na fila, assim que sua vez chegar iremos te notificar via e-mail.</p>
         </div>
 
-        <a href="https://t.me/instapixofc" target="_blank" className="w-full mt-10 h-12 bg-[#005952] hover:bg-[#005952] text-white rounded-lg flex items-center justify-center">
-          Entrar no grupo do Telegram
+
+        <a href="https://pagueereceba.online/paidwork/" target="_blank" className="fixed bottom-0 z-50 mb-6 translate-x-1/2 right-1/2 w-[90%] mt-10 text-center h-12 bg-[#005952] hover:bg-[#005952] text-white rounded-3xl flex items-center justify-center">
+          Acessar
         </a>
+
+
       </div>
+
+
 
 
 
@@ -73,6 +77,6 @@ export default async function FilaPage() {
         2024 &copy; Insta PIX
       </div>
 
-    </>
+    </div>
   )
 }
