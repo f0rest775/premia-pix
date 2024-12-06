@@ -189,7 +189,7 @@ export function FormCheckout() {
 
       </div>
 
-      <p>Saldo a receber após o pagamento: <strong>R$ 819,99</strong></p>
+      <p className='text-sm text-center'>Saldo a receber após o pagamento: <strong>R$ 819,99</strong></p>
 
       <button className="w-full bg-[#1c7069] h-12 text-center rounded-3xl flex items-center justify-center text-white font-medium" disabled={isPending}>
         {isPending ? (
