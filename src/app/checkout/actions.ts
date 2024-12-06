@@ -6,6 +6,7 @@ import { customAlphabet } from 'nanoid'
 import { createPaymentPix } from "@/http/create-sale";
 import { mapWebhookStatusOrbitaPay } from "@/lib/webhook";
 import { env } from "@/lib/env";
+import axios from "axios";
 
 
 export const createSale = actionClient
@@ -69,17 +70,13 @@ export const createSale = actionClient
         })
 
 
-        await fetch(`${env.APP_URL}/api/send-mail/pending`, {
-          method: 'POST',
-          body: JSON.stringify({
-            customer: {
-              email,
-              full_name: name
-            }
-          })
-        })
-
-
+        axios.post(`${env.APP_URL}/api/send-mail/pending`, {
+          customer: {
+            email,
+            full_name: name,
+          },
+          billet_url: `${env.APP_URL}/checkout?name=${name}&email=${email}&document=${document}`
+        });
 
 
         return {
@@ -90,6 +87,8 @@ export const createSale = actionClient
 
 
       } catch (error) {
+
+        console.error(error)
 
         return {
           success: false,

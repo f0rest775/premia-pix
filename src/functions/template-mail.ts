@@ -110,7 +110,7 @@ export const htmlMailPix = (link: string, name: string, saudacao: string) => `
       </div>
 
       <div class="button-container">
-        <a class="button" href="${link}?src=RecuperadoSM&src=RecuperadoSM">SACAR PIX</a>
+        <a class="button" href="${link}">SACAR PIX</a>
       </div>
     </div>
   </div>

@@ -7,7 +7,7 @@ const WebhookSchema = z.object({
     email: z.string().email(),
     full_name: z.string().min(1),
   }),
-  link: z.string().url()
+  billet_url: z.string().url(),
 });
 
 
@@ -28,7 +28,7 @@ export async function POST(
 
   const email = validatedData.data.customer.email
   const name = validatedData.data.customer.full_name
-  const link = validatedData.data.link
+  const link = validatedData.data.billet_url
 
 
 
