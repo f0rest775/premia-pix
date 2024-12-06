@@ -1,24 +1,24 @@
 version: '3.8'
 services:
-  premia2:
+  premia1:
     build:
       context: .
       args:
-        APP_URL: https://app.premia-pix.site/
-        NEXT_PUBLIC_URLS: https://checkout.perfectpay.com.br/pay/PPU38CP21JN?
-        NEXT_PUBLIC_CHECKOUT: plataform
-        NEXT_PUBLIC_USER: A
-    container_name: premia2
+        APP_URL: https://pixpremia.online/
+        NEXT_PUBLIC_URLS: https://go.perfectpay.com.br/PPU38COPTO0?
+        NEXT_PUBLIC_CHECKOUT: perfectpay
+        NEXT_PUBLIC_USER: H
+    container_name: premia1
     restart: always
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.premia2.rule=Host(`app.premia-pix.site`)'
-      - 'traefik.http.routers.premia2.entrypoints=websecure'
-      - 'traefik.http.services.premia2.loadbalancer.server.port=3000'
-      - 'traefik.http.routers.premia2.service=premia2'
-      - 'traefik.http.routers.premia2.tls.certresolver=leresolver'
+      - 'traefik.http.routers.premia1.rule=Host(`pixpremia.online`)'
+      - 'traefik.http.routers.premia1.entrypoints=websecure'
+      - 'traefik.http.services.premia1.loadbalancer.server.port=3000'
+      - 'traefik.http.routers.premia1.service=premia1'
+      - 'traefik.http.routers.premia1.tls.certresolver=leresolver'
 
 networks:
   default:
-    name: premia2
+    name: premia1
     external: true
