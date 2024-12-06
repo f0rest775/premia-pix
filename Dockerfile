@@ -1,5 +1,10 @@
 FROM node:21-alpine AS builder
 
+ARG APP_URL
+ARG NEXT_PUBLIC_URLS
+ARG NEXT_PUBLIC_CHECKOUT
+ARG NEXT_PUBLIC_USER
+
 RUN npm install -g pnpm
 
 WORKDIR /app
@@ -23,6 +28,11 @@ RUN npm install -g pnpm
 WORKDIR /app
 
 ENV NODE_ENV production
+ENV APP_URL=${APP_URL}
+ENV NEXT_PUBLIC_URLS=${NEXT_PUBLIC_URLS}
+ENV NEXT_PUBLIC_CHECKOUT=${NEXT_PUBLIC_CHECKOUT}
+ENV NEXT_PUBLIC_USER=${NEXT_PUBLIC_USER}
+
 
 COPY --from=builder /app/package.json /app/pnpm-lock.yaml ./
 
