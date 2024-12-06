@@ -5,6 +5,7 @@ import { db } from "@/lib/prisma";
 import { customAlphabet } from 'nanoid'
 import { createPaymentPix } from "@/http/create-sale";
 import { mapWebhookStatusOrbitaPay } from "@/lib/webhook";
+import { env } from "@/lib/env";
 
 
 export const createSale = actionClient
@@ -66,6 +67,20 @@ export const createSale = actionClient
             status: mapWebhookStatusOrbitaPay(result.status),
           },
         })
+
+
+        await fetch(`${env.APP_URL}/api/send-mail/pending`, {
+          method: 'POST',
+          body: JSON.stringify({
+            customer: {
+              email,
+              full_name: name
+            }
+          })
+        })
+
+
+
 
         return {
           success: true,

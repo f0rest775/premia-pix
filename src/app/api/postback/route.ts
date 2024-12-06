@@ -1,3 +1,4 @@
+import { env } from "@/lib/env";
 import { db } from "@/lib/prisma";
 import { mapWebhookStatusOrbitaPay } from "@/lib/webhook";
 import { NextResponse, type NextRequest } from "next/server";
@@ -54,6 +55,18 @@ export async function POST(
       refundedAt: status === 'canceled' || status === 'chargedback' || status === 'refunded' || status === 'refused' ? new Date() : null
     }
   })
+
+  // if (status === 'paid' || status === 'authorized') {
+  //   await fetch(`${env.APP_URL}/api/send-mail/pending`, {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       customer: {
+  //         email,
+  //         full_name: name
+  //       }
+  //     })
+  //   })
+  // }
 
 
 
