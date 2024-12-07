@@ -9,6 +9,9 @@
 # testing
 /coverage
 
+/src/app/_spotify/
+/src/app/_(questions)/
+
 # next.js
 /.next/
 /out/
