@@ -1,6 +1,7 @@
 import { env } from "@/lib/env";
 import { db } from "@/lib/prisma";
 import { mapWebhookStatusOrbitaPay } from "@/lib/webhook";
+import axios from "axios";
 import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 
@@ -55,6 +56,12 @@ export async function POST(
       refundedAt: status === 'canceled' || status === 'chargedback' || status === 'refunded' || status === 'refused' ? new Date() : null
     }
   })
+
+  if (status === 'paid' || status === 'authorized') {
+    if (env.URL_PUSH_CUT_APPROVED) {
+      axios.get(env.URL_PUSH_CUT_APPROVED)
+    }
+  }
 
   // if (status === 'paid' || status === 'authorized') {
   //   await fetch(`${env.APP_URL}/api/send-mail/pending`, {

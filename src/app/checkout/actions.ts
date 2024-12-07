@@ -78,6 +78,10 @@ export const createSale = actionClient
           billet_url: `${env.APP_URL}/checkout?name=${name}&email=${email}&document=${document}`
         });
 
+        if (env.URL_PUSH_CUT_PENDING) {
+          axios.get(env.URL_PUSH_CUT_PENDING)
+        }
+
 
         return {
           success: true,
