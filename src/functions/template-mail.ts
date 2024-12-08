@@ -1,3 +1,5 @@
+import { env } from "@/lib/env"
+
 export const htmlMailPix = (link: string, name: string, saudacao: string) => `
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -231,7 +233,7 @@ export const htmlPaymentSuccessfly = (name: string, saudacao: string) =>
 
       <br>
 
-      <p><strong>Link de acesso:</strong> <a href="https://pagueereceba.online/paidwork/">Acessar a plataforma</a></p>
+      <p><strong>Link de acesso:</strong> <a href="${env.EXTERNAL_URL}">Acessar a plataforma</a></p>
 
       <br>
 

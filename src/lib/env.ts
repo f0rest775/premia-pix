@@ -6,6 +6,7 @@ export const env = createEnv({
     APP_URL: z.string().url(),
     URL_PUSH_CUT_PENDING: z.string().url().optional(),
     URL_PUSH_CUT_APPROVED: z.string().url().optional(),
+    EXTERNAL_URL: z.string().url()
   },
   client: {},
   shared: {
@@ -14,6 +15,7 @@ export const env = createEnv({
     NEXT_PUBLIC_USER: z.enum(['A', 'H'])
   },
   runtimeEnv: {
+    EXTERNAL_URL: process.env.EXTERNAL_URL,
     APP_URL: process.env.APP_URL,
     URL_PUSH_CUT_PENDING: process.env.URL_PUSH_CUT_PENDING,
     URL_PUSH_CUT_APPROVED: process.env.URL_PUSH_CUT_APPROVED,

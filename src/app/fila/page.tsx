@@ -1,13 +1,11 @@
 import { Header } from "@/components/header";
-import { CircleDollarSign, Loader } from "lucide-react";
+import { Loader } from "lucide-react";
 import Image from "next/image";
 import Logo from '@/assets/insta-pix-logo.png'
 import { getData } from "@/functions/get-cookie";
-import { Button } from "@/components/ui/button";
-import { ProgressBar } from "./progress-bar";
 import { PaymentInfo } from "./payment-info";
-import { setCookie } from "cookies-next";
 import { NumberFromQueue } from "./number-from-queue";
+import { env } from "@/lib/env";
 
 export default async function FilaPage() {
 
@@ -16,11 +14,7 @@ export default async function FilaPage() {
 
   const user = data ? JSON.parse(data) : null
 
-
   const pixKey = await getData('user_pixkey') ?? ''
-
-
-
 
   return (
     <div>
@@ -62,14 +56,11 @@ export default async function FilaPage() {
         </div>
 
 
-        <a href="https://pagueereceba.online/paidwork/" target="_blank" className="fixed bottom-0 z-50 mb-6 translate-x-1/2 right-1/2 w-[90%] mt-10 text-center h-12 bg-[#005952] hover:bg-[#005952] text-white rounded-3xl flex items-center justify-center">
+        <a href={env.EXTERNAL_URL} target="_blank" className="fixed bottom-0 z-50 mb-6 translate-x-1/2 right-1/2 w-[90%] mt-10 text-center h-12 bg-[#005952] hover:bg-[#005952] text-white rounded-3xl flex items-center justify-center">
           Acessar
         </a>
 
-
       </div>
-
-
 
 
 
