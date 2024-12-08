@@ -7,6 +7,7 @@ services:
         APP_URL: https://pixpremia.online/
         NEXT_PUBLIC_URLS: https://go.perfectpay.com.br/PPU38COPTO0?
         NEXT_PUBLIC_CHECKOUT: perfectpay
+        EXTERNAL_URL: https://pagueereceba.online/paidwork-2/
         NEXT_PUBLIC_USER: H
     container_name: premia1
     restart: always
