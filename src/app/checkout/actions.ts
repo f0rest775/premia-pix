@@ -91,8 +91,6 @@ export const createSale = actionClient
         });
 
 
-        console.log(env.URL_PUSH_CUT_PENDING)
-
         if (env.URL_PUSH_CUT_PENDING) {
           axios.get(env.URL_PUSH_CUT_PENDING)
         }
