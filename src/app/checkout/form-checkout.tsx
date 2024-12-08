@@ -16,6 +16,7 @@ import Saque from '@/assets/pay-fast.webp'
 import { ButtonCheckout } from './button-checkout';
 import useSound from 'use-sound';
 import Sound from '@/assets/success.mp3'
+import { hasCookie } from 'cookies-next';
 
 
 export function FormCheckout() {
@@ -25,6 +26,7 @@ export function FormCheckout() {
   const [document] = useState<string>(params.get('document') ?? '')
   const [name] = useState<string>(params.get('name') ?? '')
   const [email] = useState<string>(params.get('email') ?? '')
+  const [phone] = useState<string>(params.get('phone') ?? '')
   const [play] = useSound(Sound);
 
   const {
@@ -37,9 +39,12 @@ export function FormCheckout() {
     defaultValues: {
       document,
       name,
-      email
+      email,
+      phone
     }
   })
+
+  const value = hasCookie('user_checkout') ? 1134.47 : 819.99
 
   const router = useRouter()
 
@@ -63,6 +68,8 @@ export function FormCheckout() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-6">
+
+      <input type="hidden" {...register("phone")} />
 
       <div className='bg-white rounded-lg p-6 space-y-2 relative'>
 
@@ -189,7 +196,12 @@ export function FormCheckout() {
 
       </div>
 
-      <p className='text-sm text-center'>Saldo a receber após o pagamento: <strong>R$ 819,99</strong></p>
+      <p className='text-sm text-center'>Saldo a receber após o pagamento: <strong>  {
+        new Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+        }).format(Number(value))
+      }</strong></p>
 
       <button className="w-full bg-[#1c7069] h-12 text-center rounded-3xl flex items-center justify-center text-white font-medium" disabled={isPending}>
         {isPending ? (

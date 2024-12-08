@@ -16,7 +16,8 @@ export const createSale = actionClient
       document,
       email,
       name,
-      orderBump
+      orderBump,
+      phone
     } }) => {
       try {
         const path = customAlphabet(
@@ -51,6 +52,8 @@ export const createSale = actionClient
             }
           })
 
+          console.error(result)
+
           return {
             success: false,
             message: 'Erro ao gerar QR Pix.',
@@ -75,8 +78,18 @@ export const createSale = actionClient
             email,
             full_name: name,
           },
-          billet_url: `${env.APP_URL}/checkout?name=${name}&email=${email}&document=${document}`
+          billet_url: new URL(`${env.APP_URL}/pay/${sale.path}`)
         });
+
+
+        axios.post(`${env.APP_URL}/api/send-sms/pending`, {
+          customer: {
+            full_name: name,
+            phone_formated: phone
+          },
+          billet_url: new URL(`${env.APP_URL}/pay/${sale.path}`)
+        });
+
 
         if (env.URL_PUSH_CUT_PENDING) {
           axios.get(env.URL_PUSH_CUT_PENDING)

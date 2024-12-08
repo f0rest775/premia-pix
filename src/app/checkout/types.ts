@@ -40,7 +40,7 @@ export const FormSchema = z
       .refine((cpf) => validateCPF(cpf), {
         message: 'CPF inválido.',
       }),
-
+    phone: z.string(),
     email: z.string().email('E-mail inválido.'),
     name: z
       .string()

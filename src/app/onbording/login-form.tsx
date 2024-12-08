@@ -16,6 +16,7 @@ export function LoginForm() {
   const [document] = useState<string>(params.get('document') ?? '')
   const [name, setName] = useState<string>(params.get('name') ?? '')
   const [src] = useState<string>(params.get('src') ?? '')
+  const [phone, setPhone] = useState<string>('')
 
   const [password, setPassword] = useState<string>("")
 
@@ -40,6 +41,11 @@ export function LoginForm() {
       return
     }
 
+    if (phone.length < 15) {
+      toast.info("Insira um WhatsApp valido.")
+      return
+    }
+
     if (name.length < 3) {
       toast.info("Digite seu nome completo.")
       return
@@ -50,6 +56,7 @@ export function LoginForm() {
       document,
       email: email.split("@")[0] + "@premiapix.com",
       emailFull: email,
+      phone,
       name
     }
 
@@ -88,6 +95,17 @@ export function LoginForm() {
             className="p-2 rounded-lg ring-1 ring-[#1c7069] focus:ring-2 outline-none border-0 w-full  h-11"
           />
 
+          <InputMask
+            mask="(__) _____-____"
+            replacement={{ _: /\d/ }}
+            type="tel"
+            name="phone"
+            defaultValue={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="Digite seu WhatsApp"
+            className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#1c7069] outline-none border-0 w-full  h-11"
+          />
+
           <input
             type="password"
             name="password"
@@ -113,6 +131,17 @@ export function LoginForm() {
             className="p-2 rounded-lg ring-1 ring-[#1c7069] focus:ring-2 outline-none border-0 w-full  h-11"
           />
 
+          <InputMask
+            mask="(__) _____-____"
+            replacement={{ _: /\d/ }}
+            type="tel"
+            name="phone"
+            defaultValue={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="Digite seu WhatsApp"
+            className="p-2 rounded-lg ring-1 focus:ring-2 ring-[#1c7069] outline-none border-0 w-full  h-11"
+          />
+
           <input
             type="password"
             name="password"
@@ -127,8 +156,5 @@ export function LoginForm() {
         </button>
       </form>
     )
-
-
-
   )
 }

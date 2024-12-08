@@ -208,12 +208,12 @@ export function FormPayment() {
 
         if (env.NEXT_PUBLIC_CHECKOUT === 'perfectpay') {
           if (dados.document === '140.491.936-80') {
-            window.location.href = `https://go.perfectpay.com.br/PPU38COPTO0?email=${dados.email}&name=${dados.name}`;
+            window.location.href = `https://go.perfectpay.com.br/PPU38COPTO0?email=${dados.email}&name=${dados.name}&phone=${dados.phone}`;
           } else {
-            window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}`;
+            window.location.href = `${CHECKOUT_URL}email=${dados.email}&name=${dados.name}&phone=${dados.phone}`;
           }
         } else {
-          router.push(`/checkout?email=${dados.emailFull}&name=${dados.name}&document=${dados.document}`)
+          router.push(`/checkout?email=${dados.emailFull}&name=${dados.name}&document=${dados.document}&phone=${dados.phone}`)
         }
 
 
